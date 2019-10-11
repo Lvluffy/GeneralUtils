@@ -1,0 +1,4 @@
+<resources>
+    <!--双击退出-->
+    <string name="utils_double_click_exit_hint">再点一次退出「%1$s」</string>
+</resources>
