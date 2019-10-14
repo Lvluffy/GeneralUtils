@@ -45,7 +45,4 @@ public class IdCardUtils {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("是否成年:" + getInstance().isGrownUp("1405222010010123024"));
-    }
 }
