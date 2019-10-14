@@ -35,15 +35,17 @@ public class IdCardUtils {
         if (!ValidUtils.getInstance().isValid(idCard)) {
             return false;
         }
-        if (idCard.length() < 18) {
-            return false;
-        }
-        long idCardDate = Long.valueOf(idCard.substring(6, 14));
-        long today = Long.valueOf(TimeUtils.getInstance().getTime(new Date(), new SimpleDateFormat("yyyyMMdd")));
-        if (today - idCardDate >= 180000) {
-            return true;
+        String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        if (idCard.length() == 18) {
+            return (Double.parseDouble(today) - (Double.parseDouble(idCard.substring(6, 14)))) * 0.0001 >= 18;
+        } else if (idCard.length() == 15) {
+            return (Double.parseDouble(today) - (Double.parseDouble("19" + idCard.substring(6, 12)))) * 0.0001 >= 18;
         } else {
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("是否成年:" + getInstance().isGrownUp("1405222010010123024"));
     }
 }
