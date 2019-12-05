@@ -4,19 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -41,61 +37,57 @@ public class ScreenUtils {
     }
 
     /**
-     * 获取屏幕宽度
+     * 获取屏幕宽度、高度、分辨率
      *
      * @param context
-     * @return
+     * @return [0]=宽度;[1]=高度;[2]=分辨率
      */
-    public int getScreenWidth(Context context) {
+    public int[] getScreenWidthHeightDensity(Context context) {
         WindowManager mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics mDisplayMetrics = new DisplayMetrics();
         mWindowManager.getDefaultDisplay().getMetrics(mDisplayMetrics);
-        return mDisplayMetrics.widthPixels;
+        int[] result = new int[3];
+        result[0] = mDisplayMetrics.widthPixels;
+        result[1] = mDisplayMetrics.heightPixels;
+        result[2] = mDisplayMetrics.densityDpi;
+        return result;
     }
 
     /**
-     * 获得屏幕高度
+     * 获取navigationBar的高度
      *
      * @param context
      * @return
      */
-    public int getScreenHeight(Context context) {
-        WindowManager mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics mDisplayMetrics = new DisplayMetrics();
-        mWindowManager.getDefaultDisplay().getMetrics(mDisplayMetrics);
-        return mDisplayMetrics.heightPixels;
+    public int getNavigationBarHeight(Context context) {
+        return getDimensionPixel(context, "navigation_bar_height");
     }
 
     /**
-     * 获得屏幕分辨率
+     * 获取statusBar的高度
      *
      * @param context
      * @return
      */
-    public int getScreenDpi(Context context) {
-        WindowManager mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics mDisplayMetrics = new DisplayMetrics();
-        mWindowManager.getDefaultDisplay().getMetrics(mDisplayMetrics);
-        return mDisplayMetrics.densityDpi;
+    public int getStatusBarHeight(Context context) {
+        return getDimensionPixel(context, "status_bar_height");
     }
 
     /**
-     * 获得状态栏的高度
+     * 获取Dimension像素
      *
      * @param context
+     * @param navigation_bar_height
      * @return
      */
-    public int getStatusHeight(Context context) {
-        int statusHeight = -1;
-        try {
-            Class<?> clazz = Class.forName("com.android.internal.R$dimen");
-            Object object = clazz.newInstance();
-            int height = Integer.parseInt(clazz.getField("status_bar_height").get(object).toString());
-            statusHeight = context.getResources().getDimensionPixelSize(height);
-        } catch (Exception e) {
-            e.printStackTrace();
+    private int getDimensionPixel(Context context, String navigation_bar_height) {
+        int result = 0;
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier(navigation_bar_height, "dimen", "android");
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId);
         }
-        return statusHeight;
+        return result;
     }
 
     /**
@@ -120,51 +112,6 @@ public class ScreenUtils {
             e.printStackTrace();
         }
         return vh;
-    }
-
-    /**
-     * 获取当前屏幕截图，包含状态栏
-     *
-     * @param activity
-     * @return
-     */
-    public Bitmap getScreenShotWithStatusBar(Activity activity) {
-        View view = activity.getWindow().getDecorView();
-        view.setDrawingCacheEnabled(true);
-        view.buildDrawingCache();
-        Bitmap bmp = view.getDrawingCache();
-        int width = getScreenWidth(activity);
-        int height = getScreenHeight(activity);
-        Bitmap bp = null;
-        bp = Bitmap.createBitmap(bmp, 0, 0, width, height);
-        view.destroyDrawingCache();
-        return bp;
-    }
-
-    /**
-     * 获取当前屏幕截图，不包含状态栏
-     *
-     * @param activity
-     * @return
-     */
-    public Bitmap getScreenShotWithoutStatusBar(Activity activity) {
-        View view = activity.getWindow().getDecorView();
-        view.setDrawingCacheEnabled(true);
-        view.buildDrawingCache();
-        Bitmap bmp = view.getDrawingCache();
-        Rect frame = new Rect();
-        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-        int statusBarHeight = frame.top;
-        int width = getScreenWidth(activity);
-        int height = getScreenHeight(activity);
-        Bitmap bp = null;
-        bp = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height - statusBarHeight);
-        view.destroyDrawingCache();
-
-        Matrix matrix = new Matrix();
-        matrix.setScale(0.3f, 0.3f);
-        bp = Bitmap.createBitmap(bp, 0, 0, bp.getWidth(), bp.getHeight(), matrix, true);
-        return bp;
     }
 
     /**
@@ -217,37 +164,12 @@ public class ScreenUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean hasNavigationBar(Activity mActivity) {
-        return checkNavigationBarShow(mActivity);
-    }
-
-    /**
-     * 获取底部导航栏高度
-     *
-     * @return
-     */
-    public int getNavigationBarHeight(Activity mActivity) {
-        int navigationHeight;
-        Resources resources = mActivity.getResources();
-        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-        navigationHeight = resources.getDimensionPixelSize(resourceId);
-        return navigationHeight;
-    }
-
-    /**
-     * 判断是否有导航栏
-     *
-     * @param context
-     * @return
-     */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean checkNavigationBarShow(Context context) {
         boolean show;
-        Display display = ((Activity) context).getWindow().getWindowManager().getDefaultDisplay();
+        Display display = mActivity.getWindow().getWindowManager().getDefaultDisplay();
         Point point = new Point();
         display.getRealSize(point);
-
-        View decorView = ((Activity) context).getWindow().getDecorView();
-        Configuration conf = context.getResources().getConfiguration();
+        View decorView = mActivity.getWindow().getDecorView();
+        Configuration conf = mActivity.getResources().getConfiguration();
         if (Configuration.ORIENTATION_LANDSCAPE == conf.orientation) {
             View contentView = decorView.findViewById(android.R.id.content);
             show = (point.x != contentView.getWidth());
@@ -257,121 +179,5 @@ public class ScreenUtils {
             show = (rect.bottom != point.y);
         }
         return show;
-    }
-
-    /**
-     * 判断是否是刘海屏
-     *
-     * @return
-     */
-    public boolean hasNotchScreen(Activity activity) {
-        if (hasNotchAtXiaomi(activity)
-                || hasNotchAtHuawei(activity)
-                || hasNotchAtOPPO(activity)
-                || hasNotchAtVivo(activity)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 小米刘海屏判断
-     *
-     * @param activity
-     * @return
-     */
-    private boolean hasNotchAtXiaomi(Activity activity) {
-        boolean ret = false;
-        //是小米手机
-        if ("Xiaomi".equals(Build.MANUFACTURER)) {
-            try {
-                ClassLoader classLoader = activity.getClassLoader();
-                @SuppressWarnings("rawtypes")
-                Class SystemProperties = classLoader.loadClass("android.os.SystemProperties");
-                //参数类型
-                @SuppressWarnings("rawtypes")
-                Class[] paramTypes = new Class[2];
-                paramTypes[0] = String.class;
-                paramTypes[1] = int.class;
-                Method getInt = SystemProperties.getMethod("hasNotchAtXiaomi", paramTypes);
-                //参数
-                Object[] params = new Object[2];
-                params[0] = new String("ro.miui.notch");
-                params[1] = new Integer(0);
-                int result = (Integer) getInt.invoke(SystemProperties, params);
-                ret = result == 1;
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            } finally {
-                return ret;
-            }
-        }
-        return ret;
-    }
-
-    /**
-     * 华为刘海屏判断
-     *
-     * @param context
-     * @return
-     */
-    private boolean hasNotchAtHuawei(Context context) {
-        boolean ret = false;
-        try {
-            ClassLoader cl = context.getClassLoader();
-            Class HwNotchSizeUtil = cl.loadClass("com.huawei.android.util.HwNotchSizeUtil");
-            Method get = HwNotchSizeUtil.getMethod("hasNotchInScreen");
-            ret = (boolean) get.invoke(HwNotchSizeUtil);
-        } catch (ClassNotFoundException e) {
-            Log.e("Huawei", "hasNotchInScreen ClassNotFoundException");
-        } catch (NoSuchMethodException e) {
-            Log.e("Huawei", "hasNotchInScreen NoSuchMethodException");
-        } catch (Exception e) {
-            Log.e("Huawei", "hasNotchInScreen Exception");
-        } finally {
-            return ret;
-        }
-    }
-
-    /**
-     * vivo刘海屏判断
-     *
-     * @param context
-     * @return
-     */
-    private boolean hasNotchAtVivo(Context context) {
-        boolean ret = false;
-        try {
-            ClassLoader classLoader = context.getClassLoader();
-            Class FtFeature = classLoader.loadClass("android.util.FtFeature");
-            Method method = FtFeature.getMethod("isFeatureSupport", int.class);
-            ret = (boolean) method.invoke(FtFeature, 0x00000020);
-        } catch (ClassNotFoundException e) {
-            Log.e("Vivo", "hasNotchAtVivo ClassNotFoundException");
-        } catch (NoSuchMethodException e) {
-            Log.e("Vivo", "hasNotchAtVivo NoSuchMethodException");
-        } catch (Exception e) {
-            Log.e("Vivo", "hasNotchAtVivo Exception");
-        } finally {
-            return ret;
-        }
-    }
-
-    /**
-     * OPPO刘海屏判断
-     *
-     * @param context
-     * @return
-     */
-    private boolean hasNotchAtOPPO(Context context) {
-        return context.getPackageManager().hasSystemFeature("com.oppo.feature.screen.heteromorphism");
     }
 }
