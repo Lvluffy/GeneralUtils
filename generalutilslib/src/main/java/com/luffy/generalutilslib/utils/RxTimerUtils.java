@@ -1,6 +1,5 @@
 package com.luffy.generalutilslib.utils;
 
-import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -15,8 +14,6 @@ import io.reactivex.disposables.Disposable;
  * @desc Rxjava2.x实现轮询定时器
  */
 public class RxTimerUtils {
-
-    private WeakReference<Disposable> mDisposable;
 
     private RxTimerUtils() {
     }
@@ -41,12 +38,13 @@ public class RxTimerUtils {
      * @param next
      */
     public void timer(long delay, TimeUnit unit, final IRxNext next) {
+        final Disposable[] mDisposable = new Disposable[1];
         Observable.timer(delay, unit)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable disposable) {
-                        mDisposable = (WeakReference<Disposable>) disposable;
+                        mDisposable[0] = disposable;
                     }
 
                     @Override
@@ -59,13 +57,17 @@ public class RxTimerUtils {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         //取消订阅
-                        cancel();
+                        if (mDisposable[0] != null && !mDisposable[0].isDisposed()) {
+                            mDisposable[0].dispose();
+                        }
                     }
 
                     @Override
                     public void onComplete() {
                         //取消订阅
-                        cancel();
+                        if (mDisposable[0] != null && !mDisposable[0].isDisposed()) {
+                            mDisposable[0].dispose();
+                        }
                     }
                 });
     }
@@ -78,12 +80,13 @@ public class RxTimerUtils {
      * @param next
      */
     public void interval(long delay, TimeUnit unit, final IRxNext next) {
+        final Disposable[] mDisposable = new Disposable[1];
         Observable.interval(delay, unit)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable disposable) {
-                        mDisposable = (WeakReference<Disposable>) disposable;
+                        mDisposable[0] = disposable;
                     }
 
                     @Override
@@ -96,24 +99,19 @@ public class RxTimerUtils {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         //取消订阅
-                        cancel();
+                        if (mDisposable[0] != null && !mDisposable[0].isDisposed()) {
+                            mDisposable[0].dispose();
+                        }
                     }
 
                     @Override
                     public void onComplete() {
                         //取消订阅
-                        cancel();
+                        if (mDisposable[0] != null && !mDisposable[0].isDisposed()) {
+                            mDisposable[0].dispose();
+                        }
                     }
                 });
-    }
-
-    /**
-     * 取消订阅
-     */
-    public void cancel() {
-        if (mDisposable != null && !mDisposable.get().isDisposed()) {
-            mDisposable.get().dispose();
-        }
     }
 
     /**
