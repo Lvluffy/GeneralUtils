@@ -16,12 +16,27 @@ import java.io.IOException;
  * @desc 头像裁剪-辅助工具
  */
 public class PhotoProcessor {
+    private PhotoProcessor() {
+    }
+
+    public static PhotoProcessor getInstance() {
+        return PhotoProcessor.PhotoProcessorHelper.mPhotoProcessor;
+    }
+
+    private static class PhotoProcessorHelper {
+        private static PhotoProcessor mPhotoProcessor;
+
+        static {
+            mPhotoProcessor = new PhotoProcessor();
+        }
+    }
+
     /**
      * 获取裁剪过的图片文件
      *
      * @return
      */
-    public static File getTempImage(Context context) {
+    public File getTempImage(Context context) {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             File tempFile = new File(context.getFilesDir().getAbsolutePath(), "temp.jpg");
             try {
@@ -39,7 +54,7 @@ public class PhotoProcessor {
      *
      * @return
      */
-    public static File getTempImageFromPhoto() {
+    public File getTempImageFromPhoto() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             File tempFile = new File(Environment.getExternalStorageDirectory(), "tempPho.jpg");
             try {
@@ -59,7 +74,7 @@ public class PhotoProcessor {
      * @param context
      * @return
      */
-    public static File getSmallImageFile(String filePath, Context context) {
+    public File getSmallImageFile(String filePath, Context context) {
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(filePath, options);
@@ -107,7 +122,7 @@ public class PhotoProcessor {
         return file;
     }
 
-    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+    private int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;
         final int width = options.outWidth;

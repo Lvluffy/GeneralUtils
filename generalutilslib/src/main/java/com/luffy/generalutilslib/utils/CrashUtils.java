@@ -26,7 +26,7 @@ public class CrashUtils implements UncaughtExceptionHandler {
     /**
      * 文件名
      */
-    public static final String FILE_NAME = "crash";
+    private static final String FILE_NAME = "crash";
     /**
      * 异常日志 存储位置为根目录下的 Crash文件夹
      */

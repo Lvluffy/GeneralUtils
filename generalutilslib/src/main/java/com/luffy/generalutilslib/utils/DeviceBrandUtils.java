@@ -52,7 +52,7 @@ public class DeviceBrandUtils {
     /**
      * 华为
      */
-    private class Huawei {
+    private static class Huawei {
         /*华为*/
         public static final String BRAND_1 = "HUAWEI";
         /*荣耀*/
@@ -62,7 +62,7 @@ public class DeviceBrandUtils {
     /**
      * 三星
      */
-    private class Sanxing {
+    private static class Sanxing {
         /*三星*/
         public static final String BRAND_1 = "samsung";
     }
@@ -70,7 +70,7 @@ public class DeviceBrandUtils {
     /**
      * 小米
      */
-    private class Xiaomi {
+    private static class Xiaomi {
         /*小米*/
         public static final String BRAND_1 = "Xiaomi";
 
@@ -79,21 +79,21 @@ public class DeviceBrandUtils {
     /**
      * VIVO
      */
-    private class Vivo {
+    private static class Vivo {
         public static final String BRAND_1 = "vivo";
     }
 
     /**
      * OPPO
      */
-    private class Oppo {
+    private static class Oppo {
         public static final String BRAND_1 = "OPPO";
     }
 
     /**
      * 魅族
      */
-    private class Meizu {
+    private static class Meizu {
         /*魅族*/
         public static final String BRAND_1 = "Meizu";
     }

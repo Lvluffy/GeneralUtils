@@ -18,10 +18,8 @@ import com.luffy.generalutilslib.utils.notch.impl.VivoNotchScreen;
  */
 public class DeviceNotchScreenUtils {
 
-    private final INotchScreen notchScreen;
-
     private DeviceNotchScreenUtils() {
-        notchScreen = getNotchScreen();
+
     }
 
     public static DeviceNotchScreenUtils getInstance() {
@@ -36,7 +34,12 @@ public class DeviceNotchScreenUtils {
         }
     }
 
+    /**
+     * @param context
+     * @param notchScreenCallback
+     */
     public void getNotchInfo(final Context context, final INotchScreen.NotchScreenCallback notchScreenCallback) {
+        INotchScreen notchScreen = getNotchScreen();
         final INotchScreen.NotchScreenInfo notchScreenInfo = new INotchScreen.NotchScreenInfo();
         if (notchScreen != null && notchScreen.hasNotch(context)) {
             notchScreen.getNotchWidthHeight(context, new INotchScreen.NotchSizeCallback() {
@@ -54,6 +57,9 @@ public class DeviceNotchScreenUtils {
         }
     }
 
+    /**
+     * @return
+     */
     private INotchScreen getNotchScreen() {
         INotchScreen notchScreen = null;
         if (DeviceBrandUtils.getInstance().getOSType() == DeviceBrandUtils.OSType.Huawei) {

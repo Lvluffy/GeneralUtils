@@ -1,5 +1,6 @@
 package com.luffy.generalutilslib.utils;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -15,7 +16,7 @@ import io.reactivex.disposables.Disposable;
  */
 public class RxTimerUtils {
 
-    private Disposable mDisposable;
+    private WeakReference<Disposable> mDisposable;
 
     private RxTimerUtils() {
     }
@@ -45,7 +46,7 @@ public class RxTimerUtils {
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable disposable) {
-                        mDisposable = disposable;
+                        mDisposable = (WeakReference<Disposable>) disposable;
                     }
 
                     @Override
@@ -82,7 +83,7 @@ public class RxTimerUtils {
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable disposable) {
-                        mDisposable = disposable;
+                        mDisposable = (WeakReference<Disposable>) disposable;
                     }
 
                     @Override
@@ -110,8 +111,8 @@ public class RxTimerUtils {
      * 取消订阅
      */
     public void cancel() {
-        if (mDisposable != null && !mDisposable.isDisposed()) {
-            mDisposable.dispose();
+        if (mDisposable != null && !mDisposable.get().isDisposed()) {
+            mDisposable.get().dispose();
         }
     }
 

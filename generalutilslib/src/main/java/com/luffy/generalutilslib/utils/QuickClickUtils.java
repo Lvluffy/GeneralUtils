@@ -25,7 +25,7 @@ public class QuickClickUtils {
 
     /*记录点击的次数*/
     private int mClickTimes = 0;
-    private Handler handler = new Handler();
+    private MyHandler handler = new MyHandler();
     /*点击间距的有效时间处理*/
     private Runnable mDebugClickRunnable = new Runnable() {
         @Override
@@ -57,5 +57,9 @@ public class QuickClickUtils {
 
     public interface QuickClickCallback {
         void onExecute();
+    }
+
+    private static class MyHandler extends Handler{
+
     }
 }
