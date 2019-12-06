@@ -94,12 +94,14 @@ public class RxTimerUtils {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-
+                        //取消订阅
+                        cancel();
                     }
 
                     @Override
                     public void onComplete() {
-
+                        //取消订阅
+                        cancel();
                     }
                 });
     }
