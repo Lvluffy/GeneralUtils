@@ -112,6 +112,7 @@ public class RxTimerUtils {
     public void cancel() {
         if (mDisposable != null && !mDisposable.isDisposed()) {
             mDisposable.dispose();
+            mDisposable = null;
         }
     }
 
