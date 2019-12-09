@@ -15,7 +15,6 @@ import android.widget.FrameLayout;
  */
 public class KeyBoardUtils {
 
-    View contentView;//内容视图
     int usableHeightPrevious;//可用高度之前
 
     private KeyBoardUtils() {
@@ -96,10 +95,10 @@ public class KeyBoardUtils {
      */
     public void keyboardStateObserver(Activity activity, final OnKeyboardVisibilityListener listener) {
         final FrameLayout content = (FrameLayout) activity.findViewById(android.R.id.content);
-        contentView = content.getChildAt(0);
+        final View contentView = content.getChildAt(0);
         contentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             public void onGlobalLayout() {
-                int usableHeightNow = computeUsableHeight();
+                int usableHeightNow = computeUsableHeight(contentView);
                 if (usableHeightNow != usableHeightPrevious) {
                     int usableHeightSansKeyboard = contentView.getRootView().getHeight();
                     int heightDifference = usableHeightSansKeyboard - usableHeightNow;
@@ -118,12 +117,14 @@ public class KeyBoardUtils {
         });
     }
 
+
     /**
      * 计算可用高度
      *
+     * @param contentView 内容视图
      * @return
      */
-    private int computeUsableHeight() {
+    private int computeUsableHeight(View contentView) {
         Rect r = new Rect();
         contentView.getWindowVisibleDisplayFrame(r);
         return (r.bottom - r.top);// 全屏模式下： return r.bottom
