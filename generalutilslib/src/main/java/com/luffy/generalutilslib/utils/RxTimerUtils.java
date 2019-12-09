@@ -15,6 +15,8 @@ import io.reactivex.disposables.Disposable;
  */
 public class RxTimerUtils {
 
+    private Disposable mDisposable;
+
     private RxTimerUtils() {
     }
 
@@ -38,13 +40,12 @@ public class RxTimerUtils {
      * @param next
      */
     public void timer(long delay, TimeUnit unit, final IRxNext next) {
-        final Disposable[] mDisposable = new Disposable[1];
         Observable.timer(delay, unit)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable disposable) {
-                        mDisposable[0] = disposable;
+                        mDisposable = disposable;
                     }
 
                     @Override
@@ -57,17 +58,13 @@ public class RxTimerUtils {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         //取消订阅
-                        if (mDisposable[0] != null && !mDisposable[0].isDisposed()) {
-                            mDisposable[0].dispose();
-                        }
+                        cancel();
                     }
 
                     @Override
                     public void onComplete() {
                         //取消订阅
-                        if (mDisposable[0] != null && !mDisposable[0].isDisposed()) {
-                            mDisposable[0].dispose();
-                        }
+                        cancel();
                     }
                 });
     }
@@ -80,13 +77,12 @@ public class RxTimerUtils {
      * @param next
      */
     public void interval(long delay, TimeUnit unit, final IRxNext next) {
-        final Disposable[] mDisposable = new Disposable[1];
         Observable.interval(delay, unit)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable disposable) {
-                        mDisposable[0] = disposable;
+                        mDisposable = disposable;
                     }
 
                     @Override
@@ -99,19 +95,24 @@ public class RxTimerUtils {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         //取消订阅
-                        if (mDisposable[0] != null && !mDisposable[0].isDisposed()) {
-                            mDisposable[0].dispose();
-                        }
+                        cancel();
                     }
 
                     @Override
                     public void onComplete() {
                         //取消订阅
-                        if (mDisposable[0] != null && !mDisposable[0].isDisposed()) {
-                            mDisposable[0].dispose();
-                        }
+                        cancel();
                     }
                 });
+    }
+
+    /**
+     * 取消订阅
+     */
+    public void cancel() {
+        if (mDisposable != null && !mDisposable.isDisposed()) {
+            mDisposable.dispose();
+        }
     }
 
     /**
