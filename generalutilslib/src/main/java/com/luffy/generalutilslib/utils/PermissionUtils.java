@@ -25,7 +25,7 @@ public class PermissionUtils {
     }
 
     private static class PermissionUtilsHelper {
-        private static PermissionUtils mPermissionUtils;
+        private static final PermissionUtils mPermissionUtils;
 
         static {
             mPermissionUtils = new PermissionUtils();
@@ -35,9 +35,9 @@ public class PermissionUtils {
     /**
      * 是否开启了指定权限
      *
-     * @param ctx
+     * @param ctx      上下文
      * @param permName 权限名称
-     * @return
+     * @return 是否开启了指定权限
      */
     public boolean checkPermission(Context ctx, String permName) {
         return PackageManager.PERMISSION_GRANTED == ctx.checkCallingOrSelfPermission(permName);
@@ -46,9 +46,9 @@ public class PermissionUtils {
     /**
      * 同时申请单个运行时权限
      *
-     * @param activity
-     * @param meanWhileApplyPermissionCallBack
-     * @param permissions
+     * @param activity                         Activity
+     * @param meanWhileApplyPermissionCallBack 回调
+     * @param permissions                      权限
      */
     public void meanWhileApplySinglePermission(Activity activity, final MeanWhileApplyPermissionCallBack meanWhileApplyPermissionCallBack, final String... permissions) {
         new RxPermissions(activity)
@@ -69,9 +69,9 @@ public class PermissionUtils {
     /**
      * 同时申请多个运行时权限
      *
-     * @param activity
-     * @param meanWhileApplyPermissionCallBack
-     * @param permissions
+     * @param activity                         Activity
+     * @param meanWhileApplyPermissionCallBack 回调
+     * @param permissions                      权限
      */
     public void meanWhileApplyMultiPermission(Activity activity, final MeanWhileApplyPermissionCallBack meanWhileApplyPermissionCallBack, final String... permissions) {
         new RxPermissions(activity)
@@ -92,9 +92,9 @@ public class PermissionUtils {
     /**
      * 分别申请运行时权限
      *
-     * @param activity
-     * @param separateApplyPermissionCallBack
-     * @param permissions
+     * @param activity                        Activity
+     * @param separateApplyPermissionCallBack 回调
+     * @param permissions                     权限
      */
     public void separateApplyPermission(Activity activity, final SeparateApplyPermissionCallBack separateApplyPermissionCallBack, final String... permissions) {
         new RxPermissions(activity)

@@ -34,7 +34,7 @@ public class FileConversionUtils {
     }
 
     private static class FileConversionUtilsHelper {
-        private static FileConversionUtils mFileConversionUtils;
+        private static final FileConversionUtils mFileConversionUtils;
 
         static {
             mFileConversionUtils = new FileConversionUtils();
@@ -44,8 +44,8 @@ public class FileConversionUtils {
     /**
      * URI转File
      *
-     * @param uri
-     * @return
+     * @param uri URI
+     * @return 文件
      */
     public File uri2File(URI uri) {
         File file = null;
@@ -58,8 +58,8 @@ public class FileConversionUtils {
     /**
      * File转URI
      *
-     * @param file
-     * @return
+     * @param file 文件
+     * @return URI
      */
     public URI file2URI(File file) {
         URI uri = null;
@@ -72,8 +72,8 @@ public class FileConversionUtils {
     /**
      * path转File
      *
-     * @param path
-     * @return
+     * @param path 文件路径
+     * @return 文件
      */
     public File string2File(String path) {
         File file = null;
@@ -86,8 +86,8 @@ public class FileConversionUtils {
     /**
      * File转path:
      *
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 文件路径
      */
     public String file2String(File file) {
         String path = null;
@@ -100,8 +100,8 @@ public class FileConversionUtils {
     /**
      * String转byte[]
      *
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 字节数组
      */
     public byte[] string2Byte(String filePath) {
         byte[] buffer = null;
@@ -115,8 +115,8 @@ public class FileConversionUtils {
     /**
      * File转byte[]
      *
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 字节数组
      */
     public byte[] file2Byte(File file) {
         byte[] bytes = null;
@@ -144,10 +144,10 @@ public class FileConversionUtils {
     /**
      * byte[]转File
      *
-     * @param bytes
-     * @param filePath
-     * @param fileName
-     * @return
+     * @param bytes    字节数组
+     * @param filePath 文件路径
+     * @param fileName 文件名称
+     * @return 文件
      */
     public File byte2File(byte[] bytes, String filePath, String fileName) {
         BufferedOutputStream bos = null;
@@ -186,8 +186,8 @@ public class FileConversionUtils {
     /**
      * Bitmap转byte[]
      *
-     * @param bitmap
-     * @return
+     * @param bitmap Bitmao
+     * @return 字节数组
      */
     public byte[] bitmap2Byte(Bitmap bitmap) {
         byte[] bytes = null;
@@ -202,8 +202,8 @@ public class FileConversionUtils {
     /**
      * byte[]转Bitmap
      *
-     * @param bytes
-     * @return
+     * @param bytes 字节数组
+     * @return Bitmap
      */
     public Bitmap byte2Bitmap(byte[] bytes) {
         Bitmap bitmap = null;
@@ -217,8 +217,8 @@ public class FileConversionUtils {
     /**
      * String转Bitmap
      *
-     * @param path
-     * @return
+     * @param path 图片路径
+     * @return Bitmap
      */
     public Bitmap string2Bitmap(String path) {
         Bitmap bitmap = null;
@@ -241,8 +241,8 @@ public class FileConversionUtils {
     /**
      * File转Bitmap
      *
-     * @param file
-     * @return
+     * @param file 文件
+     * @return Bitmap
      */
     public Bitmap file2Bitmap(File file) throws IOException {
         Bitmap bitmap = null;
@@ -275,8 +275,8 @@ public class FileConversionUtils {
     /**
      * File路径转Bitmap
      *
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return Bitmap
      */
     public Bitmap filePath2Bitmap(String filePath) throws IOException {
         Bitmap bitmap = null;
@@ -293,10 +293,10 @@ public class FileConversionUtils {
     /**
      * Bitmap转File
      *
-     * @param bitmap
-     * @param filePath
-     * @param fileName
-     * @return
+     * @param bitmap   Bitmap
+     * @param filePath 文件路径
+     * @param fileName 文件名称
+     * @return 文件
      */
     public File bitmap2File(Bitmap bitmap, String filePath, String fileName) {
         File file = null;
@@ -333,7 +333,7 @@ public class FileConversionUtils {
      *
      * @param context  上下文对象
      * @param fileName 文件名称
-     * @return
+     * @return 字符串
      */
     public String assetsFile2String(Context context, String fileName) {
         //将json数据变成字符串

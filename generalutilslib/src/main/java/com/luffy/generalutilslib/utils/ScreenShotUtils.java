@@ -26,7 +26,7 @@ public class ScreenShotUtils {
     }
 
     private static class ScreenShotUtilsHelper {
-        private static ScreenShotUtils mScreenShotUtils;
+        private static final ScreenShotUtils mScreenShotUtils;
 
         static {
             mScreenShotUtils = new ScreenShotUtils();
@@ -36,8 +36,8 @@ public class ScreenShotUtils {
     /**
      * 截取-除了导航栏之外的屏幕
      *
-     * @param mContext
-     * @return
+     * @param mContext 上下文
+     * @return Bitmap
      */
     public Bitmap getScreenBitmap(Activity mContext) {
         Bitmap bitmap;
@@ -51,8 +51,8 @@ public class ScreenShotUtils {
     /**
      * 截取-某个控件或者区域的屏幕
      *
-     * @param view
-     * @return
+     * @param view View
+     * @return Bitmap
      */
     public Bitmap getWidgetBitmap(View view) {
         Bitmap bitmap;
@@ -66,8 +66,8 @@ public class ScreenShotUtils {
     /**
      * 获取当前屏幕截图，包含状态栏
      *
-     * @param activity
-     * @return
+     * @param activity Activity
+     * @return Bitmap
      */
     public Bitmap getScreenShotWithStatusBar(Activity activity) {
         View view = activity.getWindow().getDecorView();
@@ -85,8 +85,8 @@ public class ScreenShotUtils {
     /**
      * 获取当前屏幕截图，不包含状态栏
      *
-     * @param activity
-     * @return
+     * @param activity Activity
+     * @return Bitmap
      */
     public Bitmap getScreenShotWithoutStatusBar(Activity activity) {
         View view = activity.getWindow().getDecorView();
@@ -111,8 +111,8 @@ public class ScreenShotUtils {
     /**
      * 截取-ScrollView的屏幕
      *
-     * @param scrollView
-     * @return
+     * @param scrollView ScrollView
+     * @return Bitmap
      */
     public Bitmap getScrollViewBitmap(ScrollView scrollView) {
         Bitmap bitmap;
@@ -132,8 +132,8 @@ public class ScreenShotUtils {
     /**
      * 截取-ListView的屏幕
      *
-     * @param listView
-     * @return
+     * @param listView ListView
+     * @return Bitmap
      */
     public Bitmap getListViewBitmap(ListView listView) {
         Bitmap bitmap;
@@ -153,8 +153,8 @@ public class ScreenShotUtils {
     /**
      * 截取-WebView的屏幕
      *
-     * @param webView
-     * @return
+     * @param webView WebView
+     * @return Bitmap
      */
     public Bitmap getWebViewBitmap(WebView webView) {
         Bitmap bitmap;

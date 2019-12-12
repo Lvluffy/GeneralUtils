@@ -19,7 +19,7 @@ public class LogUtils {
     }
 
     private static class LogUtilsHelper {
-        private static LogUtils mLogUtils;
+        private static final LogUtils mLogUtils;
 
         static {
             mLogUtils = new LogUtils();
@@ -31,7 +31,7 @@ public class LogUtils {
     }
 
     /**
-     * @param log
+     * @param log 日志
      */
     public void logVerbose(String log) {
         if (DEBUG)
@@ -39,8 +39,8 @@ public class LogUtils {
     }
 
     /**
-     * @param tag
-     * @param log
+     * @param tag 标签
+     * @param log 日志
      */
     public void logVerbose(String tag, String log) {
         if (DEBUG)
@@ -48,7 +48,7 @@ public class LogUtils {
     }
 
     /**
-     * @param log
+     * @param log 日志
      */
     public void logDebug(String log) {
         if (DEBUG)
@@ -56,8 +56,8 @@ public class LogUtils {
     }
 
     /**
-     * @param tag
-     * @param log
+     * @param tag 标签
+     * @param log 日志
      */
     public void logDebug(String tag, String log) {
         if (DEBUG)
@@ -65,7 +65,7 @@ public class LogUtils {
     }
 
     /**
-     * @param log
+     * @param log 日志
      */
     public void logError(String log) {
         if (DEBUG)
@@ -73,8 +73,8 @@ public class LogUtils {
     }
 
     /**
-     * @param tag
-     * @param log
+     * @param tag 标签
+     * @param log 日志
      */
     public void logError(String tag, String log) {
         if (DEBUG)
@@ -82,7 +82,7 @@ public class LogUtils {
     }
 
     /**
-     * @param log
+     * @param log 日志
      */
     public void logInfo(String log) {
         if (DEBUG)
@@ -90,8 +90,8 @@ public class LogUtils {
     }
 
     /**
-     * @param tag
-     * @param log
+     * @param tag 标签
+     * @param log 日志
      */
     public void logInfo(String tag, String log) {
         if (DEBUG)
@@ -99,7 +99,7 @@ public class LogUtils {
     }
 
     /**
-     * @param log
+     * @param log 日志
      */
     public void logWarn(String log) {
         if (DEBUG)
@@ -107,8 +107,8 @@ public class LogUtils {
     }
 
     /**
-     * @param tag
-     * @param log
+     * @param tag 标签
+     * @param log 日志
      */
     public void logWarn(String tag, String log) {
         if (DEBUG)

@@ -18,7 +18,7 @@ public class IdCardUtils {
     }
 
     private static class IdCardUtilsHelper {
-        private static IdCardUtils mIdCardUtils;
+        private static final IdCardUtils mIdCardUtils;
 
         static {
             mIdCardUtils = new IdCardUtils();
@@ -28,8 +28,8 @@ public class IdCardUtils {
     /**
      * 是否成年
      *
-     * @param idCard
-     * @return
+     * @param idCard 身份证号
+     * @return 是否成年
      */
     public boolean isGrownUp(String idCard) {
         if (!ValidUtils.getInstance().isValid(idCard)) {
@@ -40,9 +40,8 @@ public class IdCardUtils {
             return (Double.parseDouble(today) - (Double.parseDouble(idCard.substring(6, 14)))) * 0.0001 >= 18;
         } else if (idCard.length() == 15) {
             return (Double.parseDouble(today) - (Double.parseDouble("19" + idCard.substring(6, 12)))) * 0.0001 >= 18;
-        } else {
-            return false;
         }
+        return false;
     }
 
 }

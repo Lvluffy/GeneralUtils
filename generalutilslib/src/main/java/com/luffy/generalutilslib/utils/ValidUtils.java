@@ -17,7 +17,7 @@ public class ValidUtils {
     }
 
     private static class ValidUtilsHelper {
-        private static ValidUtils mValidUtils;
+        private static final ValidUtils mValidUtils;
 
         static {
             mValidUtils = new ValidUtils();
@@ -27,39 +27,30 @@ public class ValidUtils {
     /**
      * 判断string的有效性
      *
-     * @param string
-     * @return
+     * @param string 字符串
+     * @return 是否有效
      */
     public boolean isValid(String string) {
-        if (string == null || "".equals(string.trim()) || "null".equals(string) || string.length() == 0) {
-            return false;
-        }
-        return true;
+        return !(string == null || "".equals(string.trim()) || "null".equals(string) || string.length() == 0);
     }
 
     /**
      * 判断对象的有效性
      *
-     * @param obj
-     * @return
+     * @param obj 对象
+     * @return 是否有效
      */
     public boolean isValid(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        return true;
+        return obj != null;
     }
 
     /**
      * 判断集合的有效性
      *
-     * @param collection
-     * @return
+     * @param collection 集合
+     * @return 是否有效
      */
     public boolean isValid(Collection collection) {
-        if (collection == null || collection.isEmpty()) {
-            return false;
-        }
-        return true;
+        return !(collection == null || collection.isEmpty());
     }
 }

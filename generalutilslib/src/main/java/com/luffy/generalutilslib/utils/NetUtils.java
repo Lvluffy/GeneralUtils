@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.provider.Settings;
 
 /**
@@ -35,7 +34,7 @@ public class NetUtils {
     }
 
     private static class NetUtilsHelper {
-        private static NetUtils mNetUtils;
+        private static final NetUtils mNetUtils;
 
         static {
             mNetUtils = new NetUtils();
@@ -43,7 +42,7 @@ public class NetUtils {
     }
 
     /**
-     * @param mContext
+     * @param mContext 上下文
      * @return 获取当前网络连接的类型
      */
     public int getConnectedType(Context mContext) {
@@ -113,11 +112,7 @@ public class NetUtils {
      */
     public void openSetting(Activity activity) {
         Intent mIntent = new Intent();
-        if (Build.VERSION.SDK_INT > 10) {
-            mIntent.setAction(Settings.ACTION_SETTINGS);
-        } else {
-            mIntent.setAction(Settings.ACTION_WIRELESS_SETTINGS);
-        }
+        mIntent.setAction(Settings.ACTION_SETTINGS);
         activity.startActivity(mIntent);
     }
 }

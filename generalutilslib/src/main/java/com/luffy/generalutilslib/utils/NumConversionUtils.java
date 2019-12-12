@@ -21,7 +21,7 @@ public class NumConversionUtils {
      * 静态内部类实现单例
      */
     private static class NumConversionUtilsHelper {
-        private static NumConversionUtils mNumConversionUtils;
+        private static final NumConversionUtils mNumConversionUtils;
 
         static {
             mNumConversionUtils = new NumConversionUtils();
@@ -33,7 +33,7 @@ public class NumConversionUtils {
      *
      * @param num      数字值
      * @param position 保留数量
-     * @return
+     * @return 处理后的数据
      */
     public float retainDecimal(float num, int position) {
         BigDecimal mBigDecimal = new BigDecimal(num);

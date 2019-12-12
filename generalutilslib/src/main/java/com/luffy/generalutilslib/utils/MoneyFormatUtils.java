@@ -18,7 +18,7 @@ public class MoneyFormatUtils {
     }
 
     private static class MoneyFormatUtilsHelper {
-        private static MoneyFormatUtils mMoneyFormatUtils;
+        private static final MoneyFormatUtils mMoneyFormatUtils;
 
         static {
             mMoneyFormatUtils = new MoneyFormatUtils();
@@ -28,8 +28,8 @@ public class MoneyFormatUtils {
     /**
      * double转String,保留小数点后两位（四舍五入）
      *
-     * @param money
-     * @return
+     * @param money 金额
+     * @return 处理后的金额
      */
     public String doubleToString(double money) {
         DecimalFormat mDecimalFormat = new DecimalFormat("0.00");
@@ -40,9 +40,9 @@ public class MoneyFormatUtils {
     /**
      * double转String,保留小数点后几位，自己定义（四舍五入）
      *
-     * @param money
+     * @param money   金额
      * @param pattern 模式
-     * @return
+     * @return 处理后的金额
      */
     public String doubleToString(double money, String pattern) {
         DecimalFormat mDecimalFormat = new DecimalFormat(pattern);
@@ -54,8 +54,8 @@ public class MoneyFormatUtils {
     /**
      * double转String,保留小数点后两位（不四舍五入）
      *
-     * @param money
-     * @return
+     * @param money 金额
+     * @return 处理后的金额
      */
     public String doubleToStringRoundingNo(double money) {
         DecimalFormat mDecimalFormat = new DecimalFormat("0.00");
@@ -66,9 +66,9 @@ public class MoneyFormatUtils {
     /**
      * double转String,保留小数点后几位，自己定义（不四舍五入）
      *
-     * @param money
+     * @param money   金额
      * @param pattern 模式
-     * @return
+     * @return 处理后的金额
      */
     public String doubleToStringRoundingNo(double money, String pattern) {
         DecimalFormat mDecimalFormat = new DecimalFormat(pattern);

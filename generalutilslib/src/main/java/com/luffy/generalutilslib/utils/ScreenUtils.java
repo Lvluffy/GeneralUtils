@@ -29,7 +29,7 @@ public class ScreenUtils {
     }
 
     private static class ScreenUtilsHelper {
-        private static ScreenUtils mScreenUtils;
+        private static final ScreenUtils mScreenUtils;
 
         static {
             mScreenUtils = new ScreenUtils();
@@ -39,7 +39,7 @@ public class ScreenUtils {
     /**
      * 获取屏幕宽度、高度、分辨率
      *
-     * @param context
+     * @param context 上下文
      * @return [0]=宽度;[1]=高度;[2]=分辨率
      */
     public int[] getScreenWidthHeightDensity(Context context) {
@@ -56,8 +56,8 @@ public class ScreenUtils {
     /**
      * 获取navigationBar的高度
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return navigationBar的高度
      */
     public int getNavigationBarHeight(Context context) {
         return getDimensionPixel(context, "navigation_bar_height");
@@ -66,8 +66,8 @@ public class ScreenUtils {
     /**
      * 获取statusBar的高度
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return statusBar的高度
      */
     public int getStatusBarHeight(Context context) {
         return getDimensionPixel(context, "status_bar_height");
@@ -76,9 +76,9 @@ public class ScreenUtils {
     /**
      * 获取Dimension像素
      *
-     * @param context
-     * @param navigation_bar_height
-     * @return
+     * @param context               上下文
+     * @param navigation_bar_height navigationBar的高度
+     * @return imension像素
      */
     private int getDimensionPixel(Context context, String navigation_bar_height) {
         int result = 0;
@@ -93,8 +93,8 @@ public class ScreenUtils {
     /**
      * 获取虚拟键盘的高度
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 虚拟键盘的高度
      */
     public int getVirtualKeyboardHeight(Context context) {
         int vh = 0;
@@ -117,8 +117,8 @@ public class ScreenUtils {
     /**
      * 选择全屏显示与否
      *
-     * @param mActivity
-     * @param isFullScreen
+     * @param mActivity    Activity
+     * @param isFullScreen 是否显示全屏
      */
     public void switchFullScreen(Activity mActivity, boolean isFullScreen) {
         if (isFullScreen) {
@@ -137,7 +137,7 @@ public class ScreenUtils {
     /**
      * 隐藏状态栏
      *
-     * @param mActivity
+     * @param mActivity Activity
      */
     public void hideStatusBar(Activity mActivity) {
         WindowManager.LayoutParams attrs = mActivity.getWindow().getAttributes();
@@ -148,7 +148,7 @@ public class ScreenUtils {
     /**
      * 显示状态栏
      *
-     * @param mActivity
+     * @param mActivity Activity
      */
     public void showStatusBar(Activity mActivity) {
         WindowManager.LayoutParams attrs = mActivity.getWindow().getAttributes();
@@ -159,8 +159,8 @@ public class ScreenUtils {
     /**
      * 判断是否存在NavigationBar
      *
-     * @param mActivity
-     * @return
+     * @param mActivity Activity
+     * @return 是否存在NavigationBarø
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public boolean hasNavigationBar(Activity mActivity) {

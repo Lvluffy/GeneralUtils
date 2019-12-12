@@ -53,7 +53,7 @@ public class TimeUtils {
     }
 
     private static class TimeUtilsHelper {
-        private static TimeUtils mTimeUtils;
+        private static final TimeUtils mTimeUtils;
 
         static {
             mTimeUtils = new TimeUtils();
@@ -63,9 +63,9 @@ public class TimeUtils {
     /**
      * 获取格式化时间
      *
-     * @param time
-     * @param dateFormat
-     * @return
+     * @param time       时间戳
+     * @param dateFormat 时间格式
+     * @return 格式化时间
      */
     public String getTime(long time, SimpleDateFormat dateFormat) {
         if (time == 0) {
@@ -77,9 +77,9 @@ public class TimeUtils {
     /**
      * 获取格式化时间
      *
-     * @param time
-     * @param dateFormat
-     * @return
+     * @param time       时间戳
+     * @param dateFormat 时间格式
+     * @return 格式化时间
      */
     public String getTimeUnix(long time, SimpleDateFormat dateFormat) {
         if (time == 0) {
@@ -91,9 +91,9 @@ public class TimeUtils {
     /**
      * 获取格式化时间
      *
-     * @param time
-     * @param dateFormat
-     * @return
+     * @param time       时间戳
+     * @param dateFormat 时间格式
+     * @return 格式化时间
      */
     public String getTime(String time, SimpleDateFormat dateFormat) {
         if (time != null && time.length() > 0 && !"".equals(time)) {
@@ -107,9 +107,9 @@ public class TimeUtils {
     /**
      * 获取格式化时间
      *
-     * @param date
-     * @param dateFormat
-     * @return
+     * @param date       日期
+     * @param dateFormat 时间格式
+     * @return 格式化时间
      */
     public String getTime(Date date, SimpleDateFormat dateFormat) {
         if (!ValidUtils.getInstance().isValid(date)) {
@@ -121,8 +121,8 @@ public class TimeUtils {
     /**
      * 获取时间
      *
-     * @param time
-     * @return
+     * @param time 时间戳
+     * @return 默认格式化时间
      */
     public String getTime(long time) {
         if (time == 0) {
@@ -134,8 +134,8 @@ public class TimeUtils {
     /**
      * 获取时间
      *
-     * @param date
-     * @return
+     * @param date 日期
+     * @return 时间戳
      */
     public long getTimeLong(Date date) {
         long timeLong = 0;
@@ -148,8 +148,9 @@ public class TimeUtils {
     /**
      * 获取时间
      *
-     * @param time
-     * @return
+     * @param time             时间
+     * @param simpleDateFormat 时间格式
+     * @return 时间戳
      */
     public long getTimeLong(String time, SimpleDateFormat simpleDateFormat) {
         long timeLong = 0;
@@ -169,7 +170,7 @@ public class TimeUtils {
     /**
      * 获取当前时间
      *
-     * @return
+     * @return 时间戳
      */
     public long getCurrentTimeLong() {
         return System.currentTimeMillis();
@@ -178,7 +179,7 @@ public class TimeUtils {
     /**
      * 获取当前时间
      *
-     * @return
+     * @return 当前时间
      */
     public String getCurrentTimeString() {
         return String.valueOf(getCurrentTimeLong());
@@ -187,8 +188,8 @@ public class TimeUtils {
     /**
      * 获取格式化当前时间
      *
-     * @param dateFormat
-     * @return
+     * @param dateFormat 时间格式
+     * @return 格式化时间
      */
     public String getCurrentTimeString(SimpleDateFormat dateFormat) {
         return getTime(getCurrentTimeLong(), dateFormat);
@@ -197,10 +198,9 @@ public class TimeUtils {
     /**
      * String转Date
      *
-     * @param strTime
-     * @param simpleDateFormat
-     * @return
-     * @throws ParseException
+     * @param strTime          时间
+     * @param simpleDateFormat 时间格式
+     * @return 日期
      */
     public Date stringToDate(String strTime, SimpleDateFormat simpleDateFormat) {
         Date date = null;
@@ -216,8 +216,8 @@ public class TimeUtils {
     /**
      * 判断选择的日期是否是今天
      *
-     * @param time
-     * @return
+     * @param time 时间戳
+     * @return 是否是今天
      */
     public boolean isToday(long time) {
         return isThisTime(time, "yyyy-MM-dd");
@@ -226,25 +226,22 @@ public class TimeUtils {
     /**
      * 判断选择的日期是否是本周
      *
-     * @param time
-     * @return
+     * @param time 时间戳
+     * @return 是否是本周
      */
     public boolean isThisWeek(long time) {
         Calendar calendar = Calendar.getInstance();
         int currentWeek = calendar.get(Calendar.WEEK_OF_YEAR);
         calendar.setTime(new Date(time));
         int paramWeek = calendar.get(Calendar.WEEK_OF_YEAR);
-        if (paramWeek == currentWeek) {
-            return true;
-        }
-        return false;
+        return paramWeek == currentWeek;
     }
 
     /**
      * 判断选择的日期是否是本月
      *
-     * @param time
-     * @return
+     * @param time 时间戳
+     * @return 是否是本月
      */
     public boolean isThisMonth(long time) {
         return isThisTime(time, "yyyy-MM");
@@ -255,10 +252,7 @@ public class TimeUtils {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         String param = sdf.format(date);//参数时间
         String now = sdf.format(new Date());//当前时间
-        if (param.equals(now)) {
-            return true;
-        }
-        return false;
+        return param.equals(now);
     }
 
     /**
@@ -277,11 +271,7 @@ public class TimeUtils {
         calendar.add(Calendar.MINUTE, minute);
         //得到minute分钟之后的时间
         long endTime = calendar.getTime().getTime();
-        if (endTime > now) {
-            return true;
-        } else {
-            return false;
-        }
+        return endTime > now;
     }
 
     /*----------将时间转化成几分钟前、几天前等字样----------*/
@@ -294,8 +284,8 @@ public class TimeUtils {
     /**
      * 返回文字描述的日期
      *
-     * @param date
-     * @return
+     * @param date 时间戳
+     * @return 日期描述
      */
     public String getTimeFormatText(long date) {
         long diff = new Date().getTime() - date;

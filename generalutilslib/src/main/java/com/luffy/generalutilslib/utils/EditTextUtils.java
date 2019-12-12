@@ -17,7 +17,7 @@ public class EditTextUtils {
     }
 
     private static class EditTextUtilsHelper {
-        private static EditTextUtils mEditTextUtils;
+        private static final EditTextUtils mEditTextUtils;
 
         static {
             mEditTextUtils = new EditTextUtils();
@@ -45,7 +45,7 @@ public class EditTextUtils {
     /**
      * 设置光标位置
      *
-     * @param mEditText
+     * @param mEditText 编辑框
      */
     public void setCursorLocation(EditText mEditText) {
         if (mEditText != null) {

@@ -17,7 +17,7 @@ public class RegexUtils {
     }
 
     private static class RegexUtilsHelper {
-        private static RegexUtils mRegexUtils;
+        private static final RegexUtils mRegexUtils;
 
         static {
             mRegexUtils = new RegexUtils();
@@ -70,23 +70,20 @@ public class RegexUtils {
     /**
      * 验证
      *
-     * @param content
-     * @return
+     * @param content 上下文
+     * @return 是否匹配
      */
     public boolean isMatcher(String content, String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(content);
-        if (matcher.matches()) {
-            return true;
-        }
-        return false;
+        return matcher.matches();
     }
 
     /**
      * 邮箱-验证
      *
-     * @param content
-     * @return
+     * @param content 上下文
+     * @return 是否为邮箱
      */
     public boolean isEmail(String content) {
         if (!ValidUtils.getInstance().isValid(content)) {
@@ -94,9 +91,6 @@ public class RegexUtils {
         }
         Pattern pattern = Pattern.compile(Regex.EMAIL_REGEX);
         Matcher matcher = pattern.matcher(content);
-        if (matcher.matches()) {
-            return true;
-        }
-        return false;
+        return matcher.matches();
     }
 }

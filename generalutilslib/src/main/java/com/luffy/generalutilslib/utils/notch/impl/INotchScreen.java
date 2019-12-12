@@ -13,16 +13,16 @@ public interface INotchScreen {
     /**
      * 判断有没有刘海屏
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 有没有刘海屏
      */
     boolean hasNotch(Context context);
 
     /**
      * 获取刘海屏宽高
      *
-     * @param context
-     * @param callback
+     * @param context  上下文
+     * @param callback 回调
      */
     void getNotchWidthHeight(Context context, NotchSizeCallback callback);
 

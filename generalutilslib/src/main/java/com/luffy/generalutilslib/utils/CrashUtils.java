@@ -47,7 +47,7 @@ public class CrashUtils implements UncaughtExceptionHandler {
     }
 
     private static class CrashUtilsHelper {
-        private static CrashUtils mCrashUtils;
+        private static final CrashUtils mCrashUtils;
 
         static {
             mCrashUtils = new CrashUtils();
@@ -57,7 +57,7 @@ public class CrashUtils implements UncaughtExceptionHandler {
     /**
      * 初始化
      *
-     * @param context
+     * @param context 上下文
      */
     public void init(Context context) {
         mContext = context.getApplicationContext();
@@ -95,7 +95,7 @@ public class CrashUtils implements UncaughtExceptionHandler {
     /**
      * 将异常信息写入SD卡
      *
-     * @param e
+     * @param e 异常
      */
     private void dumpExceptionToSDCard(Throwable e) throws IOException {
         //如果SD卡不存在或无法使用，则无法将异常信息写入SD卡
@@ -122,13 +122,14 @@ public class CrashUtils implements UncaughtExceptionHandler {
             e.printStackTrace(pw);
             pw.close();//关闭输入流
         } catch (Exception e1) {
+            e1.printStackTrace();
         }
     }
 
     /**
      * 获取手机各项信息
      *
-     * @param pw
+     * @param pw PrintWriter
      */
     private void dumpPhoneInfo(PrintWriter pw) throws PackageManager.NameNotFoundException {
         //得到包管理器

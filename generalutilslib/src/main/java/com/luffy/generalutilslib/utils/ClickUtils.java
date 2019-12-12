@@ -21,7 +21,7 @@ public class ClickUtils {
     }
 
     private static class ClickUtilsHelper {
-        private static ClickUtils mClickUtils;
+        private static final ClickUtils mClickUtils;
 
         static {
             mClickUtils = new ClickUtils();
@@ -38,7 +38,7 @@ public class ClickUtils {
     /**
      * 是否是快速点击
      *
-     * @return
+     * @return true:快速点击;false:非快速点击
      */
     public synchronized boolean isFastClick() {
         long time = System.currentTimeMillis();
@@ -52,8 +52,8 @@ public class ClickUtils {
     /**
      * 是否是快速点击
      *
-     * @param clickTime
-     * @return
+     * @param clickTime 时间戳
+     * @return true:快速点击;false:非快速点击
      */
     public synchronized boolean isFastClick(long clickTime) {
         long time = System.currentTimeMillis();

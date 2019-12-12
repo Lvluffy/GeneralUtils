@@ -18,7 +18,7 @@ public class ResourceUtils {
     }
 
     private static class ResourceUtilsHelper {
-        private static ResourceUtils mResourceUtils;
+        private static final ResourceUtils mResourceUtils;
 
         static {
             mResourceUtils = new ResourceUtils();
@@ -28,13 +28,12 @@ public class ResourceUtils {
     /**
      * 获取String数组
      *
-     * @param context
-     * @param arrayResourceId
-     * @return
+     * @param context         上下文
+     * @param arrayResourceId 数组资源ID
+     * @return 字符串数组
      */
     public String[] getStringArray(Context context, int arrayResourceId) {
         Resources resources = context.getResources();
-        String[] imgUrls = resources.getStringArray(arrayResourceId);
-        return imgUrls;
+        return resources.getStringArray(arrayResourceId);
     }
 }

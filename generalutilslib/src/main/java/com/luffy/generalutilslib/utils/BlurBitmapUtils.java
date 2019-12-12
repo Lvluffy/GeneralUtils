@@ -25,7 +25,7 @@ public class BlurBitmapUtils {
     }
 
     private static class BlurBitmapUtilsHelper {
-        private static BlurBitmapUtils mBlurBitmapUtils;
+        private static final BlurBitmapUtils mBlurBitmapUtils;
 
         static {
             mBlurBitmapUtils = new BlurBitmapUtils();
@@ -33,10 +33,10 @@ public class BlurBitmapUtils {
     }
 
     /**
-     * @param context
-     * @param image
-     * @param blurRadius
-     * @return
+     * @param context    上下文
+     * @param image      Bitmap
+     * @param blurRadius 模糊程度
+     * @return Bitmap
      */
     @SuppressLint("NewApi")
     public Bitmap blurBitmap(Context context, Bitmap image, float blurRadius) {

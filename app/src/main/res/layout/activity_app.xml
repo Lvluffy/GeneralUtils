@@ -7,73 +7,63 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/app_input_page_name"
+            android:paddingLeft="15dp" />
+
+        <Button
+            android:id="@+id/btn_get"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_get" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:padding="15dp">
 
-            <EditText
-                android:id="@+id/edit"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@null"
-                android:gravity="center_vertical"
-                android:hint="输入应用包名"
-                android:paddingLeft="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_application_name" />
 
-            <Button
-                android:id="@+id/btn_get"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="获取" />
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                tools:text="应用名称" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="15dp">
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:text="应用名称：" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
 
-                <TextView
-                    android:id="@+id/txt_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    tools:text="应用名称" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/app_application_icon" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="15dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:text="应用图标：" />
-
-                <ImageView
-                    android:id="@+id/img_icon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    tools:src="@drawable/base_nav_share" />
-
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/img_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                tools:src="@drawable/base_nav_share"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 

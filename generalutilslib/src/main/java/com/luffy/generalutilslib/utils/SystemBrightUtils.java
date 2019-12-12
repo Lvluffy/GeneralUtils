@@ -21,7 +21,7 @@ public class SystemBrightUtils {
     }
 
     private static class SystemBrightUtilsHelper {
-        private static SystemBrightUtils mSystemBrightUtils;
+        private static final SystemBrightUtils mSystemBrightUtils;
 
         static {
             mSystemBrightUtils = new SystemBrightUtils();
@@ -31,8 +31,8 @@ public class SystemBrightUtils {
     /**
      * 判断是否开启了自动亮度调节
      *
-     * @param activity
-     * @return
+     * @param activity Activity
+     * @return 是否开启了自动亮度调节
      */
     public boolean isAutoBrightness(Activity activity) {
         boolean autoBrightness = false;
@@ -48,8 +48,8 @@ public class SystemBrightUtils {
     /**
      * 获取当前系统亮度值
      *
-     * @param activity
-     * @return
+     * @param activity Activity
+     * @return 当前系统亮度值
      */
     public int getBrightness(Activity activity) {
         int brightValue = 0;

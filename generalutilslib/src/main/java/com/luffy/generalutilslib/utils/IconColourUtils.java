@@ -19,7 +19,7 @@ public class IconColourUtils {
     }
 
     private static class IconColourUtilsHelper {
-        private static IconColourUtils mIconColourUtils;
+        private static final IconColourUtils mIconColourUtils;
 
         static {
             mIconColourUtils = new IconColourUtils();
@@ -29,8 +29,8 @@ public class IconColourUtils {
     /**
      * 设置-ImageView图标颜色
      *
-     * @param view
-     * @param colorResId
+     * @param view       ImageView
+     * @param colorResId 颜色值
      */
     public void setImageViewColor(ImageView view, int colorResId) {
         Drawable modeDrawable = view.getDrawable().mutate();

@@ -24,7 +24,7 @@ public class MD5Utils {
     }
 
     private static class MD5UtilsHelper {
-        private static MD5Utils mMD5Utils;
+        private static final MD5Utils mMD5Utils;
 
         static {
             mMD5Utils = new MD5Utils();

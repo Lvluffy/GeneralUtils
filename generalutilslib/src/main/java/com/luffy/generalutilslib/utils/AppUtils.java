@@ -28,7 +28,7 @@ public class AppUtils {
     }
 
     private static class AppUtilsHelper {
-        private static AppUtils mAppUtils;
+        private static final AppUtils mAppUtils;
 
         static {
             mAppUtils = new AppUtils();
@@ -38,8 +38,8 @@ public class AppUtils {
     /**
      * 获取应用程序-包名
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 应用包名
      */
     public String getPackName(Context context) {
         //当前应用pid
@@ -60,8 +60,8 @@ public class AppUtils {
     /**
      * 获取应用程序-名称
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 应用名称
      */
     public String getAppName(Context context) {
         try {
@@ -78,9 +78,9 @@ public class AppUtils {
     /**
      * 获取应用程序-名称-通过包名
      *
-     * @param context
-     * @param packageName
-     * @return
+     * @param context     上下文
+     * @param packageName 包名
+     * @return 应用程序名称
      */
     public String getAppName(Context context, String packageName) {
         try {
@@ -96,8 +96,8 @@ public class AppUtils {
     /**
      * 获取应用程序-图标
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 应用图标
      */
     public Drawable getApkIcon(Context context) {
         try {
@@ -116,9 +116,9 @@ public class AppUtils {
     /**
      * 获取应用程序-图标-通过包名
      *
-     * @param context
-     * @param packageName
-     * @return
+     * @param context     上下文
+     * @param packageName 应用包名
+     * @return 应用图标
      */
     public Drawable getAppIcon(Context context, String packageName) {
         try {
@@ -134,8 +134,8 @@ public class AppUtils {
     /**
      * 获取应用程序-版本名称
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 应用版本
      */
     public String getVersionName(Context context) {
         try {
@@ -151,8 +151,8 @@ public class AppUtils {
     /**
      * 获取应用程序-版本名称-通过包名
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 应用版本
      */
     public String getVersionName(Context context, String packageName) {
         try {
@@ -168,8 +168,8 @@ public class AppUtils {
     /**
      * 获取应用程序-版本号
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 应用版本
      */
     public int getVersionCode(Context context) {
         try {
@@ -185,9 +185,9 @@ public class AppUtils {
     /**
      * 获取应用程序-版本号-通过包名
      *
-     * @param context
-     * @param packageName
-     * @return
+     * @param context     上下文
+     * @param packageName 应用包名
+     * @return 应用版本
      */
     public int getVersionCode(Context context, String packageName) {
         try {
@@ -203,19 +203,19 @@ public class AppUtils {
     /**
      * 获取应用程序-APK大小
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 应用包大小
      */
     public String getApkSize(Context context) {
         try {
             PackageManager mPackageManager = context.getPackageManager();
             PackageInfo mPackageInfo = mPackageManager.getPackageInfo(context.getPackageName(), 0);
             ApplicationInfo mApplicationInfo = mPackageInfo.applicationInfo;
-            /** 获取应用的路径 */
+            // 获取应用的路径
             String dir = mApplicationInfo.publicSourceDir;
-            /** 获取应用的大小 */
-            int size = Integer.valueOf((int) new File(dir).length());
-            /** 处理应用的大小 */
+            // 获取应用的大小
+            int size = (int) new File(dir).length();
+            // 处理应用的大小
             BigDecimal bd = new BigDecimal((double) size / (1024 * 1024));
             BigDecimal apkSize = bd.setScale(2, BigDecimal.ROUND_DOWN);
             return apkSize.toString();
@@ -228,19 +228,19 @@ public class AppUtils {
     /**
      * 获取应用程序-APK大小-通过包名
      *
-     * @param context
-     * @param packageName
-     * @return
+     * @param context     上下文
+     * @param packageName 应用包名
+     * @return 应用包大小
      */
     public String getApkSize(Context context, String packageName) {
         try {
             PackageManager packageManager = context.getPackageManager();
             ApplicationInfo mApplicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-            /** 获取应用的路径 */
+            // 获取应用的路径
             String dir = mApplicationInfo.publicSourceDir;
-            /** 获取应用的大小 */
-            int size = Integer.valueOf((int) new File(dir).length());
-            /** 处理应用的大小 */
+            // 获取应用的大小
+            int size = (int) new File(dir).length();
+            // 处理应用的大小
             BigDecimal bd = new BigDecimal((double) size / (1024 * 1024));
             BigDecimal apkSize = bd.setScale(2, BigDecimal.ROUND_DOWN);
             return apkSize.toString();
@@ -253,9 +253,9 @@ public class AppUtils {
     /**
      * 是否安装了指定的应用程序
      *
-     * @param context
-     * @param packageName
-     * @return
+     * @param context     上下文
+     * @param packageName 应用包名
+     * @return 是否安装
      */
     public boolean isInstallApp(Context context, String packageName) {
         try {
@@ -275,16 +275,15 @@ public class AppUtils {
     /**
      * 获取指定应用的签名信息
      *
-     * @param context
-     * @param packageName
-     * @return
+     * @param context     上下文
+     * @param packageName 应用包名
+     * @return 应用签名信息
      */
     public Signature getSign(Context context, String packageName) {
         try {
             PackageManager mPackageManager = context.getPackageManager();
             PackageInfo mPackageInfo = mPackageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            Signature signature = mPackageInfo.signatures[0];
-            return signature;
+            return mPackageInfo.signatures[0];
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -294,9 +293,9 @@ public class AppUtils {
     /**
      * 获取指定应用的签名信息MD5
      *
-     * @param ctx
-     * @param packageName
-     * @return
+     * @param ctx         上下文
+     * @param packageName 应用包名
+     * @return 应用MD5签名信息
      */
     public String getMD5(Context ctx, String packageName) {
         try {
@@ -306,8 +305,7 @@ public class AppUtils {
             MessageDigest mDigest = MessageDigest.getInstance("MD5");
             mDigest.update(signatures.toByteArray());
             byte[] digest = mDigest.digest();
-            String res = toHexString(digest);
-            return res;
+            return toHexString(digest);
         } catch (Exception e) {
             e.printStackTrace();
         }

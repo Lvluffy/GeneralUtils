@@ -28,7 +28,7 @@ public class VersionUpgradeUtils {
     }
 
     private static class VersionUpgradeUtilsHelper {
-        private static VersionUpgradeUtils mVersionUpgradeUtils;
+        private static final VersionUpgradeUtils mVersionUpgradeUtils;
 
         static {
             mVersionUpgradeUtils = new VersionUpgradeUtils();
@@ -38,8 +38,8 @@ public class VersionUpgradeUtils {
     /**
      * 外部升级（应用宝市场更新）
      *
-     * @param mContext
-     * @param url
+     * @param mContext 上下文
+     * @param url      链接地址
      */
     public void externalUpgrade(Context mContext, String url) {
         if (SystemUtils.getInstance().isInstall(mContext, "com.tencent.android.qqdownloader")) {
@@ -52,8 +52,8 @@ public class VersionUpgradeUtils {
     /**
      * 外部升级（下载apk）
      *
-     * @param mContext
-     * @param uri
+     * @param mContext 是否有效
+     * @param uri      下载地址
      */
     public void internalUpgrade(final Context mContext, final String uri) {
         final ProgressDialog mProgressDialog;    //进度条对话框
@@ -82,10 +82,10 @@ public class VersionUpgradeUtils {
     /**
      * 下载apk文件
      *
-     * @param uri
-     * @param mProgressDialog
-     * @return
-     * @throws Exception
+     * @param uri             下载地址
+     * @param mProgressDialog 进度条弹框
+     * @return 文件
+     * @throws Exception 异常
      */
     public File downloadApk(String uri, ProgressDialog mProgressDialog) throws Exception {
         //如果相等的话表示当前的sdcard挂载在手机上并且是可用的
@@ -121,8 +121,8 @@ public class VersionUpgradeUtils {
     /**
      * 安装Apk
      *
-     * @param mContext
-     * @param file
+     * @param mContext 上下文
+     * @param file     文件
      */
     public void installApk(Context mContext, File file) {
         Intent intent = new Intent();

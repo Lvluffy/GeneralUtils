@@ -32,7 +32,7 @@ public class NumUtils {
      * 数字转化为小写的汉字
      *
      * @param num 将要转化的数字
-     * @return
+     * @return 处理后的数据
      */
     public static String toChineseLower(Object num) {
         return format(num, num_lower, unit_lower);
@@ -42,7 +42,7 @@ public class NumUtils {
      * 数字转化为大写的汉字
      *
      * @param num 将要转化的数字
-     * @return
+     * @return 处理后的数据
      */
     public static String toChineseUpper(Object num) {
         return format(num, num_upper, unit_upper);
@@ -337,7 +337,7 @@ public class NumUtils {
      * 反转字符串，并转化为数组
      *
      * @param s 原字符串
-     * @return
+     * @return 字节数组
      */
     private static char[] reverseStr(String s) {
         return new StringBuffer(s).reverse().toString().toCharArray();
@@ -415,11 +415,11 @@ public class NumUtils {
      * 反转结果，替换小数点，跳过无效的0
      *
      * @param result 结果数组
-     * @return
+     * @return 处理后的数据
      */
     private static String reverseResult(int[] result) {
         //反转
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = result.length - 1; i >= 0; i--) {
             if (result[i] > INVALID) {
                 sb.append(result[i] == DOT ? "." : result[i]);
@@ -437,9 +437,7 @@ public class NumUtils {
     private static void markDot(int len_fraction, int[] result) {
         if (len_fraction > 0) {
             //标记小数点位置
-            for (int i = result.length - 1; i > len_fraction; i--) {
-                result[i] = result[i - 1];
-            }
+            System.arraycopy(result, len_fraction, result, len_fraction + 1, result.length - 1 - len_fraction);
             result[len_fraction] = DOT;//标记小数点位置
         }
     }
@@ -457,7 +455,7 @@ public class NumUtils {
         // 计算结果集合
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < b.length; j++) {
-                result[i + j + start] += (int) (a[i] - '0') * (int) (b[j] - '0');
+                result[i + j + start] += (a[i] - '0') * (b[j] - '0');
             }
         }
     }
@@ -481,11 +479,11 @@ public class NumUtils {
         // 计算结果集合，a的位数>=b的位数
         int i = 0, j = 0;
         for (; i < a.length && j < b.length; i++, j++) {
-            result[Math.abs(i + start)] += (int) (a[i] - '0') + (int) (b[j] - '0');
+            result[Math.abs(i + start)] += a[i] - '0' + b[j] - '0';
         }
         //如果a没有处理完毕，直接把a剩下的值赋值给结果数组即可
         for (; i < a.length; i++) {
-            result[Math.abs(i + start)] += (int) (a[i] - '0');
+            result[Math.abs(i + start)] += a[i] - '0';
         }
         if (c != null) {//如果交换过，则再交换回来
             c = a;
@@ -507,15 +505,15 @@ public class NumUtils {
         // 计算结果集合，a的位数>=b的位数
         int i = 0, j = 0;
         for (; i < a.length && j < b.length; i++, j++) {
-            result[Math.abs(i + start)] += ((int) (a[i] - '0') - (int) (b[j] - '0'));
+            result[Math.abs(i + start)] += (a[i] - '0' - (b[j] - '0'));
         }
         //如果a没有处理完毕，直接把a剩下的值赋值给结果数组即可
         for (; i < a.length; i++) {
-            result[Math.abs(i + start)] += ((int) (a[i] - '0'));
+            result[Math.abs(i + start)] += a[i] - '0';
         }
         //如果a没有处理完毕，直接把a剩下的值赋值给结果数组即可
         for (; i < b.length; i++) {
-            result[Math.abs(i + start)] += -((int) (b[i] - '0'));
+            result[Math.abs(i + start)] += -(b[i] - '0');
         }
     }
 
@@ -525,7 +523,7 @@ public class NumUtils {
      * @param num      原数字
      * @param numArray 数字大小写数组
      * @param unit     单位权值
-     * @return
+     * @return 处理后的数据
      */
     private static String format(Object num, String[] numArray, String[] unit) {
         if (!promissTypes.contains(num.getClass().getSimpleName().toUpperCase())) {
@@ -548,21 +546,21 @@ public class NumUtils {
     /**
      * 获取整数部分
      *
-     * @param num
-     * @return
+     * @param num 原数字
+     * @return 处理后的数据
      */
     private static String getInt(String num) {
         //检查格式
         checkNum(num);
 
         char[] val = String.valueOf(num).toCharArray();
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         int t, s = 0;
-        for (int i = 0; i < val.length; i++) {
-            if (val[i] == '.') {
+        for (char aVal : val) {
+            if (aVal == '.') {
                 break;
             }
-            t = Integer.parseInt(val[i] + "", 16);
+            t = Integer.parseInt(aVal + "", 16);
             if (s + t == 0) {
                 continue;
             }
@@ -575,7 +573,7 @@ public class NumUtils {
     /**
      * 检查数字格式
      *
-     * @param num
+     * @param num 原数字
      */
     private static void checkNum(String num) {
         if (num.indexOf(".") != num.lastIndexOf(".")) {
@@ -598,8 +596,8 @@ public class NumUtils {
     /**
      * 获取小数部分
      *
-     * @param num
-     * @return
+     * @param num 原数字
+     * @return 处理后的数据
      */
     private static String getFraction(String num) {
         int i = num.lastIndexOf(".");
@@ -619,8 +617,8 @@ public class NumUtils {
     /**
      * 分割数字，每4位一组
      *
-     * @param num
-     * @return
+     * @param num 原数字
+     * @return 处理后的数据
      */
     private static Integer[] split2IntArray(String num) {
         String prev = num.substring(0, num.length() % 4);
@@ -642,7 +640,7 @@ public class NumUtils {
      *
      * @param num      整数部分
      * @param numArray 数字大小写数组
-     * @return
+     * @return 处理后的数据
      */
     private static String formatIntPart(String num, String[] numArray, String[] unit) {
 
@@ -650,7 +648,7 @@ public class NumUtils {
         Integer[] intnums = split2IntArray(num);
 
         boolean zero = false;
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < intnums.length; i++) {
             //格式化当前4位
             String r = formatInt(intnums[i], numArray, unit);
@@ -677,14 +675,13 @@ public class NumUtils {
      *
      * @param decimal  小数部分
      * @param numArray 数字大小写数组
-     * @return
+     * @return 处理后的数据
      */
     private static String formatFractionalPart(String decimal, String[] numArray) {
         char[] val = String.valueOf(decimal).toCharArray();
-        int len = val.length;
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < len; i++) {
-            int n = Integer.valueOf(val[i] + "");
+        for (char aVal : val) {
+            int n = Integer.valueOf(aVal + "");
             sb.append(numArray[n]);
         }
         return sb.toString();
@@ -694,9 +691,9 @@ public class NumUtils {
     /**
      * 格式化4位整数
      *
-     * @param num
-     * @param numArray
-     * @return
+     * @param num      原数字
+     * @param numArray 字符串数组
+     * @return 处理后的数据
      */
     private static String formatInt(int num, String[] numArray, String[] unit) {
         char[] val = String.valueOf(num).toCharArray();

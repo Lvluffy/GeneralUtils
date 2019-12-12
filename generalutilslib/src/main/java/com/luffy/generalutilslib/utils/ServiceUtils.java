@@ -22,7 +22,7 @@ public class ServiceUtils {
     }
 
     private static class ServiceUtilsHelper {
-        private static ServiceUtils mServiceUtils;
+        private static final ServiceUtils mServiceUtils;
 
         static {
             mServiceUtils = new ServiceUtils();
@@ -32,9 +32,9 @@ public class ServiceUtils {
     /**
      * 服务是否运行
      *
-     * @param mContext
-     * @param serviceClass
-     * @return
+     * @param mContext     上下文
+     * @param serviceClass 类对象
+     * @return 服务是否运行
      */
     public boolean isServiceRun(Context mContext, Class serviceClass) {
         String serviceName = ClassUtils.getInstance().getClassName(serviceClass);
@@ -48,7 +48,7 @@ public class ServiceUtils {
         /*判断指定服务是否运行*/
         boolean isRun = false;
         for (int i = 0; i < runningServiceInfoList.size(); i++) {
-            String mName = runningServiceInfoList.get(i).service.getClassName().toString();
+            String mName = runningServiceInfoList.get(i).service.getClassName();
             if (mName.equals(serviceName)) {
                 isRun = true;
             }
@@ -59,9 +59,9 @@ public class ServiceUtils {
     /**
      * 启动服务
      *
-     * @param mContext
-     * @param serviceClass
-     * @param iServiceStartIntercept
+     * @param mContext               上下文
+     * @param serviceClass           服务类文件
+     * @param iServiceStartIntercept 回调
      */
     public synchronized void startService(Context mContext, Class serviceClass, IServiceStartIntercept iServiceStartIntercept) {
         /*服务运行状态拦截：已运行结束；未运行执行*/
@@ -80,8 +80,8 @@ public class ServiceUtils {
     /**
      * 停止服务
      *
-     * @param mContext
-     * @param serviceClass
+     * @param mContext 上下文
+     * @param serviceClass 服务类文件
      */
     public synchronized void stopService(Context mContext, Class serviceClass) {
         /*服务运行状态拦截：正在运行执行；未运行结束*/

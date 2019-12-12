@@ -15,7 +15,7 @@ public class ClassUtils {
     }
 
     private static class ClassUtilsHelper {
-        private static ClassUtils mClassUtils;
+        private static final ClassUtils mClassUtils;
 
         static {
             mClassUtils = new ClassUtils();
@@ -25,8 +25,8 @@ public class ClassUtils {
     /**
      * 获取包名类名
      *
-     * @param cla
-     * @return com.example.test.Main
+     * @param cla 类对象
+     * @return 包名类名（com.example.test.Main）
      */
     public String getClassName(Class cla) {
         return cla.getName();
@@ -36,8 +36,8 @@ public class ClassUtils {
     /**
      * 获取类名
      *
-     * @param cla
-     * @return
+     * @param cla 类对象
+     * @return 类名（Main）
      */
     public String getClassSimpleName(Class cla) {
         return cla.getSimpleName();

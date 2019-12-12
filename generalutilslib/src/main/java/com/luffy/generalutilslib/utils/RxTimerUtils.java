@@ -25,7 +25,7 @@ public class RxTimerUtils {
     }
 
     private static class RxTimerUtilsHelper {
-        private static RxTimerUtils mRxTimerUtils;
+        private static final RxTimerUtils mRxTimerUtils;
 
         static {
             mRxTimerUtils = new RxTimerUtils();
@@ -37,7 +37,7 @@ public class RxTimerUtils {
      *
      * @param delay 延时
      * @param unit  时间单位
-     * @param next
+     * @param next  回调
      */
     public void timer(long delay, TimeUnit unit, final IRxNext next) {
         Observable.timer(delay, unit)
@@ -74,7 +74,7 @@ public class RxTimerUtils {
      *
      * @param delay 延时
      * @param unit  时间单位
-     * @param next
+     * @param next  回调
      */
     public void interval(long delay, TimeUnit unit, final IRxNext next) {
         Observable.interval(delay, unit)

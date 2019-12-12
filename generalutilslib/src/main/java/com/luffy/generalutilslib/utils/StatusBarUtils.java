@@ -33,7 +33,7 @@ public class StatusBarUtils {
     }
 
     private static class StatusBarUtilsHelper {
-        private static StatusBarUtils mStatusBarUtils;
+        private static final StatusBarUtils mStatusBarUtils;
 
         static {
             mStatusBarUtils = new StatusBarUtils();
@@ -50,7 +50,9 @@ public class StatusBarUtils {
     public void setStatusBar(Activity activity, boolean hideStatusBarBackground) {
         Window window = activity.getWindow();
         //添加Flag把状态栏设为可绘制模式
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }
         if (hideStatusBarBackground) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 //设置状态栏为透明
@@ -65,12 +67,14 @@ public class StatusBarUtils {
             handlerNavigationBar(activity);
         } else {
             //如果为半透明模式，添加设置Window半透明的Flag
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
             //设置系统状态栏处于可见状态
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         }
         //view不根据系统窗口来调整自己的布局
-        ViewGroup mContentView = (ViewGroup) window.findViewById(Window.ID_ANDROID_CONTENT);
+        ViewGroup mContentView = window.findViewById(Window.ID_ANDROID_CONTENT);
         View mChildView = mContentView.getChildAt(0);
         if (mChildView != null) {
             ViewCompat.setFitsSystemWindows(mChildView, false);
@@ -291,7 +295,7 @@ public class StatusBarUtils {
      *
      * @param color    颜色值
      * @param fraction 百分比
-     * @return
+     * @return 透明度
      */
     public int setAlpha(int color, float fraction) {
         int red = Color.red(color);

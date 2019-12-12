@@ -20,7 +20,7 @@ public class PasswordShowUtils {
     }
 
     private static class PasswordShowUtilsHelper {
-        private static PasswordShowUtils mPasswordShowUtils;
+        private static final PasswordShowUtils mPasswordShowUtils;
 
         static {
             mPasswordShowUtils = new PasswordShowUtils();
@@ -32,8 +32,8 @@ public class PasswordShowUtils {
      *
      * @param imageView      图标
      * @param editText       编辑框
-     * @param showResourceId
-     * @param hintResourceId
+     * @param showResourceId 显示资源ID
+     * @param hintResourceId 隐藏资源ID
      */
     public void passwordShowHint(ImageView imageView, EditText editText, int showResourceId, int hintResourceId, PasswordShowHintCallback passwordShowHintCallback) {
         if (passwordShowHintCallback.isShowPassword()) {
@@ -49,9 +49,9 @@ public class PasswordShowUtils {
     /**
      * 显示密码
      *
-     * @param imageView
-     * @param editText
-     * @param showResourceId
+     * @param imageView      图标
+     * @param editText       编辑框
+     * @param showResourceId 显示资源ID
      */
     public void showPassword(ImageView imageView, EditText editText, int showResourceId) {
         imageView.setImageResource(showResourceId);
@@ -62,9 +62,9 @@ public class PasswordShowUtils {
     /**
      * 隐藏密码
      *
-     * @param imageView
-     * @param editText
-     * @param hintResourceId
+     * @param imageView      图标
+     * @param editText       编辑框
+     * @param hintResourceId 隐藏资源ID
      */
     public void hintPassword(ImageView imageView, EditText editText, int hintResourceId) {
         imageView.setImageResource(hintResourceId);

@@ -3,7 +3,6 @@ package com.luffy.generalutilslib.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.Settings;
 
 /**
@@ -24,7 +23,7 @@ public class IntentUtils {
      * 静态内部类实现单例
      */
     private static class IntentUtilsHelper {
-        private static IntentUtils mIntentUtils;
+        private static final IntentUtils mIntentUtils;
 
         static {
             mIntentUtils = new IntentUtils();
@@ -47,7 +46,7 @@ public class IntentUtils {
     /**
      * 拨打电话（跳转到拨号界面，用户手动点击拨打）
      *
-     * @param context
+     * @param context  上下文
      * @param phoneNum 电话号码
      */
     public void openDiallPhone(Context context, String phoneNum) {
@@ -60,15 +59,11 @@ public class IntentUtils {
     /**
      * 打开网络设置界面
      *
-     * @param context
+     * @param context 上下文
      */
     public void openSetting(Context context) {
         Intent mIntent = new Intent();
-        if (Build.VERSION.SDK_INT > 10) {
-            mIntent.setAction(Settings.ACTION_SETTINGS);
-        } else {
-            mIntent.setAction(Settings.ACTION_WIRELESS_SETTINGS);
-        }
+        mIntent.setAction(Settings.ACTION_SETTINGS);
         context.startActivity(mIntent);
     }
 }

@@ -24,7 +24,7 @@ public class ImageUtils {
     }
 
     private static class ImageUtilsHelper {
-        private static ImageUtils mImageUtils;
+        private static final ImageUtils mImageUtils;
 
         static {
             mImageUtils = new ImageUtils();
@@ -34,8 +34,8 @@ public class ImageUtils {
     /**
      * 根据InputStream获取图片实际的宽度和高度
      *
-     * @param imageStream
-     * @return
+     * @param imageStream 输入流
+     * @return 图片大小
      */
     public ImageSize getImageSize(InputStream imageStream) {
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -73,7 +73,7 @@ public class ImageUtils {
      *
      * @param srcSize    原图片大小
      * @param targetSize 目标图片大小
-     * @return
+     * @return 图片大小
      */
     public int calculateInSampleSize(ImageSize srcSize, ImageSize targetSize) {
         // 源图片的宽度
@@ -96,8 +96,8 @@ public class ImageUtils {
     /**
      * 根据ImageView获适当的压缩的宽和高
      *
-     * @param view
-     * @return
+     * @param view View
+     * @return 图片大小
      */
     public ImageSize getImageViewSize(View view) {
         ImageSize imageSize = new ImageSize();
@@ -109,8 +109,8 @@ public class ImageUtils {
     /**
      * 根据view获得期望的高度
      *
-     * @param view
-     * @return
+     * @param view View
+     * @return 期望高度
      */
     private int getExpectHeight(View view) {
         int height = 0;
@@ -137,8 +137,8 @@ public class ImageUtils {
     /**
      * 根据view获得期望的宽度
      *
-     * @param view
-     * @return
+     * @param view View
+     * @return 期望宽度
      */
     private int getExpectWidth(View view) {
         int width = 0;
@@ -165,9 +165,9 @@ public class ImageUtils {
     /**
      * 通过反射获取imageview的某个属性值
      *
-     * @param object
-     * @param fieldName
-     * @return
+     * @param object    Object
+     * @param fieldName 文件名称
+     * @return 属性值
      */
     private int getImageViewFieldValue(Object object, String fieldName) {
         int value = 0;

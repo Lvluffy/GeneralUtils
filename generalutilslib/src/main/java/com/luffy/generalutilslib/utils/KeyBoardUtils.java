@@ -25,7 +25,7 @@ public class KeyBoardUtils {
     }
 
     private static class KeyBoardUtilsHelper {
-        private static KeyBoardUtils mKeyBoardUtils;
+        private static final KeyBoardUtils mKeyBoardUtils;
 
         static {
             mKeyBoardUtils = new KeyBoardUtils();
@@ -35,8 +35,8 @@ public class KeyBoardUtils {
     /**
      * 打开软键盘
      *
-     * @param context
-     * @param view
+     * @param context 上下文
+     * @param view    View
      */
     public void openKeyBoard(Context context, View view) {
         InputMethodManager mInputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -47,8 +47,8 @@ public class KeyBoardUtils {
     /**
      * 关闭软键盘
      *
-     * @param context
-     * @param view
+     * @param context 上下文
+     * @param view    View
      */
     public void closeKeyBoard(Context context, View view) {
         InputMethodManager mInputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -58,7 +58,7 @@ public class KeyBoardUtils {
     /**
      * 解决在页面底部置输入框，输入法弹出遮挡部分输入框的问题
      *
-     * @param context
+     * @param context     上下文
      * @param rootView    根布局
      * @param visibleView 可视布局
      */
@@ -90,11 +90,11 @@ public class KeyBoardUtils {
     /**
      * 键盘状态观察者
      *
-     * @param activity
-     * @param listener
+     * @param activity Activity
+     * @param listener 回调
      */
     public void keyboardStateObserver(Activity activity, final OnKeyboardVisibilityListener listener) {
-        final FrameLayout content = (FrameLayout) activity.findViewById(android.R.id.content);
+        final FrameLayout content = activity.findViewById(android.R.id.content);
         final View contentView = content.getChildAt(0);
         contentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             public void onGlobalLayout() {
@@ -122,7 +122,7 @@ public class KeyBoardUtils {
      * 计算可用高度
      *
      * @param contentView 内容视图
-     * @return
+     * @return 可用高度
      */
     private int computeUsableHeight(View contentView) {
         Rect r = new Rect();

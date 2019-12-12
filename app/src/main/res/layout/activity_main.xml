@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -19,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="屏幕截屏" />
+                android:text="@string/main_screenshots" />
 
             <View
                 android:layout_width="match_parent"
@@ -38,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="区域截屏" />
+                android:text="@string/main_area_screenshots" />
 
             <View
                 android:layout_width="match_parent"
@@ -57,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="ScrollView截屏" />
+                android:text="@string/main_scroll_screenshots" />
 
             <View
                 android:layout_width="match_parent"
@@ -82,17 +83,21 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/base_nav_share" />
+                    android:src="@drawable/base_nav_share"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/imageView_4"
                     android:layout_toRightOf="@+id/imageView_4"
                     android:gravity="center"
-                    android:text="图标着色" />
+                    android:text="@string/main_icon_coloring" />
 
             </RelativeLayout>
 
@@ -113,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="金额转换" />
+                android:text="@string/main_amount_conversion" />
 
             <View
                 android:layout_width="match_parent"
@@ -132,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="通过包名获取应用信息" />
+                android:text="@string/main_get_application_info" />
 
             <View
                 android:layout_width="match_parent"

@@ -21,6 +21,7 @@ public class VivoNotchScreen implements INotchScreen {
             Object object = cls.newInstance();
             value = (boolean) hideMethod.invoke(object, 0x00000020);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return value;
     }
@@ -34,8 +35,8 @@ public class VivoNotchScreen implements INotchScreen {
     /**
      * vivo的适配文档中就告诉是27dp，未告知如何动态获取
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 刘海屏高度
      */
     private static int getNotchHeight(Context context) {
         float density = getDensity(context);
@@ -45,14 +46,20 @@ public class VivoNotchScreen implements INotchScreen {
     /**
      * vivo的适配文档中就告诉是100dp，未告知如何动态获取
      *
-     * @param context
-     * @return
+     * @param context 是否有效
+     * @return 刘海屏宽度
      */
     private static int getNotchWidth(Context context) {
         float density = getDensity(context);
         return (int) (100 * density);
     }
 
+    /**
+     * 获取屏幕密度
+     *
+     * @param context 上下文
+     * @return 屏幕密度
+     */
     private static float getDensity(Context context) {
         return context.getResources().getDisplayMetrics().density;
     }

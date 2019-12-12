@@ -23,7 +23,7 @@ public class ClipboardUtils {
     }
 
     private static class ClipboardUtilsHelper {
-        private static ClipboardUtils mClipboardUtils;
+        private static final ClipboardUtils mClipboardUtils;
 
         static {
             mClipboardUtils = new ClipboardUtils();

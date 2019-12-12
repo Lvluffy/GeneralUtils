@@ -27,7 +27,7 @@ public class SystemUtils {
     }
 
     private static class SystemUtilsHelper {
-        private static SystemUtils mSystemUtils;
+        private static final SystemUtils mSystemUtils;
 
         static {
             mSystemUtils = new SystemUtils();
@@ -37,7 +37,7 @@ public class SystemUtils {
     /**
      * 判断手机系统版本是否是7.0以上
      *
-     * @return
+     * @return SDK是否是7.0以上
      */
     public boolean isThanVersionN() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
@@ -81,7 +81,7 @@ public class SystemUtils {
      *
      * @param context     上下文对象
      * @param packageName 指定应用包名
-     * @return
+     * @return 是否安装了指定应用
      */
     public boolean isInstall(Context context, String packageName) {
         /*获取包名管理器*/

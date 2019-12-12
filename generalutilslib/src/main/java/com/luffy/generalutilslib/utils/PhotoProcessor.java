@@ -24,7 +24,7 @@ public class PhotoProcessor {
     }
 
     private static class PhotoProcessorHelper {
-        private static PhotoProcessor mPhotoProcessor;
+        private static final PhotoProcessor mPhotoProcessor;
 
         static {
             mPhotoProcessor = new PhotoProcessor();
@@ -34,7 +34,7 @@ public class PhotoProcessor {
     /**
      * 获取裁剪过的图片文件
      *
-     * @return
+     * @return 文件
      */
     public File getTempImage(Context context) {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -52,7 +52,7 @@ public class PhotoProcessor {
     /**
      * 获取拍照后的图片文件
      *
-     * @return
+     * @return 文件
      */
     public File getTempImageFromPhoto() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -70,9 +70,9 @@ public class PhotoProcessor {
     /**
      * 将裁剪过得图压缩,转移后,返回处理过的图
      *
-     * @param filePath
-     * @param context
-     * @return
+     * @param filePath 文件路径
+     * @param context  上下文
+     * @return 文件
      */
     public File getSmallImageFile(String filePath, Context context) {
         final BitmapFactory.Options options = new BitmapFactory.Options();

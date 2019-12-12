@@ -18,7 +18,7 @@ public class DeviceBrandUtils {
     }
 
     private static class DeviceBrandUtilsHelper {
-        private static DeviceBrandUtils mDeviceBrandUtils;
+        private static final DeviceBrandUtils mDeviceBrandUtils;
 
         static {
             mDeviceBrandUtils = new DeviceBrandUtils();
@@ -28,7 +28,7 @@ public class DeviceBrandUtils {
     /**
      * 获取手机厂商
      *
-     * @return
+     * @return 手机厂商
      */
     public OSType getOSType() {
         String brand = Build.BRAND;

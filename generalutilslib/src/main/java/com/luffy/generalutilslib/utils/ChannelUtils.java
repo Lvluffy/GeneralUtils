@@ -18,7 +18,7 @@ public class ChannelUtils {
     }
 
     private static class ChannelUtilsHelper {
-        private static ChannelUtils mChannelUtils;
+        private static final ChannelUtils mChannelUtils;
 
         static {
             mChannelUtils = new ChannelUtils();
@@ -28,9 +28,9 @@ public class ChannelUtils {
     /**
      * 获取渠道
      *
-     * @param mContext 上下文对象
+     * @param mContext 上下文
      * @param key      application中指定的meta-data，调用方法时key就是UMENG_CHANNEL
-     * @return
+     * @return 渠道信息
      */
     public String getAppMetaData(Context mContext, String key) {
         if (mContext == null || !ValidUtils.getInstance().isValid(key)) {

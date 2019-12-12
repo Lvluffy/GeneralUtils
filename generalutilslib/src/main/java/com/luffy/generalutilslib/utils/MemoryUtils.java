@@ -22,7 +22,7 @@ public class MemoryUtils {
     }
 
     private static class MemoryUtilsHelper {
-        private static MemoryUtils mMemoryUtils;
+        private static final MemoryUtils mMemoryUtils;
 
         static {
             mMemoryUtils = new MemoryUtils();
@@ -32,8 +32,8 @@ public class MemoryUtils {
     /**
      * 获得SD卡总大小
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return SD卡总大小
      */
     public String getSDTotalSize(Context context) {
         File path = Environment.getExternalStorageDirectory();
@@ -56,8 +56,8 @@ public class MemoryUtils {
     /**
      * 获得sd卡剩余容量，即可用大小
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return sd卡剩余容量
      */
     public String getSDAvailableSize(Context context) {
         File path = Environment.getExternalStorageDirectory();
@@ -80,8 +80,8 @@ public class MemoryUtils {
     /**
      * 获得机身内存总大小
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 机身内存总大小
      */
     public String getRomTotalSize(Context context) {
         File path = Environment.getDataDirectory();
@@ -104,8 +104,8 @@ public class MemoryUtils {
     /**
      * 获得机身可用内存
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 机身可用内存
      */
     public String getRomAvailableSize(Context context) {
         File path = Environment.getDataDirectory();

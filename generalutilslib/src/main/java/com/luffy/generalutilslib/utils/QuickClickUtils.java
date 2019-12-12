@@ -16,7 +16,7 @@ public class QuickClickUtils {
     }
 
     private static class QuickClickUtilsHelper {
-        private static QuickClickUtils mQuickClickUtils;
+        private static final QuickClickUtils mQuickClickUtils;
 
         static {
             mQuickClickUtils = new QuickClickUtils();
@@ -25,9 +25,9 @@ public class QuickClickUtils {
 
     /*记录点击的次数*/
     private int mClickTimes = 0;
-    private MyHandler handler = new MyHandler();
+    private final MyHandler handler = new MyHandler();
     /*点击间距的有效时间处理*/
-    private Runnable mDebugClickRunnable = new Runnable() {
+    private final Runnable mDebugClickRunnable = new Runnable() {
         @Override
         public void run() {
             mClickTimes = 0;

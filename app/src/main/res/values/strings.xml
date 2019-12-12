@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">通用工具</string>
+    <string name="app_input_page_name">输入应用包名</string>
+    <string name="app_get">获取</string>
+    <string name="app_application_name">应用名称：</string>
+    <string name="app_application_icon">应用图标：</string>
+    <string name="main_screenshots">屏幕截屏</string>
+    <string name="main_area_screenshots">区域截屏</string>
+    <string name="main_scroll_screenshots">ScrollView截屏</string>
+    <string name="main_icon_coloring">图标着色</string>
+    <string name="main_amount_conversion">金额转换</string>
+    <string name="main_get_application_info">通过包名获取应用信息</string>
 </resources>

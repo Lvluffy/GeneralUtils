@@ -18,7 +18,7 @@ public class FileSizeUtils {
     }
 
     private static class FileSizeUtilsHelper {
-        private static FileSizeUtils mFileSizeUtils;
+        private static final FileSizeUtils mFileSizeUtils;
 
         static {
             mFileSizeUtils = new FileSizeUtils();
@@ -28,8 +28,8 @@ public class FileSizeUtils {
     /**
      * 转换指定文件夹或文件大小
      *
-     * @param filePath
-     * @return
+     * @param filePath 文件路径
+     * @return 文件大小
      */
     public String getFormatFileSize(String filePath) {
         File file = new File(filePath);
@@ -50,19 +50,19 @@ public class FileSizeUtils {
     /**
      * 获取指定文件夹大小
      *
-     * @param file
-     * @return
-     * @throws Exception
+     * @param file 文件
+     * @return 文件大小
+     * @throws Exception 异常
      */
     public long getFileSizes(File file) throws Exception {
         long size = 0;
-        if(file.exists()){
+        if (file.exists()) {
             File files[] = file.listFiles();
-            for (int i = 0; i < files.length; i++) {
-                if (files[i].isDirectory()) {
-                    size = size + getFileSizes(files[i]);
+            for (File file1 : files) {
+                if (file1.isDirectory()) {
+                    size = size + getFileSizes(file1);
                 } else {
-                    size = size + getFileSize(files[i]);
+                    size = size + getFileSize(file1);
                 }
             }
         }
@@ -72,15 +72,12 @@ public class FileSizeUtils {
     /**
      * 获取指定文件大小
      *
-     * @param file
-     * @return
-     * @throws Exception
+     * @param file 文件
+     * @return 文件大小
+     * @throws Exception 异常
      */
     public long getFileSize(File file) throws Exception {
-        if (file.exists()) {
-            return file.length();
-        }
-        return 0;
+        return file.exists() ? file.length() : 0;
     }
 
     /**
@@ -110,14 +107,14 @@ public class FileSizeUtils {
     /**
      * 删除文件
      *
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 是否删除
      */
     public boolean deleteFile(File file) {
         if (file != null && file.isDirectory()) {
             String[] children = file.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteFile(new File(file, children[i]));
+            for (String aChildren : children) {
+                boolean success = deleteFile(new File(file, aChildren));
                 if (!success) {
                     return false;
                 }

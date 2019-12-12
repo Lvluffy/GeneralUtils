@@ -26,7 +26,7 @@ public class FileUtils {
     }
 
     private static class FileUtilsHelper {
-        private static FileUtils mFileUtils;
+        private static final FileUtils mFileUtils;
 
         static {
             mFileUtils = new FileUtils();
@@ -36,7 +36,7 @@ public class FileUtils {
     /**
      * 创建根缓存目录
      *
-     * @return
+     * @return 目录
      */
     public String createRootPath(Context context) {
         String cacheRootPath = "";
@@ -51,7 +51,7 @@ public class FileUtils {
     /**
      * SD卡权限是否可用
      *
-     * @return
+     * @return SD卡权限是否可用
      */
     public boolean isSdCardAvailable() {
         return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
@@ -60,7 +60,7 @@ public class FileUtils {
     /**
      * 递归创建文件夹
      *
-     * @param dirPath
+     * @param dirPath 目录路径
      * @return 创建失败返回""
      */
     public String createDir(String dirPath) {
@@ -82,7 +82,7 @@ public class FileUtils {
     /**
      * 递归创建文件
      *
-     * @param file
+     * @param file 文件
      * @return 创建失败返回""
      */
     public String createFile(File file) {
@@ -104,8 +104,7 @@ public class FileUtils {
      * 删除指定文件，如果是文件夹，则递归删除
      *
      * @param file file
-     * @return boolean
-     * @throws IOException
+     * @return boolean 是否删除
      */
     public boolean deleteFileOrDirectory(File file) {
         try {
@@ -119,8 +118,8 @@ public class FileUtils {
                     return file.delete();
                 }
                 // 递归删除文件夹下的子文件
-                for (int i = 0; i < childFiles.length; i++) {
-                    deleteFileOrDirectory(childFiles[i]);
+                for (File childFile : childFiles) {
+                    deleteFileOrDirectory(childFile);
                 }
                 return file.delete();
             }
@@ -151,10 +150,9 @@ public class FileUtils {
     /**
      * 获取字符集
      *
-     * @param fileName
-     * @return
+     * @param fileName 文件名称
+     * @return 字符串
      */
-
     public String getCharset(String fileName) {
         BufferedInputStream bis = null;
         String charset = "GBK";
@@ -189,9 +187,8 @@ public class FileUtils {
                     if (0xC0 <= read && read <= 0xDF) {
                         read = bis.read();
                         if (0x80 <= read && read <= 0xBF) // 双字节 (0xC0 - 0xDF)
-                            // (0x80 - 0xBF),也可能在GB编码内
-                            continue;
-                        else
+                        {
+                        } else
                             break;
                     } else if (0xE0 <= read && read <= 0xEF) {// 也有可能出错，但是几率较小
                         read = bis.read();
@@ -224,8 +221,8 @@ public class FileUtils {
     /**
      * 遍历文件夹下的所有文件
      *
-     * @param strPath
-     * @return
+     * @param strPath 文件路径
+     * @return 文件集合
      */
     public List<File> getFileList(String strPath) {
         List<File> filelist = new ArrayList<>();
@@ -233,12 +230,12 @@ public class FileUtils {
         /*该文件目录下文件全部放入数组*/
         File[] files = dir.listFiles();
         if (files != null) {
-            for (int i = 0; i < files.length; i++) {
+            for (File file : files) {
                 /*判断是文件还是文件夹*/
-                if (files[i].isDirectory()) {
-                    getFileList(files[i].getAbsolutePath()); // 获取文件绝对路径
+                if (file.isDirectory()) {
+                    getFileList(file.getAbsolutePath()); // 获取文件绝对路径
                 } else {
-                    filelist.add(files[i]);
+                    filelist.add(file);
                 }
             }
         }

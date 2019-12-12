@@ -27,7 +27,7 @@ public class DeviceNotchScreenUtils {
     }
 
     private static class DeviceNotchScreenUtilsHelper {
-        private static DeviceNotchScreenUtils mDeviceNotchScreenUtils;
+        private static final DeviceNotchScreenUtils mDeviceNotchScreenUtils;
 
         static {
             mDeviceNotchScreenUtils = new DeviceNotchScreenUtils();
@@ -35,8 +35,8 @@ public class DeviceNotchScreenUtils {
     }
 
     /**
-     * @param context
-     * @param notchScreenCallback
+     * @param context             上下文
+     * @param notchScreenCallback 回调
      */
     public void getNotchInfo(final Context context, final INotchScreen.NotchScreenCallback notchScreenCallback) {
         INotchScreen notchScreen = getNotchScreen();
@@ -58,7 +58,7 @@ public class DeviceNotchScreenUtils {
     }
 
     /**
-     * @return
+     * @return 刘海屏接口实例
      */
     private INotchScreen getNotchScreen() {
         INotchScreen notchScreen = null;

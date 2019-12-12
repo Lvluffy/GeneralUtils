@@ -20,7 +20,7 @@ public class StringUtils {
     }
 
     private static class StringUtilsHelper {
-        private static StringUtils mStringUtils;
+        private static final StringUtils mStringUtils;
 
         static {
             mStringUtils = new StringUtils();
@@ -71,7 +71,7 @@ public class StringUtils {
      * 字符模糊处理（保留首尾，中间用指定字符替换）
      *
      * @param str 要处理的字符
-     * @return
+     * @return 处理后的字符串
      */
     public String obscure(String str) {
         return obscure(str, null);
@@ -82,27 +82,20 @@ public class StringUtils {
      *
      * @param str        要处理的字符
      * @param repacleStr 替换字符（默认是*）
-     * @return
+     * @return 处理后的字符串
      */
     public String obscure(String str, String repacleStr) {
         if (repacleStr == null || repacleStr.length() == 0 || "".equals(repacleStr)) {
             repacleStr = "*";
         }
         if (str.length() > 2) {
-            String content = "";
+            StringBuilder content = new StringBuilder();
             for (int i = 1; i < str.length() - 1; i++) {
-                content += repacleStr;
+                content.append(repacleStr);
             }
-            str = new StringBuilder(str.length())
-                    .append(str.substring(0, 1))
-                    .append(content)
-                    .append(str.substring(str.length() - 1, str.length()))
-                    .toString();
+            str = str.substring(0, 1) + content + str.substring(str.length() - 1, str.length());
         } else if (str.length() == 2) {
-            str = new StringBuilder(str.length())
-                    .append(str.substring(0, 1))
-                    .append("*")
-                    .toString();
+            str = str.substring(0, 1) + "*";
         }
         return str;
     }

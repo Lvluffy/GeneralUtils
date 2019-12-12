@@ -20,7 +20,7 @@ public class SpeakerUtils {
     }
 
     private static class SpeakerUtilsHelper {
-        private static SpeakerUtils mSpeakerUtils;
+        private static final SpeakerUtils mSpeakerUtils;
 
         static {
             mSpeakerUtils = new SpeakerUtils();
@@ -30,7 +30,7 @@ public class SpeakerUtils {
     /**
      * 打开扬声器
      *
-     * @param context
+     * @param context 上下文
      */
     public void openSpeaker(Context context) {
         try {
@@ -51,7 +51,7 @@ public class SpeakerUtils {
     /**
      * 关闭扬声器
      *
-     * @param context
+     * @param context 上下文
      */
     public void closeSpeaker(Context context) {
         try {

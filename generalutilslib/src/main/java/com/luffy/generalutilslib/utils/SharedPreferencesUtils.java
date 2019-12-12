@@ -25,7 +25,7 @@ public class SharedPreferencesUtils {
     }
 
     private static class SharedPreferencesUtilsHelper {
-        private static SharedPreferencesUtils mSharedPreferencesUtils;
+        private static final SharedPreferencesUtils mSharedPreferencesUtils;
 
         static {
             mSharedPreferencesUtils = new SharedPreferencesUtils();
@@ -39,9 +39,9 @@ public class SharedPreferencesUtils {
     /**
      * 保存数据
      *
-     * @param context
-     * @param key
-     * @param object
+     * @param context 上下文
+     * @param key     键
+     * @param object  值
      */
     public SharedPreferencesUtils put(Context context, String key, Object object) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
@@ -66,10 +66,10 @@ public class SharedPreferencesUtils {
     /**
      * 获取保存数据
      *
-     * @param context
-     * @param key
-     * @param defaultObject
-     * @return
+     * @param context       上下文
+     * @param key           键
+     * @param defaultObject 默认值
+     * @return Object
      */
     public Object get(Context context, String key, Object defaultObject) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
@@ -90,8 +90,8 @@ public class SharedPreferencesUtils {
     /**
      * 移除某个key值已经对应的值
      *
-     * @param context
-     * @param key
+     * @param context 上下文
+     * @param key     键
      */
     public void remove(Context context, String key) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
@@ -103,7 +103,7 @@ public class SharedPreferencesUtils {
     /**
      * 清除所有数据
      *
-     * @param context
+     * @param context 上下文
      */
     public void clear(Context context) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
@@ -115,9 +115,9 @@ public class SharedPreferencesUtils {
     /**
      * 查询某个key是否已经存在
      *
-     * @param context
-     * @param key
-     * @return
+     * @param context 上下文
+     * @param key     键
+     * @return key是否已经存在
      */
     public boolean contains(Context context, String key) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
@@ -127,8 +127,8 @@ public class SharedPreferencesUtils {
     /**
      * 返回所有的键值对
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 键值对
      */
     public Map<String, ?> getAll(Context context) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
@@ -144,7 +144,7 @@ public class SharedPreferencesUtils {
         /**
          * 反射查找apply的方法
          *
-         * @return
+         * @return Method
          */
         @SuppressWarnings({"unchecked", "rawtypes"})
         private static Method findApplyMethod() {
@@ -152,6 +152,7 @@ public class SharedPreferencesUtils {
                 Class clz = SharedPreferences.Editor.class;
                 return clz.getMethod("apply");
             } catch (NoSuchMethodException e) {
+                e.printStackTrace();
             }
             return null;
         }
@@ -159,7 +160,7 @@ public class SharedPreferencesUtils {
         /**
          * 如果找到则使用apply执行，否则使用commit
          *
-         * @param editor
+         * @param editor Editor
          */
         public static void apply(SharedPreferences.Editor editor) {
             try {
@@ -168,8 +169,11 @@ public class SharedPreferencesUtils {
                     return;
                 }
             } catch (IllegalArgumentException e) {
+                e.printStackTrace();
             } catch (IllegalAccessException e) {
+                e.printStackTrace();
             } catch (InvocationTargetException e) {
+                e.printStackTrace();
             }
             editor.commit();
         }

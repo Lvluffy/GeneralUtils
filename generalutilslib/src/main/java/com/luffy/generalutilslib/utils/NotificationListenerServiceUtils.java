@@ -29,7 +29,7 @@ public class NotificationListenerServiceUtils {
     }
 
     private static class NotificationListenerServiceUtilsHelper {
-        private static NotificationListenerServiceUtils mNotificationListenerServiceUtils;
+        private static final NotificationListenerServiceUtils mNotificationListenerServiceUtils;
 
         static {
             mNotificationListenerServiceUtils = new NotificationListenerServiceUtils();
@@ -39,16 +39,16 @@ public class NotificationListenerServiceUtils {
     /**
      * 检测通知监听服务是否被授权
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return 通知监听服务是否被授权
      */
     public boolean isNotificationListenerEnabled(Context context) {
         String pkgName = context.getPackageName();
         final String flat = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
         if (!TextUtils.isEmpty(flat)) {
             final String[] names = flat.split(":");
-            for (int i = 0; i < names.length; i++) {
-                final ComponentName cn = ComponentName.unflattenFromString(names[i]);
+            for (String name : names) {
+                final ComponentName cn = ComponentName.unflattenFromString(name);
                 if (cn != null) {
                     if (TextUtils.equals(pkgName, cn.getPackageName())) {
                         return true;
@@ -62,7 +62,7 @@ public class NotificationListenerServiceUtils {
     /**
      * 打开通知监听设置界面
      *
-     * @param contex
+     * @param contex 上下文
      */
     public void openNotificationListenerSettings(Context contex) {
         try {
@@ -81,8 +81,8 @@ public class NotificationListenerServiceUtils {
     /**
      * 把应用的NotificationListenerService实现类disable再enable，即可触发系统rebing操作
      *
-     * @param context
-     * @param notificationListenerService
+     * @param context 上下文
+     * @param notificationListenerService NotificationListenerService
      */
     public void toggleNotificationListenerService(Context context, Class<? extends NotificationListenerService> notificationListenerService) {
         ComponentName thisComponent = new ComponentName(context, notificationListenerService);
@@ -94,8 +94,8 @@ public class NotificationListenerServiceUtils {
     /**
      * 确保运行
      *
-     * @param context
-     * @param notificationListenerService
+     * @param context 上下文
+     * @param notificationListenerService NotificationListenerService
      */
     public void ensureCollectorRunning(Context context, Class<? extends NotificationListenerService> notificationListenerService) {
         ComponentName collectorComponent = new ComponentName(context, notificationListenerService);

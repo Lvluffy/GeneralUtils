@@ -18,7 +18,7 @@ public class AnimationUtils {
     /**
      * 默认动画持续时间
      */
-    public final long DEFAULT_ANIMATION_DURATION = 2000;
+    private final long DEFAULT_ANIMATION_DURATION = 2000;
 
     private AnimationUtils() {
     }
@@ -28,7 +28,7 @@ public class AnimationUtils {
     }
 
     private static class AnimationUtilsHelper {
-        private static AnimationUtils mAnimationUtils;
+        private static final AnimationUtils mAnimationUtils;
 
         static {
             mAnimationUtils = new AnimationUtils();
@@ -376,10 +376,10 @@ public class AnimationUtils {
     /**
      * 获取一个移动动画
      *
-     * @param view
-     * @param start
-     * @param end
-     * @return
+     * @param view  控件
+     * @param start 开始
+     * @param end   结束
+     * @return 动画对象
      */
     public ValueAnimator getValueAnimator(final View view, int start, int end) {
         ValueAnimator animator = ValueAnimator.ofInt(start, end);

@@ -29,7 +29,7 @@ public class DeviceUtils {
     }
 
     private static class DeviceUtilsHelper {
-        private static DeviceUtils mDeviceUtils;
+        private static final DeviceUtils mDeviceUtils;
 
         static {
             mDeviceUtils = new DeviceUtils();
@@ -39,7 +39,7 @@ public class DeviceUtils {
     /**
      * 获取手机厂商
      *
-     * @return
+     * @return 手机厂商
      */
     public synchronized String getDeviceManufacturer() {
         return Build.MANUFACTURER;
@@ -48,7 +48,7 @@ public class DeviceUtils {
     /**
      * 获取手机品牌
      *
-     * @return
+     * @return 手机品牌
      */
     public synchronized String getDeviceBrand() {
         return Build.BRAND;
@@ -57,7 +57,7 @@ public class DeviceUtils {
     /**
      * 获取手机型号
      *
-     * @return
+     * @return 手机型号
      */
     public synchronized String getDeviceModel() {
         return Build.MODEL;
@@ -66,7 +66,7 @@ public class DeviceUtils {
     /**
      * 获取手机系统版本
      *
-     * @return
+     * @return 手机系统版本
      */
     public synchronized String getDeviceSystemVersion() {
         return Build.VERSION.RELEASE;
@@ -75,46 +75,40 @@ public class DeviceUtils {
     /**
      * 获取IMSI号(SubscriberId)
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return IMSI
      */
     @SuppressLint("MissingPermission")
     public synchronized String getImsi(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (mTelephonyManager != null) {
-            return mTelephonyManager.getSubscriberId();
-        }
-        return null;
+        return mTelephonyManager != null ? mTelephonyManager.getSubscriberId() : null;
     }
 
     /**
      * 获取IMEI号(DeviceId)
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return IMEI
      */
     @SuppressLint("MissingPermission")
     public synchronized String getImei(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (mTelephonyManager != null) {
-            return mTelephonyManager.getDeviceId();
-        }
-        return null;
+        return mTelephonyManager != null ? mTelephonyManager.getDeviceId() : null;
     }
 
     /**
      * 获取UUID
      *
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return UUID
      */
     @SuppressLint({"MissingPermission"})
     public synchronized String getUUID(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (mTelephonyManager != null) {
-            final String tmDevice = "" + mTelephonyManager.getDeviceId();
-            final String tmSerial = "" + mTelephonyManager.getSimSerialNumber();
-            final String androidId = "" + android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+            final String tmDevice = String.format("%s", mTelephonyManager.getDeviceId());
+            final String tmSerial = String.format("%s", mTelephonyManager.getSimSerialNumber());
+            final String androidId = String.format("%s", android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID));
             UUID uuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
             return uuid.toString();
         }
@@ -124,7 +118,7 @@ public class DeviceUtils {
     /**
      * 获取MAC地址
      *
-     * @return
+     * @return MAC地址
      */
     public synchronized String getMacAddress() {
         try {
@@ -136,7 +130,7 @@ public class DeviceUtils {
     }
 
     private synchronized String loadFileAsString(String filePath) throws IOException {
-        StringBuffer fileData = new StringBuffer(1000);
+        StringBuilder fileData = new StringBuilder(1000);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         char[] buf = new char[1024];
         int numRead;
@@ -151,7 +145,7 @@ public class DeviceUtils {
     /**
      * 获取本地IP
      *
-     * @return
+     * @return 本地IP
      */
     public synchronized String getLocalIpAddress() {
         try {
@@ -160,11 +154,12 @@ public class DeviceUtils {
                 for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress() && !inetAddress.isLinkLocalAddress()) {
-                        return inetAddress.getHostAddress().toString();
+                        return inetAddress.getHostAddress();
                     }
                 }
             }
         } catch (SocketException ex) {
+            ex.printStackTrace();
         }
         return null;
     }

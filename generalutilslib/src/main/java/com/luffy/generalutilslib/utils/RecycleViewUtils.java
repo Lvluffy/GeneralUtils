@@ -19,7 +19,7 @@ public class RecycleViewUtils {
     }
 
     private static class RecycleViewUtilsHelper {
-        private static RecycleViewUtils mRecycleViewUtils;
+        private static final RecycleViewUtils mRecycleViewUtils;
 
         static {
             mRecycleViewUtils = new RecycleViewUtils();

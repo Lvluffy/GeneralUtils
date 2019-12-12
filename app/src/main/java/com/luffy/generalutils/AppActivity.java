@@ -12,6 +12,7 @@ import com.luffy.generalutilslib.utils.AppUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 /**
  * Created by lvlufei on 2019/10/11
  *

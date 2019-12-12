@@ -19,8 +19,6 @@ public class DoubleClickExitUtils {
     public static final int END_FINISH = 0;
     /*结束回到桌面*/
     public static final int END_BACK_HOME = 1;
-    /*结束~默认退出*/
-    private int endType = END_FINISH;
     /*定义一个变量，来标识是否退出*/
     private static boolean isExit = false;
 
@@ -32,7 +30,7 @@ public class DoubleClickExitUtils {
     }
 
     private static class DoubleClickExitUtilsHelper {
-        private static DoubleClickExitUtils mDoubleClickExitUtils;
+        private static final DoubleClickExitUtils mDoubleClickExitUtils;
 
         static {
             mDoubleClickExitUtils = new DoubleClickExitUtils();
@@ -42,9 +40,9 @@ public class DoubleClickExitUtils {
     /**
      * 双击退出
      *
-     * @param activity
-     * @param iDoubleClickExitCallBack
-     * @return
+     * @param activity                 Activity
+     * @param iDoubleClickExitCallBack 回调
+     * @return 是否双击退出ø
      */
     public boolean exit(Activity activity, IDoubleClickExitCallBack iDoubleClickExitCallBack) {
         return exit(activity, END_FINISH, iDoubleClickExitCallBack);
@@ -53,15 +51,14 @@ public class DoubleClickExitUtils {
     /**
      * 双击退出
      *
-     * @param activity
-     * @param type
-     * @param iDoubleClickExitCallBack
-     * @return
+     * @param activity                 Activity
+     * @param type                     类型
+     * @param iDoubleClickExitCallBack 回调
+     * @return 是否双击退出
      */
     public boolean exit(Activity activity, int type, IDoubleClickExitCallBack iDoubleClickExitCallBack) {
-        endType = type;
         if (isExit) {
-            if (endType == END_FINISH) {
+            if (type == END_FINISH) {
                 // 退出
                 activity.finish();
                 System.exit(0);
