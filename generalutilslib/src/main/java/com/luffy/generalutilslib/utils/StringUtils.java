@@ -39,7 +39,7 @@ public class StringUtils {
             str = str.replaceAll("】", "");//替换来自服务器上的，特殊空格
             str = str.replaceAll("", "");//替换来自服务器上的，特殊空格
             str = str.replaceAll("】", "");//替换来自服务器上的，特殊空格
-            str = str.replaceAll("  *", "");//
+            str = str.replaceAll(" *", "");//
             str = str.replaceAll("——", "");//
             str = str.replaceAll("-", "");//
             str = str.replaceAll("<br />", "");//

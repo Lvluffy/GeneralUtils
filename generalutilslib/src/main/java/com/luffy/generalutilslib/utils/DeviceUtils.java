@@ -78,7 +78,7 @@ public class DeviceUtils {
      * @param context 上下文
      * @return IMSI
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     public synchronized String getImsi(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return mTelephonyManager != null ? mTelephonyManager.getSubscriberId() : null;
@@ -90,7 +90,7 @@ public class DeviceUtils {
      * @param context 上下文
      * @return IMEI
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     public synchronized String getImei(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return mTelephonyManager != null ? mTelephonyManager.getDeviceId() : null;
@@ -106,9 +106,9 @@ public class DeviceUtils {
     public synchronized String getUUID(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (mTelephonyManager != null) {
-            final String tmDevice = String.format("%s", mTelephonyManager.getDeviceId());
-            final String tmSerial = String.format("%s", mTelephonyManager.getSimSerialNumber());
-            final String androidId = String.format("%s", android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID));
+            @SuppressLint("HardwareIds") final String tmDevice = String.format("%s", mTelephonyManager.getDeviceId());
+            @SuppressLint("HardwareIds") final String tmSerial = String.format("%s", mTelephonyManager.getSimSerialNumber());
+            @SuppressLint("HardwareIds") final String androidId = String.format("%s", android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID));
             UUID uuid = new UUID(androidId.hashCode(), ((long) tmDevice.hashCode() << 32) | tmSerial.hashCode());
             return uuid.toString();
         }

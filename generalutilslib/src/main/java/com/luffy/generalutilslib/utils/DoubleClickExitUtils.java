@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.luffy.generalutilslib.R;
 
+import java.lang.ref.WeakReference;
+
 
 /**
  * Created by lvlufei on 2018/1/1
@@ -75,18 +77,29 @@ public class DoubleClickExitUtils {
             } else {
                 Toast.makeText(activity, String.format(activity.getString(R.string.utils_double_click_exit_hint), AppUtils.getInstance().getAppName(activity)), Toast.LENGTH_SHORT).show();
             }
-            new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    super.handleMessage(msg);
-                    isExit = false;
-                }
-            }.sendEmptyMessageDelayed(0, 2000);
+            new MyHanlder(DoubleClickExitUtils.this).sendEmptyMessageDelayed(0, 2000);
         }
         return true;
     }
 
     public interface IDoubleClickExitCallBack {
         void hanlderToastShow();
+    }
+
+    private static class MyHanlder extends Handler {
+
+        private WeakReference<DoubleClickExitUtils> weakReference;
+
+        public MyHanlder(DoubleClickExitUtils doubleClickExitUtils) {
+            weakReference = new WeakReference<>(doubleClickExitUtils);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            DoubleClickExitUtils doubleClickExitUtils = weakReference.get();
+            if (doubleClickExitUtils != null)
+                doubleClickExitUtils.isExit = false;
+        }
     }
 }
