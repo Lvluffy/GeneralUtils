@@ -47,7 +47,7 @@ dependencies {
     compileOnly rootProject.ext.supportDepends["support-v4"]
     compileOnly rootProject.ext.supportDepends["recyclerview-v7"]
     /**Rxjava/RxAndroid*/
-    compileOnly 'io.reactivex.rxjava2:rxjava:2.1.1'
-    compileOnly 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compileOnly 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    compile 'io.reactivex.rxjava2:rxjava:2.2.15'
+    compile 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
 }
