@@ -53,11 +53,7 @@ public class TimeUtils {
     }
 
     private static class TimeUtilsHelper {
-        private static final TimeUtils mTimeUtils;
-
-        static {
-            mTimeUtils = new TimeUtils();
-        }
+        private static final TimeUtils mTimeUtils = new TimeUtils();
     }
 
     /**

@@ -22,11 +22,7 @@ public class ServiceUtils {
     }
 
     private static class ServiceUtilsHelper {
-        private static final ServiceUtils mServiceUtils;
-
-        static {
-            mServiceUtils = new ServiceUtils();
-        }
+        private static final ServiceUtils mServiceUtils = new ServiceUtils();
     }
 
     /**

@@ -18,11 +18,7 @@ public class DensityUtils {
     }
 
     private static class DensityUtilsHelper {
-        private static final DensityUtils mDensityUtils;
-
-        static {
-            mDensityUtils = new DensityUtils();
-        }
+        private static final DensityUtils mDensityUtils = new DensityUtils();
     }
 
     /**

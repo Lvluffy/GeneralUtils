@@ -25,11 +25,7 @@ public class RxTimerUtils {
     }
 
     private static class RxTimerUtilsHelper {
-        private static final RxTimerUtils mRxTimerUtils;
-
-        static {
-            mRxTimerUtils = new RxTimerUtils();
-        }
+        private static final RxTimerUtils mRxTimerUtils = new RxTimerUtils();
     }
 
     /**

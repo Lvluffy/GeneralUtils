@@ -15,11 +15,7 @@ public class ClassUtils {
     }
 
     private static class ClassUtilsHelper {
-        private static final ClassUtils mClassUtils;
-
-        static {
-            mClassUtils = new ClassUtils();
-        }
+        private static final ClassUtils mClassUtils = new ClassUtils();
     }
 
     /**

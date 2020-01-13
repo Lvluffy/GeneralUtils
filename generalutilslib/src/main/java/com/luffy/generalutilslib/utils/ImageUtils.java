@@ -24,11 +24,7 @@ public class ImageUtils {
     }
 
     private static class ImageUtilsHelper {
-        private static final ImageUtils mImageUtils;
-
-        static {
-            mImageUtils = new ImageUtils();
-        }
+        private static final ImageUtils mImageUtils = new ImageUtils();
     }
 
     /**

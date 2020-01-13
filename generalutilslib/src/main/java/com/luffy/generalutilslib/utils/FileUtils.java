@@ -26,11 +26,7 @@ public class FileUtils {
     }
 
     private static class FileUtilsHelper {
-        private static final FileUtils mFileUtils;
-
-        static {
-            mFileUtils = new FileUtils();
-        }
+        private static final FileUtils mFileUtils = new FileUtils();
     }
 
     /**

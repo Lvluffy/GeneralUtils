@@ -27,11 +27,7 @@ public class DeviceNotchScreenUtils {
     }
 
     private static class DeviceNotchScreenUtilsHelper {
-        private static final DeviceNotchScreenUtils mDeviceNotchScreenUtils;
-
-        static {
-            mDeviceNotchScreenUtils = new DeviceNotchScreenUtils();
-        }
+        private static final DeviceNotchScreenUtils mDeviceNotchScreenUtils = new DeviceNotchScreenUtils();
     }
 
     /**

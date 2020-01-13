@@ -34,11 +34,7 @@ public class FileConversionUtils {
     }
 
     private static class FileConversionUtilsHelper {
-        private static final FileConversionUtils mFileConversionUtils;
-
-        static {
-            mFileConversionUtils = new FileConversionUtils();
-        }
+        private static final FileConversionUtils mFileConversionUtils = new FileConversionUtils();
     }
 
     /**

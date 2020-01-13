@@ -21,11 +21,7 @@ public class ClickUtils {
     }
 
     private static class ClickUtilsHelper {
-        private static final ClickUtils mClickUtils;
-
-        static {
-            mClickUtils = new ClickUtils();
-        }
+        private static final ClickUtils mClickUtils = new ClickUtils();
     }
 
     /**

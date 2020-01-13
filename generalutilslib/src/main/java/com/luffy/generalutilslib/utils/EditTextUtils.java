@@ -17,11 +17,7 @@ public class EditTextUtils {
     }
 
     private static class EditTextUtilsHelper {
-        private static final EditTextUtils mEditTextUtils;
-
-        static {
-            mEditTextUtils = new EditTextUtils();
-        }
+        private static final EditTextUtils mEditTextUtils = new EditTextUtils();
     }
 
     /**

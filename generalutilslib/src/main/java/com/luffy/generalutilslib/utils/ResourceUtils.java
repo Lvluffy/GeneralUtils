@@ -18,11 +18,7 @@ public class ResourceUtils {
     }
 
     private static class ResourceUtilsHelper {
-        private static final ResourceUtils mResourceUtils;
-
-        static {
-            mResourceUtils = new ResourceUtils();
-        }
+        private static final ResourceUtils mResourceUtils = new ResourceUtils();
     }
 
     /**

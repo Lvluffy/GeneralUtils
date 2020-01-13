@@ -17,11 +17,7 @@ public class RegexUtils {
     }
 
     private static class RegexUtilsHelper {
-        private static final RegexUtils mRegexUtils;
-
-        static {
-            mRegexUtils = new RegexUtils();
-        }
+        private static final RegexUtils mRegexUtils = new RegexUtils();
     }
 
     public static class Regex {

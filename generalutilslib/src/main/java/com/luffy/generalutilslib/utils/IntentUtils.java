@@ -23,11 +23,7 @@ public class IntentUtils {
      * 静态内部类实现单例
      */
     private static class IntentUtilsHelper {
-        private static final IntentUtils mIntentUtils;
-
-        static {
-            mIntentUtils = new IntentUtils();
-        }
+        private static final IntentUtils mIntentUtils = new IntentUtils();
     }
 
     /**

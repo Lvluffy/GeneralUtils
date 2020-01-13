@@ -33,11 +33,7 @@ public class StatusBarUtils {
     }
 
     private static class StatusBarUtilsHelper {
-        private static final StatusBarUtils mStatusBarUtils;
-
-        static {
-            mStatusBarUtils = new StatusBarUtils();
-        }
+        private static final StatusBarUtils mStatusBarUtils = new StatusBarUtils();
     }
 
     /**

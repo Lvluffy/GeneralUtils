@@ -34,11 +34,7 @@ public class NetUtils {
     }
 
     private static class NetUtilsHelper {
-        private static final NetUtils mNetUtils;
-
-        static {
-            mNetUtils = new NetUtils();
-        }
+        private static final NetUtils mNetUtils = new NetUtils();
     }
 
     /**

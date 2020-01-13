@@ -18,11 +18,7 @@ public class ChannelUtils {
     }
 
     private static class ChannelUtilsHelper {
-        private static final ChannelUtils mChannelUtils;
-
-        static {
-            mChannelUtils = new ChannelUtils();
-        }
+        private static final ChannelUtils mChannelUtils = new ChannelUtils();
     }
 
     /**

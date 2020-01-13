@@ -18,11 +18,7 @@ public class FileSizeUtils {
     }
 
     private static class FileSizeUtilsHelper {
-        private static final FileSizeUtils mFileSizeUtils;
-
-        static {
-            mFileSizeUtils = new FileSizeUtils();
-        }
+        private static final FileSizeUtils mFileSizeUtils = new FileSizeUtils();
     }
 
     /**

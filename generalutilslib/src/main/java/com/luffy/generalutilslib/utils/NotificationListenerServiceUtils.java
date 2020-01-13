@@ -29,11 +29,7 @@ public class NotificationListenerServiceUtils {
     }
 
     private static class NotificationListenerServiceUtilsHelper {
-        private static final NotificationListenerServiceUtils mNotificationListenerServiceUtils;
-
-        static {
-            mNotificationListenerServiceUtils = new NotificationListenerServiceUtils();
-        }
+        private static final NotificationListenerServiceUtils mNotificationListenerServiceUtils = new NotificationListenerServiceUtils();
     }
 
     /**

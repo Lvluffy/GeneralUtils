@@ -28,11 +28,7 @@ public class AppUtils {
     }
 
     private static class AppUtilsHelper {
-        private static final AppUtils mAppUtils;
-
-        static {
-            mAppUtils = new AppUtils();
-        }
+        private static final AppUtils mAppUtils = new AppUtils();
     }
 
     /**

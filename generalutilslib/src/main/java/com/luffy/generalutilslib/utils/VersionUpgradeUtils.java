@@ -28,11 +28,7 @@ public class VersionUpgradeUtils {
     }
 
     private static class VersionUpgradeUtilsHelper {
-        private static final VersionUpgradeUtils mVersionUpgradeUtils;
-
-        static {
-            mVersionUpgradeUtils = new VersionUpgradeUtils();
-        }
+        private static final VersionUpgradeUtils mVersionUpgradeUtils = new VersionUpgradeUtils();
     }
 
     /**

@@ -17,11 +17,7 @@ public class ValidUtils {
     }
 
     private static class ValidUtilsHelper {
-        private static final ValidUtils mValidUtils;
-
-        static {
-            mValidUtils = new ValidUtils();
-        }
+        private static final ValidUtils mValidUtils = new ValidUtils();
     }
 
     /**

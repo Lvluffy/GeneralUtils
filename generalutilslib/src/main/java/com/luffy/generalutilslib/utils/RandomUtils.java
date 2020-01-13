@@ -17,11 +17,7 @@ public class RandomUtils {
     }
 
     private static class RandomUtilsHelper {
-        private static final RandomUtils mRandomUtils;
-
-        static {
-            mRandomUtils = new RandomUtils();
-        }
+        private static final RandomUtils mRandomUtils = new RandomUtils();
     }
 
     /**

@@ -18,11 +18,7 @@ public class IdCardUtils {
     }
 
     private static class IdCardUtilsHelper {
-        private static final IdCardUtils mIdCardUtils;
-
-        static {
-            mIdCardUtils = new IdCardUtils();
-        }
+        private static final IdCardUtils mIdCardUtils = new IdCardUtils();
     }
 
     /**

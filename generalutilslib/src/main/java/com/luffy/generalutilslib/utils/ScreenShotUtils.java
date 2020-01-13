@@ -26,11 +26,7 @@ public class ScreenShotUtils {
     }
 
     private static class ScreenShotUtilsHelper {
-        private static final ScreenShotUtils mScreenShotUtils;
-
-        static {
-            mScreenShotUtils = new ScreenShotUtils();
-        }
+        private static final ScreenShotUtils mScreenShotUtils = new ScreenShotUtils();
     }
 
     /**

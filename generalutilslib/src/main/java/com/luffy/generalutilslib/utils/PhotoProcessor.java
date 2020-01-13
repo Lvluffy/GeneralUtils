@@ -24,11 +24,7 @@ public class PhotoProcessor {
     }
 
     private static class PhotoProcessorHelper {
-        private static final PhotoProcessor mPhotoProcessor;
-
-        static {
-            mPhotoProcessor = new PhotoProcessor();
-        }
+        private static final PhotoProcessor mPhotoProcessor = new PhotoProcessor();
     }
 
     /**

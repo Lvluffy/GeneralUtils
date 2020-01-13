@@ -22,11 +22,7 @@ public class MemoryUtils {
     }
 
     private static class MemoryUtilsHelper {
-        private static final MemoryUtils mMemoryUtils;
-
-        static {
-            mMemoryUtils = new MemoryUtils();
-        }
+        private static final MemoryUtils mMemoryUtils = new MemoryUtils();
     }
 
     /**

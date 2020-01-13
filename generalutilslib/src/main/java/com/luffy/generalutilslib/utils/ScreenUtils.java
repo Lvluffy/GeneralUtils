@@ -29,11 +29,7 @@ public class ScreenUtils {
     }
 
     private static class ScreenUtilsHelper {
-        private static final ScreenUtils mScreenUtils;
-
-        static {
-            mScreenUtils = new ScreenUtils();
-        }
+        private static final ScreenUtils mScreenUtils = new ScreenUtils();
     }
 
     /**

@@ -29,11 +29,7 @@ public class DeviceUtils {
     }
 
     private static class DeviceUtilsHelper {
-        private static final DeviceUtils mDeviceUtils;
-
-        static {
-            mDeviceUtils = new DeviceUtils();
-        }
+        private static final DeviceUtils mDeviceUtils = new DeviceUtils();
     }
 
     /**

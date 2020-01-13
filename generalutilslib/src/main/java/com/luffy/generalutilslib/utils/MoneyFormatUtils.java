@@ -18,11 +18,7 @@ public class MoneyFormatUtils {
     }
 
     private static class MoneyFormatUtilsHelper {
-        private static final MoneyFormatUtils mMoneyFormatUtils;
-
-        static {
-            mMoneyFormatUtils = new MoneyFormatUtils();
-        }
+        private static final MoneyFormatUtils mMoneyFormatUtils = new MoneyFormatUtils();
     }
 
     /**

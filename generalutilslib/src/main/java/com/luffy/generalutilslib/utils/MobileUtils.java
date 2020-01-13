@@ -18,11 +18,7 @@ public class MobileUtils {
     }
 
     private static class MobileUtilsHelper {
-        private static final MobileUtils mMobileUtils;
-
-        static {
-            mMobileUtils = new MobileUtils();
-        }
+        private static final MobileUtils mMobileUtils = new MobileUtils();
     }
 
     /**

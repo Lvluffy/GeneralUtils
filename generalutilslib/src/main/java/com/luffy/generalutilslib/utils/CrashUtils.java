@@ -47,11 +47,7 @@ public class CrashUtils implements UncaughtExceptionHandler {
     }
 
     private static class CrashUtilsHelper {
-        private static final CrashUtils mCrashUtils;
-
-        static {
-            mCrashUtils = new CrashUtils();
-        }
+        private static final CrashUtils mCrashUtils = new CrashUtils();
     }
 
     /**

@@ -18,11 +18,7 @@ public class DeviceBrandUtils {
     }
 
     private static class DeviceBrandUtilsHelper {
-        private static final DeviceBrandUtils mDeviceBrandUtils;
-
-        static {
-            mDeviceBrandUtils = new DeviceBrandUtils();
-        }
+        private static final DeviceBrandUtils mDeviceBrandUtils = new DeviceBrandUtils();
     }
 
     /**

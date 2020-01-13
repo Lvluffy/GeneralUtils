@@ -20,11 +20,7 @@ public class PasswordShowUtils {
     }
 
     private static class PasswordShowUtilsHelper {
-        private static final PasswordShowUtils mPasswordShowUtils;
-
-        static {
-            mPasswordShowUtils = new PasswordShowUtils();
-        }
+        private static final PasswordShowUtils mPasswordShowUtils = new PasswordShowUtils();
     }
 
     /**

@@ -25,11 +25,7 @@ public class BlurBitmapUtils {
     }
 
     private static class BlurBitmapUtilsHelper {
-        private static final BlurBitmapUtils mBlurBitmapUtils;
-
-        static {
-            mBlurBitmapUtils = new BlurBitmapUtils();
-        }
+        private static final BlurBitmapUtils mBlurBitmapUtils = new BlurBitmapUtils();
     }
 
     /**

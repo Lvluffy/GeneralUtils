@@ -16,11 +16,7 @@ public class QuickClickUtils {
     }
 
     private static class QuickClickUtilsHelper {
-        private static final QuickClickUtils mQuickClickUtils;
-
-        static {
-            mQuickClickUtils = new QuickClickUtils();
-        }
+        private static final QuickClickUtils mQuickClickUtils = new QuickClickUtils();
     }
 
     /*记录点击的次数*/

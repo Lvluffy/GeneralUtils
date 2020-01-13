@@ -25,11 +25,7 @@ public class KeyBoardUtils {
     }
 
     private static class KeyBoardUtilsHelper {
-        private static final KeyBoardUtils mKeyBoardUtils;
-
-        static {
-            mKeyBoardUtils = new KeyBoardUtils();
-        }
+        private static final KeyBoardUtils mKeyBoardUtils = new KeyBoardUtils();
     }
 
     /**

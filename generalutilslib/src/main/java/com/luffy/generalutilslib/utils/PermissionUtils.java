@@ -25,11 +25,7 @@ public class PermissionUtils {
     }
 
     private static class PermissionUtilsHelper {
-        private static final PermissionUtils mPermissionUtils;
-
-        static {
-            mPermissionUtils = new PermissionUtils();
-        }
+        private static final PermissionUtils mPermissionUtils = new PermissionUtils();
     }
 
     /**

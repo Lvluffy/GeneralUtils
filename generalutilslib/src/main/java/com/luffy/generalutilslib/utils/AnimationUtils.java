@@ -28,11 +28,7 @@ public class AnimationUtils {
     }
 
     private static class AnimationUtilsHelper {
-        private static final AnimationUtils mAnimationUtils;
-
-        static {
-            mAnimationUtils = new AnimationUtils();
-        }
+        private static final AnimationUtils mAnimationUtils = new AnimationUtils();
     }
 
     /**

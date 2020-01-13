@@ -21,11 +21,7 @@ public class NumConversionUtils {
      * 静态内部类实现单例
      */
     private static class NumConversionUtilsHelper {
-        private static final NumConversionUtils mNumConversionUtils;
-
-        static {
-            mNumConversionUtils = new NumConversionUtils();
-        }
+        private static final NumConversionUtils mNumConversionUtils = new NumConversionUtils();
     }
 
     /**

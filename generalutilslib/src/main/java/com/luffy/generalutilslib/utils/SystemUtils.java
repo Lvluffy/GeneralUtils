@@ -27,11 +27,7 @@ public class SystemUtils {
     }
 
     private static class SystemUtilsHelper {
-        private static final SystemUtils mSystemUtils;
-
-        static {
-            mSystemUtils = new SystemUtils();
-        }
+        private static final SystemUtils mSystemUtils = new SystemUtils();
     }
 
     /**

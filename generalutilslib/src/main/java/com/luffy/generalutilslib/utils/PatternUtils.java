@@ -18,11 +18,7 @@ public class PatternUtils {
     }
 
     private static class PatternUtilsHelper {
-        private static final PatternUtils mPatternUtils;
-
-        static {
-            mPatternUtils = new PatternUtils();
-        }
+        private static final PatternUtils mPatternUtils = new PatternUtils();
     }
 
     /**

@@ -32,11 +32,7 @@ public class DoubleClickExitUtils {
     }
 
     private static class DoubleClickExitUtilsHelper {
-        private static final DoubleClickExitUtils mDoubleClickExitUtils;
-
-        static {
-            mDoubleClickExitUtils = new DoubleClickExitUtils();
-        }
+        private static final DoubleClickExitUtils mDoubleClickExitUtils = new DoubleClickExitUtils();
     }
 
     /**

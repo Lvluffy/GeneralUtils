@@ -38,11 +38,7 @@ public class FileStorageUtils {
     }
 
     private static class FileStorageUtilsHelper {
-        private static final FileStorageUtils mFileStorageUtils;
-
-        static {
-            mFileStorageUtils = new FileStorageUtils();
-        }
+        private static final FileStorageUtils mFileStorageUtils = new FileStorageUtils();
     }
 
     /**

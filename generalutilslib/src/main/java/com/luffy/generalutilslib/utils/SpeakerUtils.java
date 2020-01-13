@@ -20,11 +20,7 @@ public class SpeakerUtils {
     }
 
     private static class SpeakerUtilsHelper {
-        private static final SpeakerUtils mSpeakerUtils;
-
-        static {
-            mSpeakerUtils = new SpeakerUtils();
-        }
+        private static final SpeakerUtils mSpeakerUtils = new SpeakerUtils();
     }
 
     /**

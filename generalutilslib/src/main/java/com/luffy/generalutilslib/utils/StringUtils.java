@@ -20,11 +20,7 @@ public class StringUtils {
     }
 
     private static class StringUtilsHelper {
-        private static final StringUtils mStringUtils;
-
-        static {
-            mStringUtils = new StringUtils();
-        }
+        private static final StringUtils mStringUtils = new StringUtils();
     }
 
     /**

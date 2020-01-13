@@ -21,11 +21,7 @@ public class SystemBrightUtils {
     }
 
     private static class SystemBrightUtilsHelper {
-        private static final SystemBrightUtils mSystemBrightUtils;
-
-        static {
-            mSystemBrightUtils = new SystemBrightUtils();
-        }
+        private static final SystemBrightUtils mSystemBrightUtils = new SystemBrightUtils();
     }
 
     /**

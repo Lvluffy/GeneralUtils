@@ -19,11 +19,7 @@ public class LogUtils {
     }
 
     private static class LogUtilsHelper {
-        private static final LogUtils mLogUtils;
-
-        static {
-            mLogUtils = new LogUtils();
-        }
+        private static final LogUtils mLogUtils = new LogUtils();
     }
 
     public void init(boolean isDebug) {

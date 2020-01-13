@@ -25,11 +25,7 @@ public class SharedPreferencesUtils {
     }
 
     private static class SharedPreferencesUtilsHelper {
-        private static final SharedPreferencesUtils mSharedPreferencesUtils;
-
-        static {
-            mSharedPreferencesUtils = new SharedPreferencesUtils();
-        }
+        private static final SharedPreferencesUtils mSharedPreferencesUtils = new SharedPreferencesUtils();
     }
 
     public void init(String fileName) {
