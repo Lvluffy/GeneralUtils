@@ -1,4 +1,4 @@
-package com.luffy.generalutilslib.utils.notch.impl;
+package com.luffy.notchlib.impl;
 
 import android.content.Context;
 

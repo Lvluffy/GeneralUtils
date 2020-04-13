@@ -1,4 +1,4 @@
-package com.luffy.generalutilslib.utils;
+package com.luffy.rxlib;
 
 import java.util.concurrent.TimeUnit;
 

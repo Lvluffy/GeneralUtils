@@ -1,1 +1,1 @@
-include ':app', ':generalutilslib'
+include ':app', ':generalutilslib', ':notchlib', ':rxlib'

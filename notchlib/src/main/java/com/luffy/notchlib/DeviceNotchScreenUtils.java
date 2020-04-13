@@ -1,14 +1,14 @@
-package com.luffy.generalutilslib.utils.notch;
+package com.luffy.notchlib;
 
 import android.content.Context;
 
 import com.luffy.generalutilslib.utils.DeviceBrandUtils;
-import com.luffy.generalutilslib.utils.notch.impl.AndroidPNotchScreen;
-import com.luffy.generalutilslib.utils.notch.impl.HuaweiNotchScreen;
-import com.luffy.generalutilslib.utils.notch.impl.INotchScreen;
-import com.luffy.generalutilslib.utils.notch.impl.MiNotchScreen;
-import com.luffy.generalutilslib.utils.notch.impl.OppoNotchScreen;
-import com.luffy.generalutilslib.utils.notch.impl.VivoNotchScreen;
+import com.luffy.notchlib.impl.AndroidPNotchScreen;
+import com.luffy.notchlib.impl.HuaweiNotchScreen;
+import com.luffy.notchlib.impl.INotchScreen;
+import com.luffy.notchlib.impl.MiNotchScreen;
+import com.luffy.notchlib.impl.OppoNotchScreen;
+import com.luffy.notchlib.impl.VivoNotchScreen;
 
 /**
  * Created by lvlufei on 2019/12/5
