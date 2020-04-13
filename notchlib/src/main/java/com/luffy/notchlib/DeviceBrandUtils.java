@@ -1,4 +1,4 @@
-package com.luffy.generallib;
+package com.luffy.notchlib;
 
 import android.os.Build;
 
