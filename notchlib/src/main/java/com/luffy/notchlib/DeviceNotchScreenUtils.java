@@ -2,7 +2,7 @@ package com.luffy.notchlib;
 
 import android.content.Context;
 
-import com.luffy.generalutilslib.utils.DeviceBrandUtils;
+import com.luffy.generallib.DeviceBrandUtils;
 import com.luffy.notchlib.impl.AndroidPNotchScreen;
 import com.luffy.notchlib.impl.HuaweiNotchScreen;
 import com.luffy.notchlib.impl.INotchScreen;

@@ -11,12 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.luffy.generalutilslib.utils.DoubleClickExitUtils;
-import com.luffy.generalutilslib.utils.FileConversionUtils;
-import com.luffy.generalutilslib.utils.FileStorageUtils;
-import com.luffy.generalutilslib.utils.IconColourUtils;
-import com.luffy.generalutilslib.utils.MoneyFormatUtils;
-import com.luffy.generalutilslib.utils.ScreenShotUtils;
+import com.luffy.generallib.DoubleClickExitUtils;
+import com.luffy.generallib.FileConversionUtils;
+import com.luffy.generallib.FileStorageUtils;
+import com.luffy.generallib.IconColourUtils;
+import com.luffy.generallib.MoneyFormatUtils;
+import com.luffy.generallib.ScreenShotUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
