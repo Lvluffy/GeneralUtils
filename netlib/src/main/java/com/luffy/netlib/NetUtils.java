@@ -1,4 +1,4 @@
-package com.luffy.generallib;
+package com.luffy.netlib;
 
 import android.app.Activity;
 import android.content.Context;
