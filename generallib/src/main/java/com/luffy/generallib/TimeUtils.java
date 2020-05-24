@@ -59,15 +59,15 @@ public class TimeUtils {
     /**
      * 获取格式化时间
      *
-     * @param time       时间戳
+     * @param date       日期
      * @param dateFormat 时间格式
      * @return 格式化时间
      */
-    public String getTime(long time, SimpleDateFormat dateFormat) {
-        if (time == 0) {
-            return "";
+    public String getTime(Date date, SimpleDateFormat dateFormat) {
+        if (ValidUtils.getInstance().isValid(date)) {
+            return dateFormat.format(date);
         }
-        return dateFormat.format(new Date(time));
+        return null;
     }
 
     /**
@@ -77,11 +77,11 @@ public class TimeUtils {
      * @param dateFormat 时间格式
      * @return 格式化时间
      */
-    public String getTimeUnix(long time, SimpleDateFormat dateFormat) {
-        if (time == 0) {
-            return "";
+    public String getTime(long time, SimpleDateFormat dateFormat) {
+        if (time > 0) {
+            return this.getTime(new Date(time), dateFormat);
         }
-        return dateFormat.format(new Date(time * 1000));
+        return null;
     }
 
     /**
@@ -92,26 +92,12 @@ public class TimeUtils {
      * @return 格式化时间
      */
     public String getTime(String time, SimpleDateFormat dateFormat) {
-        if (time != null && time.length() > 0 && !"".equals(time)) {
-            long tm = Long.parseLong(time);
-            return dateFormat.format(new Date(tm));
-        } else {
-            return "";
+        try {
+            return this.getTime(Long.parseLong(time), dateFormat);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-    }
-
-    /**
-     * 获取格式化时间
-     *
-     * @param date       日期
-     * @param dateFormat 时间格式
-     * @return 格式化时间
-     */
-    public String getTime(Date date, SimpleDateFormat dateFormat) {
-        if (!ValidUtils.getInstance().isValid(date)) {
-            return "";
-        }
-        return dateFormat.format(date);
     }
 
     /**
@@ -121,10 +107,10 @@ public class TimeUtils {
      * @return 默认格式化时间
      */
     public String getTime(long time) {
-        if (time == 0) {
-            return "";
+        if (time > 0) {
+            return getTime(time, DATE_FORMAT_YMD_HMS_1);
         }
-        return getTime(time, DATE_FORMAT_YMD_HMS_1);
+        return null;
     }
 
     /**
@@ -134,11 +120,12 @@ public class TimeUtils {
      * @return 时间戳
      */
     public long getTimeLong(Date date) {
-        long timeLong = 0;
-        if (date != null) {
-            timeLong = date.getTime();
+        try {
+            return date.getTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
-        return timeLong;
     }
 
     /**
@@ -149,18 +136,12 @@ public class TimeUtils {
      * @return 时间戳
      */
     public long getTimeLong(String time, SimpleDateFormat simpleDateFormat) {
-        long timeLong = 0;
-        if (time != null && !"".equals(time) && time.length() > 0) {
-            try {
-                Date date = simpleDateFormat.parse(time);
-                if (date != null) {
-                    timeLong = date.getTime();
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        try {
+            return this.getTimeLong(simpleDateFormat.parse(time));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return 0;
         }
-        return timeLong;
     }
 
     /**
@@ -270,12 +251,25 @@ public class TimeUtils {
         return endTime > now;
     }
 
+    /**
+     * 当前时间是星期几
+     *
+     * @return
+     */
+    public String dayForWeek() {
+        String[] weekDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+        Calendar.getInstance().setTime(new Date());
+        int w = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
+        return weekDays[w < 0 ? 0 : w];
+    }
+
     /*----------将时间转化成几分钟前、几天前等字样----------*/
-    private final static long minute = 60 * 1000;// 1分钟
-    private final static long hour = 60 * minute;// 1小时
-    private final static long day = 24 * hour;// 1天
-    private final static long month = 31 * day;// 1月
-    private final static long year = 12 * month;// 1年
+    private final static long MINUTE = 60 * 1000;// 1分钟
+    private final static long HOUR = 60 * MINUTE;// 1小时
+    private final static long DAY = 24 * HOUR;// 1天
+    private final static long WEEK = 7 * HOUR;// 1周
+    private final static long MONTH = 31 * DAY;// 1月
+    private final static long YEAR = 12 * MONTH;// 1年
 
     /**
      * 返回文字描述的日期
@@ -286,15 +280,15 @@ public class TimeUtils {
     public String getTimeFormatText(long date) {
         long diff = new Date().getTime() - date;
         long r = 0;
-        if (diff > day) {
+        if (diff > DAY) {
             return getTime(date, TimeUtils.DATE_FORMAT_YMD_1);
         }
-        if (diff > hour) {
-            r = (diff / hour);
+        if (diff > HOUR) {
+            r = (diff / HOUR);
             return r + "小时前";
         }
-        if (diff > minute) {
-            r = (diff / minute);
+        if (diff > MINUTE) {
+            r = (diff / MINUTE);
             return r + "分钟前";
         }
         return "刚刚";

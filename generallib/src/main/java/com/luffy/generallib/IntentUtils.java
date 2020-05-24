@@ -27,6 +27,26 @@ public class IntentUtils {
     }
 
     /**
+     * 界面跳转
+     *
+     * @param context     上下文对象
+     * @param cls         目标对象
+     * @param intentExtra 自定义传参
+     */
+    public void startActivity(Context context, Class<?> cls, IntentExtra intentExtra) {
+        Intent intent = new Intent(context, cls);
+        if (intentExtra != null) {
+            context.startActivity(intentExtra.putExtra(intent));
+        } else {
+            context.startActivity(intent);
+        }
+    }
+
+    public interface IntentExtra {
+        Intent putExtra(Intent intent);
+    }
+
+    /**
      * 打开浏览器
      *
      * @param mContext 上下文对象

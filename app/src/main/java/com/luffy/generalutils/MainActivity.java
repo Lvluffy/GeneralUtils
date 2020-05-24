@@ -1,6 +1,5 @@
 package com.luffy.generalutils;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +14,7 @@ import com.luffy.generallib.DoubleClickExitUtils;
 import com.luffy.generallib.FileConversionUtils;
 import com.luffy.generallib.FileStorageUtils;
 import com.luffy.generallib.IconColourUtils;
+import com.luffy.generallib.IntentUtils;
 import com.luffy.generallib.MoneyFormatUtils;
 import com.luffy.generallib.ScreenShotUtils;
 
@@ -90,9 +90,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, MoneyFormatUtils.getInstance().doubleToStringRoundingNo(0.166), Toast.LENGTH_SHORT).show();
 
         } else if (i == R.id.item_6) {
-            Intent intent = new Intent(this, AppActivity.class);
-            startActivity(intent);
-
+            IntentUtils.getInstance().startActivity(this, AppActivity.class, null);
         }
     }
 }
