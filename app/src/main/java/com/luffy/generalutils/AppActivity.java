@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.luffy.generallib.AppUtils;
+import com.luffy.utils.generallib.AppUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
