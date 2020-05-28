@@ -1,6 +1,7 @@
 package com.luffy.generalutils;
 
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -17,6 +18,7 @@ import com.luffy.utils.generallib.DoubleClickExitUtils;
 import com.luffy.utils.generallib.IntentUtils;
 import com.luffy.utils.generallib.MoneyFormatUtils;
 import com.luffy.utils.generallib.ScreenShotUtils;
+import com.luffy.utils.locationlib.LocationService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.item_6)
     LinearLayout item6;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
             R.id.item_3,
             R.id.item_4,
             R.id.item_5,
-            R.id.item_6})
+            R.id.item_6,
+            R.id.item_7})
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.item_1) {
@@ -91,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (i == R.id.item_6) {
             IntentUtils.getInstance().startActivity(this, AppActivity.class, null);
+
+        } else if (i == R.id.item_7) {
+            Location location = LocationService.getInstance(this).getLastLocation();
+            String[] address = LocationService.getInstance(this).getAddress(location.getLongitude(), location.getLatitude());
+            Toast.makeText(this, address[0] + address[1] + address[2] + address[3], Toast.LENGTH_SHORT).show();
+
         }
     }
 }

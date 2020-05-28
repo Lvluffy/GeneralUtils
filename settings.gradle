@@ -1,1 +1,1 @@
-include ':app', ':notchlib', ':rxlib', ':generallib', ':netlib', ':bitmaplib', ':securitylib', ':filelib'
+include ':app', ':notchlib', ':rxlib', ':generallib', ':netlib', ':bitmaplib', ':securitylib', ':filelib', ':locationlib'
