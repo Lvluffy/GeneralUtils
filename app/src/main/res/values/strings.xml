@@ -11,4 +11,7 @@
     <string name="main_amount_conversion">金额转换</string>
     <string name="main_get_application_info">通过包名获取应用信息</string>
     <string name="main_location_info">获取定位信息</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
