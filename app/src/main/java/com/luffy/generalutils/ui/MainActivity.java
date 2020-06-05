@@ -1,9 +1,8 @@
-package com.luffy.generalutils;
+package com.luffy.generalutils.ui;
 
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.luffy.generalutils.R;
+import com.luffy.generalutils.base.BaseActivity;
 import com.luffy.utils.bitmaplib.IconColourUtils;
 import com.luffy.utils.filelib.FileConversionUtils;
 import com.luffy.utils.filelib.FileStorageUtils;
@@ -30,7 +31,7 @@ import butterknife.OnClick;
  * @name 主界面
  * @desc
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.scrollView)
     ScrollView scrollView;
