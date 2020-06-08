@@ -41,7 +41,10 @@ public class VersionUpgradeUtils {
         if (SystemUtils.getInstance().isInstall(mContext, "com.tencent.android.qqdownloader")) {
             SystemUtils.getInstance().openAppDetail(mContext, AppUtils.getInstance().getPackName(mContext), "com.tencent.android.qqdownloader");
         } else {
-            IntentUtils.getInstance().openBrowser(mContext, url);
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            mContext.startActivity(intent);
         }
     }
 

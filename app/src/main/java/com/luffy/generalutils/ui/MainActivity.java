@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(this, MoneyFormatUtils.getInstance().doubleToStringRoundingNo(0.166), Toast.LENGTH_SHORT).show();
 
         } else if (i == R.id.item_6) {
-            IntentUtils.getInstance().startActivity(this, AppActivity.class, null);
+            IntentUtils.getInstance().startActivity(this, AppActivity.class);
 
         } else if (i == R.id.item_7) {
             Location location = LocationService.getInstance(this).getLastLocation();
