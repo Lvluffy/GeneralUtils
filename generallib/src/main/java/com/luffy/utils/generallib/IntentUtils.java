@@ -3,8 +3,6 @@ package com.luffy.utils.generallib;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.Settings;
 
 /**
  * Created by lvlufei on 2018/1/1
@@ -27,12 +25,6 @@ public class IntentUtils {
         private static final IntentUtils mIntentUtils = new IntentUtils();
     }
 
-    /**
-     * 界面跳转
-     *
-     * @param context 上下文对象
-     * @param action  action
-     */
     public void startActivity(Context context, String action) {
         startActivity(context, action, null);
     }
@@ -54,12 +46,6 @@ public class IntentUtils {
         }
     }
 
-    /**
-     * 界面跳转
-     *
-     * @param context 上下文对象
-     * @param target  目标对象
-     */
     public void startActivity(Context context, Class<?> target) {
         startActivity(context, target, null);
     }
@@ -81,13 +67,6 @@ public class IntentUtils {
         }
     }
 
-    /**
-     * 界面跳转
-     *
-     * @param context     上下文对象
-     * @param target      目标对象
-     * @param requestCode 请求码
-     */
     public void startActivityForResult(Activity context, Class<?> target, int requestCode) {
         startActivityForResult(context, target, requestCode, null);
     }
@@ -110,13 +89,6 @@ public class IntentUtils {
         }
     }
 
-    /**
-     * 界面跳转
-     *
-     * @param context     上下文对象
-     * @param target      目标对象
-     * @param requestCode 请求码
-     */
     public void startActivityForResult(android.support.v4.app.Fragment context, Class<?> target, int requestCode) {
         startActivityForResult(context, target, requestCode, null);
     }
@@ -139,13 +111,6 @@ public class IntentUtils {
         }
     }
 
-    /**
-     * 界面跳转
-     *
-     * @param context     上下文对象
-     * @param target      目标对象
-     * @param requestCode 请求码
-     */
     public void startActivityForResult(android.app.Fragment context, Class<?> target, int requestCode) {
         startActivityForResult(context, target, requestCode, null);
     }
@@ -170,42 +135,5 @@ public class IntentUtils {
 
     public interface IntentExtra {
         Intent putExtra(Intent intent);
-    }
-
-    /**
-     * 打开浏览器
-     *
-     * @param mContext 上下文对象
-     * @param url      网址
-     */
-    public void openBrowser(Context mContext, String url) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        mContext.startActivity(intent);
-    }
-
-    /**
-     * 拨打电话（跳转到拨号界面，用户手动点击拨打）
-     *
-     * @param context  上下文
-     * @param phoneNum 电话号码
-     */
-    public void openDiallPhone(Context context, String phoneNum) {
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        Uri data = Uri.parse("tel:" + phoneNum);
-        intent.setData(data);
-        context.startActivity(intent);
-    }
-
-    /**
-     * 打开网络设置界面
-     *
-     * @param context 上下文
-     */
-    public void openSetting(Context context) {
-        Intent mIntent = new Intent();
-        mIntent.setAction(Settings.ACTION_SETTINGS);
-        context.startActivity(mIntent);
     }
 }
