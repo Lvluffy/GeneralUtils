@@ -37,12 +37,7 @@ public class ClickUtils {
      * @return true:快速点击;false:非快速点击
      */
     public synchronized boolean isFastClick() {
-        long time = System.currentTimeMillis();
-        if (time - lastClickTime < 1000) {
-            return true;
-        }
-        lastClickTime = time;
-        return false;
+        return isFastClick(1000);
     }
 
     /**

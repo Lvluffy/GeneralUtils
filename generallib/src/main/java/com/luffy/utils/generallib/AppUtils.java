@@ -2,7 +2,6 @@ package com.luffy.utils.generallib;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -37,7 +36,7 @@ public class AppUtils {
      * @param context 上下文
      * @return 应用包名
      */
-    public String getPackName(Context context) {
+    public String getAppPackName(Context context) {
         //当前应用pid
         int pid = android.os.Process.myPid();
         //任务管理类
@@ -53,22 +52,8 @@ public class AppUtils {
         return "";
     }
 
-    /**
-     * 获取应用程序-名称
-     *
-     * @param context 上下文
-     * @return 应用名称
-     */
     public String getAppName(Context context) {
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            int labelRes = packageInfo.applicationInfo.labelRes;
-            return context.getResources().getString(labelRes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return getAppName(context, context.getPackageName());
     }
 
     /**
@@ -80,33 +65,14 @@ public class AppUtils {
      */
     public String getAppName(Context context, String packageName) {
         try {
-            PackageManager packageManager = context.getPackageManager();
-            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-            return packageManager.getApplicationLabel(applicationInfo).toString();
-        } catch (Exception e) {
-            e.printStackTrace();
+            return context.getPackageManager().getApplicationLabel(context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA)).toString();
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
         }
-        return null;
     }
 
-    /**
-     * 获取应用程序-图标
-     *
-     * @param context 上下文
-     * @return 应用图标
-     */
-    public Drawable getApkIcon(Context context) {
-        try {
-            PackageManager mPackageManager = context.getPackageManager();
-            PackageInfo mPackageInfo = mPackageManager.getPackageInfo(context.getPackageName(), 0);
-            ApplicationInfo mApplicationInfo = mPackageInfo.applicationInfo;
-            mApplicationInfo.sourceDir = context.getApplicationContext().getFilesDir().getAbsolutePath();
-            mApplicationInfo.publicSourceDir = context.getApplicationContext().getFilesDir().getAbsolutePath();
-            return mApplicationInfo.loadIcon(mPackageManager);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public Drawable getAppIcon(Context context) {
+        return getAppIcon(context, context.getPackageName());
     }
 
     /**
@@ -118,64 +84,33 @@ public class AppUtils {
      */
     public Drawable getAppIcon(Context context, String packageName) {
         try {
-            PackageManager packageManager = context.getPackageManager();
-            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-            return packageManager.getApplicationIcon(applicationInfo);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return context.getPackageManager().getApplicationIcon(context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA));
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
         }
-        return null;
     }
 
-    /**
-     * 获取应用程序-版本名称
-     *
-     * @param context 上下文
-     * @return 应用版本
-     */
-    public String getVersionName(Context context) {
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionName;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getAppVersionName(Context context) {
+        return getAppVersionName(context, context.getPackageName());
     }
 
     /**
      * 获取应用程序-版本名称-通过包名
      *
-     * @param context 上下文
+     * @param context     上下文
+     * @param packageName 应用包名
      * @return 应用版本
      */
-    public String getVersionName(Context context, String packageName) {
+    public String getAppVersionName(Context context, String packageName) {
         try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo mPackageInfo = packageManager.getPackageInfo(packageName, 0);
-            return mPackageInfo.versionName;
-        } catch (Exception e) {
-            e.printStackTrace();
+            return context.getPackageManager().getPackageInfo(packageName, 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
         }
-        return null;
     }
 
-    /**
-     * 获取应用程序-版本号
-     *
-     * @param context 上下文
-     * @return 应用版本
-     */
-    public int getVersionCode(Context context) {
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
-            return packageInfo.versionCode;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
+    public int getAppVersionCode(Context context) {
+        return getAppVersionCode(context, context.getPackageName());
     }
 
     /**
@@ -185,40 +120,16 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用版本
      */
-    public int getVersionCode(Context context, String packageName) {
+    public int getAppVersionCode(Context context, String packageName) {
         try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(packageName, 0);
-            return packageInfo.versionCode;
-        } catch (Exception e) {
-            e.printStackTrace();
+            return context.getPackageManager().getPackageInfo(packageName, 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            return 0;
         }
-        return 0;
     }
 
-    /**
-     * 获取应用程序-APK大小
-     *
-     * @param context 上下文
-     * @return 应用包大小
-     */
-    public String getApkSize(Context context) {
-        try {
-            PackageManager mPackageManager = context.getPackageManager();
-            PackageInfo mPackageInfo = mPackageManager.getPackageInfo(context.getPackageName(), 0);
-            ApplicationInfo mApplicationInfo = mPackageInfo.applicationInfo;
-            // 获取应用的路径
-            String dir = mApplicationInfo.publicSourceDir;
-            // 获取应用的大小
-            int size = (int) new File(dir).length();
-            // 处理应用的大小
-            BigDecimal bd = new BigDecimal((double) size / (1024 * 1024));
-            BigDecimal apkSize = bd.setScale(2, BigDecimal.ROUND_DOWN);
-            return apkSize.toString();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public String getAppSize(Context context) {
+        return getAppSize(context, context.getPackageName());
     }
 
     /**
@@ -228,22 +139,80 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用包大小
      */
-    public String getApkSize(Context context, String packageName) {
+    public String getAppSize(Context context, String packageName) {
         try {
-            PackageManager packageManager = context.getPackageManager();
-            ApplicationInfo mApplicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             // 获取应用的路径
-            String dir = mApplicationInfo.publicSourceDir;
+            String dir = context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).publicSourceDir;
             // 获取应用的大小
             int size = (int) new File(dir).length();
             // 处理应用的大小
-            BigDecimal bd = new BigDecimal((double) size / (1024 * 1024));
-            BigDecimal apkSize = bd.setScale(2, BigDecimal.ROUND_DOWN);
-            return apkSize.toString();
-        } catch (Exception e) {
-            e.printStackTrace();
+            return new BigDecimal(size / (1024 * 1024)).setScale(2, BigDecimal.ROUND_DOWN).toString() + "M";
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
         }
-        return null;
+    }
+
+    public Signature getAppSign(Context context) {
+        return getAppSign(context, context.getPackageName());
+    }
+
+    /**
+     * 获取应用程序-签名信息-通过包名
+     *
+     * @param context     上下文
+     * @param packageName 应用包名
+     * @return 应用签名信息
+     */
+    public Signature getAppSign(Context context, String packageName) {
+        try {
+            return context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0];
+        } catch (PackageManager.NameNotFoundException e) {
+            return null;
+        }
+    }
+
+    public String getAppSignMD5(Context context) {
+        return getAppSignMD5(context, context.getPackageName());
+    }
+
+    /**
+     * 获取应用程序-签名信息MD5-通过包名
+     *
+     * @param context     上下文
+     * @param packageName 应用包名
+     * @return 应用MD5签名信息
+     */
+    public String getAppSignMD5(Context context, String packageName) {
+        try {
+            Signature signatures = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0];
+            MessageDigest mDigest = MessageDigest.getInstance("MD5");
+            mDigest.update(signatures.toByteArray());
+            byte[] digest = mDigest.digest();
+            return toHexString(digest);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String getAppChannel(Context mContext, String key) {
+        return getAppChannel(mContext, mContext.getPackageName(), key);
+    }
+
+    /**
+     * 获取应用程序-渠道-通过包名
+     *
+     * @param mContext    上下文
+     * @param packageName 应用包名
+     * @param key         application中指定的meta-data
+     * @return 渠道信息
+     */
+    public String getAppChannel(Context mContext, String packageName, String key) {
+        try {
+            return mContext.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData.getString(key);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -254,58 +223,13 @@ public class AppUtils {
      * @return 是否安装
      */
     public boolean isInstallApp(Context context, String packageName) {
-        try {
-            PackageManager mPackageManager = context.getPackageManager();
-            List<PackageInfo> mPackageInfos = mPackageManager.getInstalledPackages(PackageManager.PERMISSION_GRANTED);
-            for (PackageInfo info : mPackageInfos) {
-                if (info.packageName.equalsIgnoreCase(packageName)) {
-                    return true;
-                }
+        List<PackageInfo> packageInfos = context.getPackageManager().getInstalledPackages(0);
+        for (PackageInfo info : packageInfos) {
+            if (info.packageName.equalsIgnoreCase(packageName)) {
+                return true;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return false;
-    }
-
-    /**
-     * 获取指定应用的签名信息
-     *
-     * @param context     上下文
-     * @param packageName 应用包名
-     * @return 应用签名信息
-     */
-    public Signature getSign(Context context, String packageName) {
-        try {
-            PackageManager mPackageManager = context.getPackageManager();
-            PackageInfo mPackageInfo = mPackageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            return mPackageInfo.signatures[0];
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * 获取指定应用的签名信息MD5
-     *
-     * @param ctx         上下文
-     * @param packageName 应用包名
-     * @return 应用MD5签名信息
-     */
-    public String getMD5(Context ctx, String packageName) {
-        try {
-            PackageManager mPackageManager = ctx.getPackageManager();
-            PackageInfo mPackageInfo = mPackageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
-            Signature signatures = mPackageInfo.signatures[0];
-            MessageDigest mDigest = MessageDigest.getInstance("MD5");
-            mDigest.update(signatures.toByteArray());
-            byte[] digest = mDigest.digest();
-            return toHexString(digest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     private String toHexString(byte[] block) {

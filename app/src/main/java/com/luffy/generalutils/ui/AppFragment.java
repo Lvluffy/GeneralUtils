@@ -25,6 +25,18 @@ public class AppFragment extends BaseFragment {
     TextView txtName;
     @BindView(R.id.img_icon)
     ImageView imgIcon;
+    @BindView(R.id.txt_version_name)
+    TextView txtVersionName;
+    @BindView(R.id.txt_version_code)
+    TextView txtVersionCode;
+    @BindView(R.id.txt_size)
+    TextView txtSize;
+    @BindView(R.id.txt_sign)
+    TextView txtSign;
+    @BindView(R.id.txt_sign_md5)
+    TextView txtSignMd5;
+    @BindView(R.id.txt_channel)
+    TextView txtChannel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,13 +52,27 @@ public class AppFragment extends BaseFragment {
                 /*获取信息*/
                 String appName = AppUtils.getInstance().getAppName(getActivity(), edit.getText().toString());
                 Drawable appIcon = AppUtils.getInstance().getAppIcon(getActivity(), edit.getText().toString());
+                String appVersionName = AppUtils.getInstance().getAppVersionName(getActivity(), edit.getText().toString());
+                int appVersionCode = AppUtils.getInstance().getAppVersionCode(getActivity(), edit.getText().toString());
+                String appSize = AppUtils.getInstance().getAppSize(getActivity(), edit.getText().toString());
+                String appSign = AppUtils.getInstance().getAppSign(getActivity(), edit.getText().toString()).toCharsString();
+                String appSignMD5 = AppUtils.getInstance().getAppSignMD5(getActivity(), edit.getText().toString());
+                String appChannel = AppUtils.getInstance().getAppChannel(getActivity(), edit.getText().toString(), "BaiduMobAd_CHANNEL");
+
                 /*绑定信息*/
                 txtName.setText(appName);
                 imgIcon.setImageDrawable(appIcon);
+                txtVersionName.setText(appVersionName);
+                txtVersionCode.setText(appVersionCode + "");
+                txtSize.setText(appSize);
+                txtSign.setText(appSign);
+                txtSignMd5.setText(appSignMD5);
+                txtChannel.setText(appChannel);
                 break;
             case R.id.btn_back:
                 getActivity().finish();
                 break;
         }
     }
+
 }

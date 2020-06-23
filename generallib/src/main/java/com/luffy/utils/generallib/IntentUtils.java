@@ -3,6 +3,8 @@ package com.luffy.utils.generallib;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.text.TextUtils;
 
 /**
  * Created by lvlufei on 2018/1/1
@@ -131,6 +133,21 @@ public class IntentUtils {
         } else {
             context.startActivityForResult(intent, requestCode);
         }
+    }
+
+    /**
+     * 打开指定应用商店中指定应用详情
+     *
+     * @param context           上下文对象
+     * @param appPackageName    应用包名
+     * @param marketPackageName 应用商店包名
+     */
+    public void openAppDetail(Context context, String appPackageName, String marketPackageName) {
+        if (TextUtils.isEmpty(appPackageName) || TextUtils.isEmpty(marketPackageName)) return;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
+        intent.setPackage(marketPackageName);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     public interface IntentExtra {

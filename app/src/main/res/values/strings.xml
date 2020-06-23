@@ -4,6 +4,12 @@
     <string name="app_get">获取</string>
     <string name="app_application_name">应用名称：</string>
     <string name="app_application_icon">应用图标：</string>
+    <string name="app_application_version_name">应用版本名称：</string>
+    <string name="app_application_version_code">应用版本号：</string>
+    <string name="app_application_size">应用大小：</string>
+    <string name="app_application_sign">应用签名：</string>
+    <string name="app_application_sign_md5">应用签名MD5：</string>
+    <string name="app_application_channel">应用渠道：</string>
     <string name="main_screenshots">屏幕截屏</string>
     <string name="main_area_screenshots">区域截屏</string>
     <string name="main_scroll_screenshots">ScrollView截屏</string>
