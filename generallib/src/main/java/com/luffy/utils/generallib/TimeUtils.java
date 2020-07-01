@@ -11,39 +11,53 @@ import java.util.Date;
  * @desc 时间-辅助工具
  */
 public class TimeUtils {
-    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_3 = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_4 = new SimpleDateFormat("yyyyMMddHHmmss");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_3 = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_4 = new SimpleDateFormat("yyyyMMddHHmm");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_1 = new SimpleDateFormat("yyyy-MM-dd");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_2 = new SimpleDateFormat("yyyy/MM/dd");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_3 = new SimpleDateFormat("yyyy年MM月dd日");
-    public static final SimpleDateFormat DATE_FORMAT_YMD_4 = new SimpleDateFormat("yyyyMMdd");
-    public static final SimpleDateFormat DATE_FORMAT_YM_1 = new SimpleDateFormat("yyyy-MM");
-    public static final SimpleDateFormat DATE_FORMAT_YM_2 = new SimpleDateFormat("yyyy/MM");
-    public static final SimpleDateFormat DATE_FORMAT_YM_3 = new SimpleDateFormat("yyyy年MM月");
-    public static final SimpleDateFormat DATE_FORMAT_YM_4 = new SimpleDateFormat("yyyyMM");
-    public static final SimpleDateFormat DATE_FORMAT_MD_1 = new SimpleDateFormat("MM-dd");
-    public static final SimpleDateFormat DATE_FORMAT_MD_2 = new SimpleDateFormat("MM/dd");
-    public static final SimpleDateFormat DATE_FORMAT_MD_3 = new SimpleDateFormat("MM月dd日");
-    public static final SimpleDateFormat DATE_FORMAT_MD_4 = new SimpleDateFormat("yyyydd");
     public static final SimpleDateFormat DATE_FORMAT_Y = new SimpleDateFormat("yyyy");
     public static final SimpleDateFormat DATE_FORMAT_M = new SimpleDateFormat("MM");
     public static final SimpleDateFormat DATE_FORMAT_D = new SimpleDateFormat("dd");
     public static final SimpleDateFormat DATE_FORMAT_HMS = new SimpleDateFormat("HH:mm:ss");
     public static final SimpleDateFormat DATE_FORMAT_HM = new SimpleDateFormat("HH:mm");
+
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_2 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_3 = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_4 = new SimpleDateFormat("yyyyMMddHHmmss");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HMS_5 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_2 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_3 = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_4 = new SimpleDateFormat("yyyyMMddHHmm");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_HM_5 = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+
+    public static final SimpleDateFormat DATE_FORMAT_YMD_1 = new SimpleDateFormat("yyyy-MM-dd");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_2 = new SimpleDateFormat("yyyy/MM/dd");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_3 = new SimpleDateFormat("yyyy年MM月dd日");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_4 = new SimpleDateFormat("yyyyMMdd");
+    public static final SimpleDateFormat DATE_FORMAT_YMD_5 = new SimpleDateFormat("yyyy.MM.dd");
+
+    public static final SimpleDateFormat DATE_FORMAT_YM_1 = new SimpleDateFormat("yyyy-MM");
+    public static final SimpleDateFormat DATE_FORMAT_YM_2 = new SimpleDateFormat("yyyy/MM");
+    public static final SimpleDateFormat DATE_FORMAT_YM_3 = new SimpleDateFormat("yyyy年MM月");
+    public static final SimpleDateFormat DATE_FORMAT_YM_4 = new SimpleDateFormat("yyyyMM");
+    public static final SimpleDateFormat DATE_FORMAT_YM_5 = new SimpleDateFormat("yyyy.MM");
+
+    public static final SimpleDateFormat DATE_FORMAT_MD_1 = new SimpleDateFormat("MM-dd");
+    public static final SimpleDateFormat DATE_FORMAT_MD_2 = new SimpleDateFormat("MM/dd");
+    public static final SimpleDateFormat DATE_FORMAT_MD_3 = new SimpleDateFormat("MM月dd日");
+    public static final SimpleDateFormat DATE_FORMAT_MD_4 = new SimpleDateFormat("yyyydd");
+    public static final SimpleDateFormat DATE_FORMAT_MD_5 = new SimpleDateFormat("yyyy.dd");
+
     public static final SimpleDateFormat DATE_FORMAT_MD_HMS_1 = new SimpleDateFormat("MM-dd HH:mm:ss");
     public static final SimpleDateFormat DATE_FORMAT_MD_HMS_2 = new SimpleDateFormat("MM/dd HH:mm:ss");
     public static final SimpleDateFormat DATE_FORMAT_MD_HMS_3 = new SimpleDateFormat("MM月dd HH:mm:ss");
     public static final SimpleDateFormat DATE_FORMAT_MD_HMS_4 = new SimpleDateFormat("MM月dd日 HH:mm:ss");
+    public static final SimpleDateFormat DATE_FORMAT_MD_HMS_5 = new SimpleDateFormat("MM.dd HH:mm:ss");
+
     public static final SimpleDateFormat DATE_FORMAT_MD_HM_1 = new SimpleDateFormat("MM-dd HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_MD_HM_2 = new SimpleDateFormat("MM/dd HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_MD_HM_3 = new SimpleDateFormat("MM月dd HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_MD_HM_4 = new SimpleDateFormat("MM月dd日 HH:mm");
+    public static final SimpleDateFormat DATE_FORMAT_MD_HM_5 = new SimpleDateFormat("MM.dd HH:mm");
 
     private TimeUtils() {
     }
