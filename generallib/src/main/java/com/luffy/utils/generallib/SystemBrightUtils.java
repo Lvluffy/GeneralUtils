@@ -9,7 +9,7 @@ import android.view.WindowManager;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 系统亮度-辅助工具
+ * @name 系统亮度-辅助工具
  */
 public class SystemBrightUtils {
 
@@ -17,11 +17,11 @@ public class SystemBrightUtils {
     }
 
     public static SystemBrightUtils getInstance() {
-        return SystemBrightUtilsHelper.mSystemBrightUtils;
+        return SystemBrightUtilsHolder.instance;
     }
 
-    private static class SystemBrightUtilsHelper {
-        private static final SystemBrightUtils mSystemBrightUtils = new SystemBrightUtils();
+    private static class SystemBrightUtilsHolder {
+        private static final SystemBrightUtils instance = new SystemBrightUtils();
     }
 
     /**

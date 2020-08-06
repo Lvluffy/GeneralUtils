@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 文件大小-辅助工具
+ * @name 文件大小-辅助工具
  */
 public class FileSizeUtils {
 
@@ -14,11 +14,11 @@ public class FileSizeUtils {
     }
 
     public static FileSizeUtils getInstance() {
-        return FileSizeUtilsHelper.mFileSizeUtils;
+        return FileSizeUtilsHolder.instance;
     }
 
-    private static class FileSizeUtilsHelper {
-        private static final FileSizeUtils mFileSizeUtils = new FileSizeUtils();
+    private static class FileSizeUtilsHolder {
+        private static final FileSizeUtils instance = new FileSizeUtils();
     }
 
     /**

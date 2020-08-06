@@ -17,7 +17,7 @@ import java.util.UUID;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 设备-辅助工具
+ * @name 设备-辅助工具
  */
 public class DeviceUtils {
 
@@ -25,11 +25,11 @@ public class DeviceUtils {
     }
 
     public static DeviceUtils getInstance() {
-        return DeviceUtilsHelper.mDeviceUtils;
+        return DeviceUtilsHolder.instance;
     }
 
-    private static class DeviceUtilsHelper {
-        private static final DeviceUtils mDeviceUtils = new DeviceUtils();
+    private static class DeviceUtilsHolder {
+        private static final DeviceUtils instance = new DeviceUtils();
     }
 
     /**

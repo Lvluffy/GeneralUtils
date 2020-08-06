@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc MD5加密-辅助工具
+ * @name MD5加密-辅助工具
  */
 public class MD5Utils {
 
@@ -20,11 +20,11 @@ public class MD5Utils {
     }
 
     public static MD5Utils getInstance() {
-        return MD5UtilsHelper.mMD5Utils;
+        return MD5UtilsHolder.instance;
     }
 
-    private static class MD5UtilsHelper {
-        private static final MD5Utils mMD5Utils = new MD5Utils();
+    private static class MD5UtilsHolder {
+        private static final MD5Utils instance = new MD5Utils();
     }
 
     private static final char hexDigits[] =

@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 时间-辅助工具
+ * @name 时间-辅助工具
  */
 public class TimeUtils {
     public static final SimpleDateFormat DATE_FORMAT_Y = new SimpleDateFormat("yyyy");
@@ -63,11 +63,11 @@ public class TimeUtils {
     }
 
     public static TimeUtils getInstance() {
-        return TimeUtilsHelper.mTimeUtils;
+        return TimeUtilsHolder.instance;
     }
 
-    private static class TimeUtilsHelper {
-        private static final TimeUtils mTimeUtils = new TimeUtils();
+    private static class TimeUtilsHolder {
+        private static final TimeUtils instance = new TimeUtils();
     }
 
     /**

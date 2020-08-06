@@ -15,18 +15,18 @@ import android.widget.ScrollView;
 /**
  * Created by lvlufei on 2019/2/18
  *
- * @desc 截屏-辅助工具
+ * @name 截屏-辅助工具
  */
 public class ScreenShotUtils {
     private ScreenShotUtils() {
     }
 
     public static ScreenShotUtils getInstance() {
-        return ScreenShotUtilsHelper.mScreenShotUtils;
+        return ScreenShotUtilsHolder.instance;
     }
 
-    private static class ScreenShotUtilsHelper {
-        private static final ScreenShotUtils mScreenShotUtils = new ScreenShotUtils();
+    private static class ScreenShotUtilsHolder {
+        private static final ScreenShotUtils instance = new ScreenShotUtils();
     }
 
     /**
@@ -52,7 +52,7 @@ public class ScreenShotUtils {
      */
     public Bitmap getWidgetBitmap(View view) {
         Bitmap bitmap;
-        view.setBackgroundColor(Color.parseColor("#ffffff"));
+        view.setBackgroundColor(Color.WHITE);
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         bitmap = Bitmap.createBitmap(view.getDrawingCache());
@@ -116,7 +116,7 @@ public class ScreenShotUtils {
         int h = 0;
         for (int i = 0; i < scrollView.getChildCount(); i++) {
             h += scrollView.getChildAt(i).getHeight();
-            scrollView.getChildAt(i).setBackgroundColor(Color.parseColor("#ffffff"));
+            scrollView.getChildAt(i).setBackgroundColor(Color.WHITE);
         }
         // 创建对应大小的bitmap
         bitmap = Bitmap.createBitmap(scrollView.getWidth(), h, Bitmap.Config.ARGB_8888);
@@ -137,7 +137,7 @@ public class ScreenShotUtils {
         // 获取ListView实际高度
         for (int i = 0; i < listView.getChildCount(); i++) {
             h += listView.getChildAt(i).getHeight();
-            listView.getChildAt(i).setBackgroundColor(Color.parseColor("#ffffff"));
+            listView.getChildAt(i).setBackgroundColor(Color.WHITE);
         }
         // 创建对应大小的bitmap
         bitmap = Bitmap.createBitmap(listView.getWidth(), h, Bitmap.Config.ARGB_8888);
@@ -154,7 +154,7 @@ public class ScreenShotUtils {
      */
     public Bitmap getWebViewBitmap(WebView webView) {
         Bitmap bitmap;
-        webView.setBackgroundColor(Color.parseColor("#ffffff"));
+        webView.setBackgroundColor(Color.WHITE);
         Picture mPicture = webView.capturePicture();
         bitmap = Bitmap.createBitmap(mPicture.getWidth(), mPicture.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);

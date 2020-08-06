@@ -5,23 +5,22 @@ import java.math.BigDecimal;
 /**
  * Created by lvlufei on 2018/6/27
  *
- * @desc 数字转换
+ * @name 数字转换
  */
-
 public class NumConversionUtils {
 
     private NumConversionUtils() {
     }
 
     public static NumConversionUtils getInstance() {
-        return NumConversionUtils.NumConversionUtilsHelper.mNumConversionUtils;
+        return NumConversionUtilsHolder.instance;
     }
 
     /**
      * 静态内部类实现单例
      */
-    private static class NumConversionUtilsHelper {
-        private static final NumConversionUtils mNumConversionUtils = new NumConversionUtils();
+    private static class NumConversionUtilsHolder {
+        private static final NumConversionUtils instance = new NumConversionUtils();
     }
 
     /**

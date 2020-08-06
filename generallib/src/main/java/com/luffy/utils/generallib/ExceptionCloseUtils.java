@@ -7,7 +7,6 @@ import java.io.IOException;
  * Created by lvlufei on 2020-04-10
  *
  * @name 异常关闭-辅助工具
- * @desc
  */
 public class ExceptionCloseUtils {
 
@@ -16,11 +15,11 @@ public class ExceptionCloseUtils {
     }
 
     public static ExceptionCloseUtils getInstance() {
-        return ExceptionCloseUtilsHelper.mExceptionCloseUtils;
+        return ExceptionCloseUtilsHolder.instance;
     }
 
-    private static class ExceptionCloseUtilsHelper {
-        private static final ExceptionCloseUtils mExceptionCloseUtils = new ExceptionCloseUtils();
+    private static class ExceptionCloseUtilsHolder {
+        private static final ExceptionCloseUtils instance = new ExceptionCloseUtils();
     }
 
     public void close(Closeable closeable) {

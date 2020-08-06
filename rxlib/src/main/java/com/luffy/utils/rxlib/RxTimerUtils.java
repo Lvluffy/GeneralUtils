@@ -11,7 +11,7 @@ import io.reactivex.disposables.Disposable;
 /**
  * Created by lvlufei on 2019/2/26
  *
- * @desc Rxjava2.x实现轮询定时器
+ * @name RxJava实现轮询定时器
  */
 public class RxTimerUtils {
 
@@ -21,11 +21,11 @@ public class RxTimerUtils {
     }
 
     public static RxTimerUtils getInstance() {
-        return RxTimerUtilsHelper.mRxTimerUtils;
+        return RxTimerUtilsHolder.instance;
     }
 
-    private static class RxTimerUtilsHelper {
-        private static final RxTimerUtils mRxTimerUtils = new RxTimerUtils();
+    private static class RxTimerUtilsHolder {
+        private static final RxTimerUtils instance = new RxTimerUtils();
     }
 
     /**

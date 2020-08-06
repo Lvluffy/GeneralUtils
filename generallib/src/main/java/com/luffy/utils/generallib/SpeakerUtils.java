@@ -6,7 +6,7 @@ import android.media.AudioManager;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 扬声器-辅助工具
+ * @name 扬声器-辅助工具
  */
 public class SpeakerUtils {
 
@@ -16,11 +16,11 @@ public class SpeakerUtils {
     }
 
     public static SpeakerUtils getInstance() {
-        return SpeakerUtilsHelper.mSpeakerUtils;
+        return SpeakerUtilsHolder.instance;
     }
 
-    private static class SpeakerUtilsHelper {
-        private static final SpeakerUtils mSpeakerUtils = new SpeakerUtils();
+    private static class SpeakerUtilsHolder {
+        private static final SpeakerUtils instance = new SpeakerUtils();
     }
 
     /**

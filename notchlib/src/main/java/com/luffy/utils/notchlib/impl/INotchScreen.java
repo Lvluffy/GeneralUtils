@@ -6,7 +6,6 @@ import android.content.Context;
  * Created by lvlufei on 2019/12/6
  *
  * @name 刘海屏接口回调
- * @desc
  */
 public interface INotchScreen {
 

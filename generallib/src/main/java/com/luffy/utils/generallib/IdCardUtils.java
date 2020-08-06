@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 身份证-辅助工具
+ * @name 身份证-辅助工具
  */
 public class IdCardUtils {
 
@@ -14,11 +14,11 @@ public class IdCardUtils {
     }
 
     public static IdCardUtils getInstance() {
-        return IdCardUtilsHelper.mIdCardUtils;
+        return IdCardUtilsHolder.instance;
     }
 
-    private static class IdCardUtilsHelper {
-        private static final IdCardUtils mIdCardUtils = new IdCardUtils();
+    private static class IdCardUtilsHolder {
+        private static final IdCardUtils instance = new IdCardUtils();
     }
 
     /**

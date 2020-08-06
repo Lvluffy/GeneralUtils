@@ -22,7 +22,7 @@ import java.net.URLConnection;
 /**
  * Created by lvlufei on 2018/11/28
  *
- * @desc 文件转换-辅助工具
+ * @name 文件转换-辅助工具
  */
 public class FileConversionUtils {
 
@@ -30,11 +30,11 @@ public class FileConversionUtils {
     }
 
     public static FileConversionUtils getInstance() {
-        return FileConversionUtils.FileConversionUtilsHelper.mFileConversionUtils;
+        return FileConversionUtilsHolder.instance;
     }
 
-    private static class FileConversionUtilsHelper {
-        private static final FileConversionUtils mFileConversionUtils = new FileConversionUtils();
+    private static class FileConversionUtilsHolder {
+        private static final FileConversionUtils instance = new FileConversionUtils();
     }
 
     /**

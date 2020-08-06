@@ -13,7 +13,7 @@ import io.reactivex.functions.Consumer;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 权限管理-辅助工具
+ * @name 权限管理-辅助工具
  */
 public class PermissionUtils {
 
@@ -21,11 +21,11 @@ public class PermissionUtils {
     }
 
     public static PermissionUtils getInstance() {
-        return PermissionUtils.PermissionUtilsHelper.mPermissionUtils;
+        return PermissionUtilsHolder.instance;
     }
 
-    private static class PermissionUtilsHelper {
-        private static final PermissionUtils mPermissionUtils = new PermissionUtils();
+    private static class PermissionUtilsHolder {
+        private static final PermissionUtils instance = new PermissionUtils();
     }
 
     /**

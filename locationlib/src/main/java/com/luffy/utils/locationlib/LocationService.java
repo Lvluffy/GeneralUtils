@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -23,21 +24,21 @@ public class LocationService {
     private final static Location defaultLocation = new Location(LocationManager.NETWORK_PROVIDER);
 
     private LocationManager mLocationManager;
-    private Context mContext;
+    private WeakReference<Context> mContextRef;
 
-    private LocationService(Context mContext) {
-        this.mContext = mContext;
-        mLocationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+    private LocationService(Context context) {
+        mContextRef = new WeakReference<>(context);
+        mLocationManager = (LocationManager) mContextRef.get().getSystemService(Context.LOCATION_SERVICE);
     }
 
-    public static LocationService getInstance(Context mContext) {
-        return new LocationManagerHelper(mContext).instance;
+    public static LocationService getInstance(Context context) {
+        return new LocationManagerHolder(context).instance;
     }
 
-    private static class LocationManagerHelper {
-        public LocationService instance;
+    private static class LocationManagerHolder {
+        private static LocationService instance;
 
-        public LocationManagerHelper(Context context) {
+        public LocationManagerHolder(Context context) {
             instance = new LocationService(context);
         }
     }
@@ -52,8 +53,10 @@ public class LocationService {
         if (provider == null) {
             return defaultLocation;
         }
-        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(mContextRef.get(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(mContextRef.get(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return defaultLocation;
         } else {
             Location location = mLocationManager.getLastKnownLocation(provider);
@@ -82,7 +85,7 @@ public class LocationService {
      */
     public String[] getAddress(double longitude, double latitude) {
         String[] result = new String[4];
-        Geocoder geocoder = new Geocoder(mContext);
+        Geocoder geocoder = new Geocoder(mContextRef.get());
         List<Address> addressList = null;
         try {
             addressList = geocoder.getFromLocation(latitude, longitude, 1);//得到的位置可能有多个当前只取其中一个

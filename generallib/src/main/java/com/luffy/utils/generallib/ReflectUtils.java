@@ -21,11 +21,11 @@ public class ReflectUtils {
     }
 
     public static ReflectUtils getInstance() {
-        return ReflectUtils.ReflectUtilsHelper.mReflectUtils;
+        return ReflectUtilsHolder.instance;
     }
 
-    private static class ReflectUtilsHelper {
-        private static final ReflectUtils mReflectUtils = new ReflectUtils();
+    private static class ReflectUtilsHolder {
+        private static final ReflectUtils instance = new ReflectUtils();
     }
 
     public Object invokeMethod(Object target, String method, Class<?>[] parameterTypes, Object... values)

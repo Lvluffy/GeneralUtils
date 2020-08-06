@@ -6,7 +6,6 @@ import android.os.Build;
  * Created by lvlufei on 2019/12/3
  *
  * @name 设备品牌-辅助工具
- * @desc
  */
 public class DeviceBrandUtils {
 
@@ -14,11 +13,11 @@ public class DeviceBrandUtils {
     }
 
     public static DeviceBrandUtils getInstance() {
-        return DeviceBrandUtils.DeviceBrandUtilsHelper.mDeviceBrandUtils;
+        return DeviceBrandUtilsHolder.instance;
     }
 
-    private static class DeviceBrandUtilsHelper {
-        private static final DeviceBrandUtils mDeviceBrandUtils = new DeviceBrandUtils();
+    private static class DeviceBrandUtilsHolder {
+        private static final DeviceBrandUtils instance = new DeviceBrandUtils();
     }
 
     /**

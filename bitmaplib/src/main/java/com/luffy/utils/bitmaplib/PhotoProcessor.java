@@ -13,18 +13,18 @@ import java.io.IOException;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 头像裁剪-辅助工具
+ * @name 头像裁剪-辅助工具
  */
 public class PhotoProcessor {
     private PhotoProcessor() {
     }
 
     public static PhotoProcessor getInstance() {
-        return PhotoProcessor.PhotoProcessorHelper.mPhotoProcessor;
+        return PhotoProcessorHolder.instance;
     }
 
-    private static class PhotoProcessorHelper {
-        private static final PhotoProcessor mPhotoProcessor = new PhotoProcessor();
+    private static class PhotoProcessorHolder {
+        private static final PhotoProcessor instance = new PhotoProcessor();
     }
 
     /**

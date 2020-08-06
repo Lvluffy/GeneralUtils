@@ -7,7 +7,10 @@ import android.os.Build;
 import java.lang.reflect.Method;
 
 /**
- * 测试之后发现vivo并不需要适配，因为vivo没有将显示区域绘制到耳朵区的API
+ * Created by lvlufei on 2019/12/6
+ *
+ * @name VIVO设备刘海屏
+ * @desc 测试之后发现vivo并不需要适配，因为vivo没有将显示区域绘制到耳朵区的API
  */
 @TargetApi(Build.VERSION_CODES.O)
 public class VivoNotchScreen implements INotchScreen {
@@ -38,7 +41,7 @@ public class VivoNotchScreen implements INotchScreen {
      * @param context 上下文
      * @return 刘海屏高度
      */
-    private static int getNotchHeight(Context context) {
+    private int getNotchHeight(Context context) {
         float density = getDensity(context);
         return (int) (27 * density);
     }
@@ -49,7 +52,7 @@ public class VivoNotchScreen implements INotchScreen {
      * @param context 是否有效
      * @return 刘海屏宽度
      */
-    private static int getNotchWidth(Context context) {
+    private int getNotchWidth(Context context) {
         float density = getDensity(context);
         return (int) (100 * density);
     }
@@ -60,7 +63,7 @@ public class VivoNotchScreen implements INotchScreen {
      * @param context 上下文
      * @return 屏幕密度
      */
-    private static float getDensity(Context context) {
+    private float getDensity(Context context) {
         return context.getResources().getDisplayMetrics().density;
     }
 }

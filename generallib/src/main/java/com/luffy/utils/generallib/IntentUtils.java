@@ -9,7 +9,7 @@ import android.text.TextUtils;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 外部跳转-辅助工具
+ * @name 外部跳转-辅助工具
  */
 public class IntentUtils {
 
@@ -17,14 +17,14 @@ public class IntentUtils {
     }
 
     public static IntentUtils getInstance() {
-        return IntentUtilsHelper.mIntentUtils;
+        return IntentUtilsHolder.instance;
     }
 
     /**
      * 静态内部类实现单例
      */
-    private static class IntentUtilsHelper {
-        private static final IntentUtils mIntentUtils = new IntentUtils();
+    private static class IntentUtilsHolder {
+        private static final IntentUtils instance = new IntentUtils();
     }
 
     public void startActivity(Context context, String action) {

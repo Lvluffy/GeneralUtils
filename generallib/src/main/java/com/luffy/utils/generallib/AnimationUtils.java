@@ -11,7 +11,7 @@ import android.view.animation.ScaleAnimation;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 动画-辅助工具
+ * @name 动画-辅助工具
  */
 public class AnimationUtils {
 
@@ -24,11 +24,11 @@ public class AnimationUtils {
     }
 
     public static AnimationUtils getInstance() {
-        return AnimationUtilsHelper.mAnimationUtils;
+        return AnimationUtilsHolder.instance;
     }
 
-    private static class AnimationUtilsHelper {
-        private static final AnimationUtils mAnimationUtils = new AnimationUtils();
+    private static class AnimationUtilsHolder {
+        private static final AnimationUtils instance = new AnimationUtils();
     }
 
     /**

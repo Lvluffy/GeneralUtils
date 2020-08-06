@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 共享参数-辅助工具
+ * @name 共享参数-辅助工具
  */
 public class SharedPreferencesUtils {
 
@@ -21,11 +21,11 @@ public class SharedPreferencesUtils {
     }
 
     public static SharedPreferencesUtils getInstance() {
-        return SharedPreferencesUtilsHelper.mSharedPreferencesUtils;
+        return SharedPreferencesUtilsHolder.instance;
     }
 
-    private static class SharedPreferencesUtilsHelper {
-        private static final SharedPreferencesUtils mSharedPreferencesUtils = new SharedPreferencesUtils();
+    private static class SharedPreferencesUtilsHolder {
+        private static final SharedPreferencesUtils instance = new SharedPreferencesUtils();
     }
 
     public void init(String fileName) {

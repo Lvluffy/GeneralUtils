@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 金额转换-辅助工具
+ * @name 金额转换-辅助工具
  */
 public class MoneyFormatUtils {
 
@@ -14,11 +14,11 @@ public class MoneyFormatUtils {
     }
 
     public static MoneyFormatUtils getInstance() {
-        return MoneyFormatUtilsHelper.mMoneyFormatUtils;
+        return MoneyFormatUtilsHolder.instance;
     }
 
-    private static class MoneyFormatUtilsHelper {
-        private static final MoneyFormatUtils mMoneyFormatUtils = new MoneyFormatUtils();
+    private static class MoneyFormatUtilsHolder {
+        private static final MoneyFormatUtils instance = new MoneyFormatUtils();
     }
 
     /**
@@ -45,7 +45,6 @@ public class MoneyFormatUtils {
         mDecimalFormat.setRoundingMode(RoundingMode.HALF_UP);
         return mDecimalFormat.format(money);
     }
-
 
     /**
      * double转String,保留小数点后两位（不四舍五入）

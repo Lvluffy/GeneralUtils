@@ -6,18 +6,18 @@ import java.util.regex.Pattern;
 /**
  * Created by lvlufei on 2018/7/18
  *
- * @desc 正则表达式-辅助工具
+ * @name 正则表达式-辅助工具
  */
 public class RegexUtils {
     private RegexUtils() {
     }
 
     public static RegexUtils getInstance() {
-        return RegexUtilsHelper.mRegexUtils;
+        return RegexUtilsHolder.instance;
     }
 
-    private static class RegexUtilsHelper {
-        private static final RegexUtils mRegexUtils = new RegexUtils();
+    private static class RegexUtilsHolder {
+        private static final RegexUtils instance = new RegexUtils();
     }
 
     public static class Regex {

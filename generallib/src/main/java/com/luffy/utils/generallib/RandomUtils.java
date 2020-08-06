@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 随机数-辅助工具
+ * @name 随机数-辅助工具
  */
 public class RandomUtils {
 
@@ -13,11 +13,11 @@ public class RandomUtils {
     }
 
     public static RandomUtils getInstance() {
-        return RandomUtilsHelper.mRandomUtils;
+        return RandomUtilsHolder.instance;
     }
 
-    private static class RandomUtilsHelper {
-        private static final RandomUtils mRandomUtils = new RandomUtils();
+    private static class RandomUtilsHolder {
+        private static final RandomUtils instance = new RandomUtils();
     }
 
     /**

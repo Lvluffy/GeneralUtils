@@ -3,7 +3,7 @@ package com.luffy.utils.generallib;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 类-辅助工具
+ * @name 类-辅助工具
  */
 public class ClassUtils {
 
@@ -11,11 +11,11 @@ public class ClassUtils {
     }
 
     public static ClassUtils getInstance() {
-        return ClassUtilsHelper.mClassUtils;
+        return ClassUtilsHolder.instance;
     }
 
-    private static class ClassUtilsHelper {
-        private static final ClassUtils mClassUtils = new ClassUtils();
+    private static class ClassUtilsHolder {
+        private static final ClassUtils instance = new ClassUtils();
     }
 
     /**

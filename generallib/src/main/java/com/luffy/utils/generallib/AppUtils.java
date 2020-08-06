@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc APP-辅助工具
+ * @name APP-辅助工具
  */
 public class AppUtils {
 
@@ -23,11 +23,11 @@ public class AppUtils {
     }
 
     public static AppUtils getInstance() {
-        return AppUtilsHelper.mAppUtils;
+        return AppUtilsHolder.instance;
     }
 
-    private static class AppUtilsHelper {
-        private static final AppUtils mAppUtils = new AppUtils();
+    private static class AppUtilsHolder {
+        private static final AppUtils instance = new AppUtils();
     }
 
     /**

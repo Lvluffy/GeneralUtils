@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 文件-辅助工具
+ * @name 文件-辅助工具
  */
 public class FileUtils {
 
@@ -22,11 +22,11 @@ public class FileUtils {
     }
 
     public static FileUtils getInstance() {
-        return FileUtilsHelper.mFileUtils;
+        return FileUtilsHolder.instance;
     }
 
-    private static class FileUtilsHelper {
-        private static final FileUtils mFileUtils = new FileUtils();
+    private static class FileUtilsHolder {
+        private static final FileUtils instance = new FileUtils();
     }
 
     /**

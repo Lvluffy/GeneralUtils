@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 图片-辅助工具
+ * @name 图片-辅助工具
  */
 public class ImageUtils {
 
@@ -20,11 +20,11 @@ public class ImageUtils {
     }
 
     public static ImageUtils getInstance() {
-        return ImageUtilsHelper.mImageUtils;
+        return ImageUtilsHolder.instance;
     }
 
-    private static class ImageUtilsHelper {
-        private static final ImageUtils mImageUtils = new ImageUtils();
+    private static class ImageUtilsHolder {
+        private static final ImageUtils instance = new ImageUtils();
     }
 
     /**

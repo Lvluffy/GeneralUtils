@@ -16,7 +16,7 @@ import java.net.URL;
 /**
  * Created by lvlufei on 2019/3/25
  *
- * @desc 版本升级-辅助工具
+ * @name 版本升级-辅助工具
  */
 public class VersionUpgradeUtils {
 
@@ -24,11 +24,11 @@ public class VersionUpgradeUtils {
     }
 
     public static VersionUpgradeUtils getInstance() {
-        return VersionUpgradeUtilsHelper.mVersionUpgradeUtils;
+        return VersionUpgradeUtilsHolder.instance;
     }
 
-    private static class VersionUpgradeUtilsHelper {
-        private static final VersionUpgradeUtils mVersionUpgradeUtils = new VersionUpgradeUtils();
+    private static class VersionUpgradeUtilsHolder {
+        private static final VersionUpgradeUtils instance = new VersionUpgradeUtils();
     }
 
     /**

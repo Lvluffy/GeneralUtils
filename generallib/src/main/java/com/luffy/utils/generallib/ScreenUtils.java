@@ -18,18 +18,18 @@ import java.lang.reflect.Method;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 屏幕-辅助工具
+ * @name 屏幕-辅助工具
  */
 public class ScreenUtils {
     private ScreenUtils() {
     }
 
     public static ScreenUtils getInstance() {
-        return ScreenUtilsHelper.mScreenUtils;
+        return ScreenUtilsHolder.instance;
     }
 
-    private static class ScreenUtilsHelper {
-        private static final ScreenUtils mScreenUtils = new ScreenUtils();
+    private static class ScreenUtilsHolder {
+        private static final ScreenUtils instance = new ScreenUtils();
     }
 
     /**

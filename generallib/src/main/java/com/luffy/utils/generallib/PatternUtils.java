@@ -7,18 +7,17 @@ import java.util.regex.Pattern;
  * Created by lvlufei on 2019/9/16
  *
  * @name 正则匹配-辅助工具
- * @desc
  */
 public class PatternUtils {
     private PatternUtils() {
     }
 
     public static PatternUtils getInstance() {
-        return PatternUtilsHelper.mPatternUtils;
+        return PatternUtilsHolder.instance;
     }
 
-    private static class PatternUtilsHelper {
-        private static final PatternUtils mPatternUtils = new PatternUtils();
+    private static class PatternUtilsHolder {
+        private static final PatternUtils instance = new PatternUtils();
     }
 
     /**

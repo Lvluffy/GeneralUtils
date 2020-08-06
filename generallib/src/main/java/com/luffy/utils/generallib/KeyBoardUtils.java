@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 软键盘-辅助工具
+ * @name 软键盘-辅助工具
  */
 public class KeyBoardUtils {
 
@@ -21,11 +21,11 @@ public class KeyBoardUtils {
     }
 
     public static KeyBoardUtils getInstance() {
-        return KeyBoardUtilsHelper.mKeyBoardUtils;
+        return KeyBoardUtilsHolder.instance;
     }
 
-    private static class KeyBoardUtilsHelper {
-        private static final KeyBoardUtils mKeyBoardUtils = new KeyBoardUtils();
+    private static class KeyBoardUtilsHolder {
+        private static final KeyBoardUtils instance = new KeyBoardUtils();
     }
 
     /**

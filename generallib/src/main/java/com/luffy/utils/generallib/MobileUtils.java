@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 手机-辅助工具
+ * @name 手机-辅助工具
  */
 public class MobileUtils {
 
@@ -14,11 +14,11 @@ public class MobileUtils {
     }
 
     public static MobileUtils getInstance() {
-        return MobileUtilsHelper.mMobileUtils;
+        return MobileUtilsHolder.instance;
     }
 
-    private static class MobileUtilsHelper {
-        private static final MobileUtils mMobileUtils = new MobileUtils();
+    private static class MobileUtilsHolder {
+        private static final MobileUtils instance = new MobileUtils();
     }
 
     /**

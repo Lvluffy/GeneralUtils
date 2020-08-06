@@ -13,7 +13,6 @@ import com.luffy.utils.notchlib.impl.VivoNotchScreen;
  * Created by lvlufei on 2019/12/5
  *
  * @name 设备刘海屏-辅助工具
- * @desc
  */
 public class DeviceNotchScreenUtils {
 
@@ -22,11 +21,11 @@ public class DeviceNotchScreenUtils {
     }
 
     public static DeviceNotchScreenUtils getInstance() {
-        return DeviceNotchScreenUtilsHelper.mDeviceNotchScreenUtils;
+        return DeviceNotchScreenUtilsHolder.instance;
     }
 
-    private static class DeviceNotchScreenUtilsHelper {
-        private static final DeviceNotchScreenUtils mDeviceNotchScreenUtils = new DeviceNotchScreenUtils();
+    private static class DeviceNotchScreenUtilsHolder {
+        private static final DeviceNotchScreenUtils instance = new DeviceNotchScreenUtils();
     }
 
     /**

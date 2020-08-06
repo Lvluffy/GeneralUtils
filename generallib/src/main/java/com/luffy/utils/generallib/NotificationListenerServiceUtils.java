@@ -16,8 +16,7 @@ import java.util.List;
 /**
  * Created by lvlufei on 2019/5/21
  *
- * @name 通知监听服-辅助工具
- * @desc
+ * @name 通知监听服务-辅助工具
  */
 public class NotificationListenerServiceUtils {
 
@@ -25,11 +24,11 @@ public class NotificationListenerServiceUtils {
     }
 
     public static NotificationListenerServiceUtils getInstance() {
-        return NotificationListenerServiceUtils.NotificationListenerServiceUtilsHelper.mNotificationListenerServiceUtils;
+        return NotificationListenerServiceUtilsHolder.instance;
     }
 
-    private static class NotificationListenerServiceUtilsHelper {
-        private static final NotificationListenerServiceUtils mNotificationListenerServiceUtils = new NotificationListenerServiceUtils();
+    private static class NotificationListenerServiceUtilsHolder {
+        private static final NotificationListenerServiceUtils instance = new NotificationListenerServiceUtils();
     }
 
     /**

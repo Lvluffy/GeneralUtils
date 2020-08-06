@@ -4,6 +4,11 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 
+/**
+ * Created by lvlufei on 2019/12/6
+ *
+ * @name OPPO设备刘海屏
+ */
 @TargetApi(Build.VERSION_CODES.O)
 public class OppoNotchScreen implements INotchScreen {
 

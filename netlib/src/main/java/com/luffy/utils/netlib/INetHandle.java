@@ -4,7 +4,6 @@ package com.luffy.utils.netlib;
  * Created by lvlufei on 2020-04-29
  *
  * @name 网络处理回调
- * @desc
  */
 public interface INetHandle {
     /**

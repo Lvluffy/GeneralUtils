@@ -8,7 +8,7 @@ import android.widget.ImageView;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 密码显示-辅助工具
+ * @name 密码显示-辅助工具
  */
 public class PasswordShowUtils {
 
@@ -16,11 +16,11 @@ public class PasswordShowUtils {
     }
 
     public static PasswordShowUtils getInstance() {
-        return PasswordShowUtilsHelper.mPasswordShowUtils;
+        return PasswordShowUtilsHolder.instance;
     }
 
-    private static class PasswordShowUtilsHelper {
-        private static final PasswordShowUtils mPasswordShowUtils = new PasswordShowUtils();
+    private static class PasswordShowUtilsHolder {
+        private static final PasswordShowUtils instance = new PasswordShowUtils();
     }
 
     /**

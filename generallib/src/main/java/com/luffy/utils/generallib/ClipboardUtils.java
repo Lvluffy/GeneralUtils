@@ -10,7 +10,7 @@ import static android.content.Context.CLIPBOARD_SERVICE;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 粘贴板-辅助工具
+ * @name 粘贴板-辅助工具
  */
 public class ClipboardUtils {
 
@@ -19,11 +19,11 @@ public class ClipboardUtils {
     }
 
     public static ClipboardUtils getInstance() {
-        return ClipboardUtilsHelper.mClipboardUtils;
+        return ClipboardUtilsHolder.instance;
     }
 
-    private static class ClipboardUtilsHelper {
-        private static final ClipboardUtils mClipboardUtils = new ClipboardUtils();
+    private static class ClipboardUtilsHolder {
+        private static final ClipboardUtils instance = new ClipboardUtils();
     }
 
     /**

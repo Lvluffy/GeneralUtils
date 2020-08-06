@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 双击退出-辅助工具
+ * @name 双击退出-辅助工具
  */
 public class DoubleClickExitUtils {
     /*结束退出*/
@@ -26,11 +26,11 @@ public class DoubleClickExitUtils {
     }
 
     public static DoubleClickExitUtils getInstance() {
-        return DoubleClickExitUtilsHelper.mDoubleClickExitUtils;
+        return DoubleClickExitUtilsHolder.instance;
     }
 
-    private static class DoubleClickExitUtilsHelper {
-        private static final DoubleClickExitUtils mDoubleClickExitUtils = new DoubleClickExitUtils();
+    private static class DoubleClickExitUtilsHolder {
+        private static final DoubleClickExitUtils instance = new DoubleClickExitUtils();
     }
 
     /**

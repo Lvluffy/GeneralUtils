@@ -1,12 +1,11 @@
 package com.luffy.utils.generallib;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 资源获取-辅助工具
+ * @name 资源获取-辅助工具
  */
 public class ResourceUtils {
 
@@ -14,11 +13,11 @@ public class ResourceUtils {
     }
 
     public static ResourceUtils getInstance() {
-        return ResourceUtilsHelper.mResourceUtils;
+        return ResourceUtilsHolder.instance;
     }
 
-    private static class ResourceUtilsHelper {
-        private static final ResourceUtils mResourceUtils = new ResourceUtils();
+    private static class ResourceUtilsHolder {
+        private static final ResourceUtils instance = new ResourceUtils();
     }
 
     /**
@@ -29,7 +28,6 @@ public class ResourceUtils {
      * @return 字符串数组
      */
     public String[] getStringArray(Context context, int arrayResourceId) {
-        Resources resources = context.getResources();
-        return resources.getStringArray(arrayResourceId);
+        return context.getResources().getStringArray(arrayResourceId);
     }
 }

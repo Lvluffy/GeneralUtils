@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
  * Created by lvlufei on 2019/6/28
  *
  * @name RecycleView-辅助工具
- * @desc
  */
 public class RecycleViewUtils {
 
@@ -15,11 +14,11 @@ public class RecycleViewUtils {
     }
 
     public static RecycleViewUtils getInstance() {
-        return RecycleViewUtilsHelper.mRecycleViewUtils;
+        return RecycleViewUtilsHolder.instance;
     }
 
-    private static class RecycleViewUtilsHelper {
-        private static final RecycleViewUtils mRecycleViewUtils = new RecycleViewUtils();
+    private static class RecycleViewUtilsHolder {
+        private static final RecycleViewUtils instance = new RecycleViewUtils();
     }
 
     /**

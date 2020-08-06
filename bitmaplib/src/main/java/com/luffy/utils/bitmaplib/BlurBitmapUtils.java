@@ -11,7 +11,7 @@ import android.renderscript.ScriptIntrinsicBlur;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 高斯模糊-辅助工具
+ * @name 高斯模糊-辅助工具
  */
 public class BlurBitmapUtils {
     //图片缩放比例
@@ -21,11 +21,11 @@ public class BlurBitmapUtils {
     }
 
     public static BlurBitmapUtils getInstance() {
-        return BlurBitmapUtilsHelper.mBlurBitmapUtils;
+        return BlurBitmapUtilsHolder.instance;
     }
 
-    private static class BlurBitmapUtilsHelper {
-        private static final BlurBitmapUtils mBlurBitmapUtils = new BlurBitmapUtils();
+    private static class BlurBitmapUtilsHolder {
+        private static final BlurBitmapUtils instance = new BlurBitmapUtils();
     }
 
     /**

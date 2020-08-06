@@ -15,11 +15,11 @@ public class FragmentUtils {
     }
 
     public static FragmentUtils getInstance() {
-        return FragmentUtilsHelper.mFragmentUtils;
+        return FragmentUtilsHolder.instance;
     }
 
-    private static class FragmentUtilsHelper {
-        private static final FragmentUtils mFragmentUtils = new FragmentUtils();
+    private static class FragmentUtilsHolder {
+        private static final FragmentUtils instance = new FragmentUtils();
     }
 
     public void replaceFragment(android.app.Activity activity, android.app.Fragment target) {

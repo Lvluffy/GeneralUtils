@@ -43,11 +43,11 @@ public class CrashUtils implements UncaughtExceptionHandler {
     }
 
     public static CrashUtils getInstance() {
-        return CrashUtils.CrashUtilsHelper.mCrashUtils;
+        return CrashUtilsHolder.instance;
     }
 
-    private static class CrashUtilsHelper {
-        private static final CrashUtils mCrashUtils = new CrashUtils();
+    private static class CrashUtilsHolder {
+        private static final CrashUtils instance = new CrashUtils();
     }
 
     /**

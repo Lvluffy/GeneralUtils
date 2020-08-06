@@ -5,7 +5,7 @@ import android.util.Log;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 日志-辅助工具
+ * @name 日志-辅助工具
  */
 public class LogUtils {
     public static final String LOG_TAG = LogUtils.class.getSimpleName();
@@ -15,11 +15,11 @@ public class LogUtils {
     }
 
     public static LogUtils getInstance() {
-        return LogUtilsHelper.mLogUtils;
+        return LogUtilsHolder.instance;
     }
 
-    private static class LogUtilsHelper {
-        private static final LogUtils mLogUtils = new LogUtils();
+    private static class LogUtilsHolder {
+        private static final LogUtils instance = new LogUtils();
     }
 
     public void init(boolean isDebug) {

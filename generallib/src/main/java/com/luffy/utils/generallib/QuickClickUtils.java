@@ -5,18 +5,18 @@ import android.os.Handler;
 /**
  * Created by lvlufei on 2019/2/27
  *
- * @desc 快速点击-辅助工具
+ * @name 快速点击-辅助工具
  */
 public class QuickClickUtils {
     private QuickClickUtils() {
     }
 
     public static QuickClickUtils getInstance() {
-        return QuickClickUtils.QuickClickUtilsHelper.mQuickClickUtils;
+        return QuickClickUtilsHolder.instance;
     }
 
-    private static class QuickClickUtilsHelper {
-        private static final QuickClickUtils mQuickClickUtils = new QuickClickUtils();
+    private static class QuickClickUtilsHolder {
+        private static final QuickClickUtils instance = new QuickClickUtils();
     }
 
     /*记录点击的次数*/

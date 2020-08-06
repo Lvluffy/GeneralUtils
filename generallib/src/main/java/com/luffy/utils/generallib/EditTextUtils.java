@@ -5,7 +5,7 @@ import android.widget.EditText;
 /**
  * Created by lvlufei on 2018/10/10
  *
- * @desc 编辑框-辅助工具
+ * @name 编辑框-辅助工具
  */
 public class EditTextUtils {
 
@@ -13,11 +13,11 @@ public class EditTextUtils {
     }
 
     public static EditTextUtils getInstance() {
-        return EditTextUtilsHelper.mEditTextUtils;
+        return EditTextUtilsHolder.instance;
     }
 
-    private static class EditTextUtilsHelper {
-        private static final EditTextUtils mEditTextUtils = new EditTextUtils();
+    private static class EditTextUtilsHolder {
+        private static final EditTextUtils instance = new EditTextUtils();
     }
 
     /**

@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luffy.generalutils.R;
 import com.luffy.generalutils.base.BaseFragment;
 import com.luffy.utils.generallib.AppUtils;
+import com.luffy.utils.generallib.ValidUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,6 +51,10 @@ public class AppFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_get:
+                if (!ValidUtils.getInstance().isValid(edit.getText().toString())) {
+                    Toast.makeText(getActivity(), "请输入包名", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 /*获取信息*/
                 String appName = AppUtils.getInstance().getAppName(getActivity(), edit.getText().toString());
                 Drawable appIcon = AppUtils.getInstance().getAppIcon(getActivity(), edit.getText().toString());

@@ -5,7 +5,7 @@ import java.util.Collection;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 验证-辅助工具
+ * @name 验证-辅助工具
  */
 public class ValidUtils {
 
@@ -13,11 +13,11 @@ public class ValidUtils {
     }
 
     public static ValidUtils getInstance() {
-        return ValidUtilsHelper.mValidUtils;
+        return ValidUtilsHolder.instance;
     }
 
-    private static class ValidUtilsHelper {
-        private static final ValidUtils mValidUtils = new ValidUtils();
+    private static class ValidUtilsHolder {
+        private static final ValidUtils instance = new ValidUtils();
     }
 
     /**

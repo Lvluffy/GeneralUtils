@@ -1,16 +1,13 @@
 package com.luffy.utils.netlib;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.provider.Settings;
 
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 网络-辅助工具
+ * @name 网络-辅助工具
  */
 public class NetUtils {
     /**
@@ -30,11 +27,11 @@ public class NetUtils {
     }
 
     public static NetUtils getInstance() {
-        return NetUtilsHelper.mNetUtils;
+        return NetUtilsHolder.instance;
     }
 
-    private static class NetUtilsHelper {
-        private static final NetUtils mNetUtils = new NetUtils();
+    private static class NetUtilsHolder {
+        private static final NetUtils instance = new NetUtils();
     }
 
     /**
@@ -103,12 +100,4 @@ public class NetUtils {
         return false;
     }
 
-    /**
-     * @param activity 打开网络设置界面
-     */
-    public void openSetting(Activity activity) {
-        Intent mIntent = new Intent();
-        mIntent.setAction(Settings.ACTION_SETTINGS);
-        activity.startActivity(mIntent);
-    }
 }

@@ -10,7 +10,6 @@ import java.util.List;
  * Created by lvlufei on 2019/5/21
  *
  * @name 服务-辅助工具
- * @desc
  */
 public class ServiceUtils {
 
@@ -18,11 +17,11 @@ public class ServiceUtils {
     }
 
     public static ServiceUtils getInstance() {
-        return ServiceUtilsHelper.mServiceUtils;
+        return ServiceUtilsHolder.instance;
     }
 
-    private static class ServiceUtilsHelper {
-        private static final ServiceUtils mServiceUtils = new ServiceUtils();
+    private static class ServiceUtilsHolder {
+        private static final ServiceUtils instance = new ServiceUtils();
     }
 
     /**

@@ -6,6 +6,11 @@ import android.os.Build;
 
 import java.lang.reflect.Method;
 
+/**
+ * Created by lvlufei on 2019/12/6
+ *
+ * @name 小米设备刘海屏
+ */
 @TargetApi(Build.VERSION_CODES.O)
 public class MiNotchScreen implements INotchScreen {
 
@@ -26,7 +31,7 @@ public class MiNotchScreen implements INotchScreen {
         callback.onResult(notchWidthHeight);
     }
 
-    private static int getNotchHeight(Context context) {
+    private int getNotchHeight(Context context) {
         int resourceId = context.getResources().getIdentifier("notch_height", "dimen", "android");
         if (resourceId > 0) {
             return context.getResources().getDimensionPixelSize(resourceId);
@@ -34,7 +39,7 @@ public class MiNotchScreen implements INotchScreen {
         return 0;
     }
 
-    private static int getNotchWidth(Context context) {
+    private int getNotchWidth(Context context) {
         int resourceId = context.getResources().getIdentifier("notch_width", "dimen", "android");
         if (resourceId > 0) {
             return context.getResources().getDimensionPixelSize(resourceId);

@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 内存-辅助工具
+ * @name 内存-辅助工具
  */
 public class MemoryUtils {
 
@@ -18,11 +18,11 @@ public class MemoryUtils {
     }
 
     public static MemoryUtils getInstance() {
-        return MemoryUtilsHelper.mMemoryUtils;
+        return MemoryUtilsHolder.instance;
     }
 
-    private static class MemoryUtilsHelper {
-        private static final MemoryUtils mMemoryUtils = new MemoryUtils();
+    private static class MemoryUtilsHolder {
+        private static final MemoryUtils instance = new MemoryUtils();
     }
 
     /**

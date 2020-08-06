@@ -1,5 +1,6 @@
 package com.luffy.generalutils.ui;
 
+import android.Manifest;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.luffy.utils.generallib.IntentUtils;
 import com.luffy.utils.generallib.MoneyFormatUtils;
 import com.luffy.utils.generallib.ScreenShotUtils;
 import com.luffy.utils.locationlib.LocationService;
+import com.luffy.utils.rxlib.PermissionUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,10 +98,19 @@ public class MainActivity extends BaseActivity {
             IntentUtils.getInstance().startActivity(this, AppActivity.class);
 
         } else if (i == R.id.item_7) {
-            Location location = LocationService.getInstance(this).getLastLocation();
-            String[] address = LocationService.getInstance(this).getAddress(location.getLongitude(), location.getLatitude());
-            Toast.makeText(this, address[0] + address[1] + address[2] + address[3], Toast.LENGTH_SHORT).show();
+            PermissionUtils.getInstance().meanWhileApplyMultiPermission(this, new PermissionUtils.MeanWhileApplyPermissionCallBack() {
+                @Override
+                public void onSucceed() {
+                    Location location = LocationService.getInstance(MainActivity.this).getLastLocation();
+                    String[] address = LocationService.getInstance(MainActivity.this).getAddress(location.getLongitude(), location.getLatitude());
+                    Toast.makeText(MainActivity.this, address[0] + address[1] + address[2] + address[3], Toast.LENGTH_SHORT).show();
+                }
 
+                @Override
+                public void onFailure() {
+
+                }
+            }, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
         }
     }
 }

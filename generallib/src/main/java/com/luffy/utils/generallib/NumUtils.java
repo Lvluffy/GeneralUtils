@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 数字转汉字-辅助工具
+ * @name 数字转汉字-辅助工具
  */
 public class NumUtils {
 
@@ -26,7 +26,6 @@ public class NumUtils {
     private static final int DOT = -99;
     //标记为无效数字
     private static final int INVALID = -100;
-
 
     /**
      * 数字转化为小写的汉字

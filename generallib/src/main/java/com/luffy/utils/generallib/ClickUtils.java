@@ -3,7 +3,7 @@ package com.luffy.utils.generallib;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 点击-辅助工具
+ * @name 点击-辅助工具
  */
 public class ClickUtils {
 
@@ -17,11 +17,11 @@ public class ClickUtils {
     }
 
     public static ClickUtils getInstance() {
-        return ClickUtilsHelper.mClickUtils;
+        return ClickUtilsHolder.instance;
     }
 
-    private static class ClickUtilsHelper {
-        private static final ClickUtils mClickUtils = new ClickUtils();
+    private static class ClickUtilsHolder {
+        private static final ClickUtils instance = new ClickUtils();
     }
 
     /**

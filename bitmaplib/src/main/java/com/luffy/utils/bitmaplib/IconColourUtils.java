@@ -8,18 +8,18 @@ import android.widget.ImageView;
 /**
  * Created by lvlufei on 2019/2/19
  *
- * @desc 图标着色-辅助工具
+ * @name 图标着色-辅助工具
  */
 public class IconColourUtils {
     private IconColourUtils() {
     }
 
     public static IconColourUtils getInstance() {
-        return IconColourUtilsHelper.mIconColourUtils;
+        return IconColourUtilsHolder.instance;
     }
 
-    private static class IconColourUtilsHelper {
-        private static final IconColourUtils mIconColourUtils = new IconColourUtils();
+    private static class IconColourUtilsHolder {
+        private static final IconColourUtils instance = new IconColourUtils();
     }
 
     /**

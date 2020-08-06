@@ -7,8 +7,8 @@ import android.os.Environment;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @desc 存储-辅助工具
- * 内部存储目录
+ * @name 存储-辅助工具
+ * @desc 内部存储目录
  * 1、data/data/包名/shared_prefs（/data/user/0/包名/shared_prefs）
  * 2、data/data/包名/databases（/data/user/0/包名/databases）
  * 3、data/data/包名/files（/data/user/0/包名/files）
@@ -34,11 +34,11 @@ public class FileStorageUtils {
     }
 
     public static FileStorageUtils getInstance() {
-        return FileStorageUtilsHelper.mFileStorageUtils;
+        return FileStorageUtilsHolder.instance;
     }
 
-    private static class FileStorageUtilsHelper {
-        private static final FileStorageUtils mFileStorageUtils = new FileStorageUtils();
+    private static class FileStorageUtilsHolder {
+        private static final FileStorageUtils instance = new FileStorageUtils();
     }
 
     /**
