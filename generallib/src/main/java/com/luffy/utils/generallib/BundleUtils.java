@@ -21,6 +21,12 @@ public class BundleUtils {
         private static final BundleUtils instance = new BundleUtils();
     }
 
+    /**
+     * 打印Bundle数据
+     *
+     * @param bundle
+     * @return
+     */
     public String printBundle(Bundle bundle) {
         if (bundle == null) {
             return null;
