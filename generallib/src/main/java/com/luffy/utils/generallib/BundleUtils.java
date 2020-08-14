@@ -2,6 +2,8 @@ package com.luffy.utils.generallib;
 
 import android.os.Bundle;
 
+import java.util.Iterator;
+
 /**
  * Created by lvlufei on 2020-08-10
  *
@@ -32,7 +34,9 @@ public class BundleUtils {
             return null;
         }
         StringBuilder stringBuilder = new StringBuilder();
-        for (String key : bundle.keySet()) {
+        Iterator<String> keys = bundle.keySet().iterator();
+        while (keys.hasNext()) {
+            String key = keys.next();
             Object value = bundle.get(key);
             if (value != null && value instanceof Bundle) {
                 stringBuilder.append(printBundle((Bundle) value));
