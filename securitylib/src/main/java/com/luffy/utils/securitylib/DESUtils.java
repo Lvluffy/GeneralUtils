@@ -88,5 +88,4 @@ public class DESUtils {
         return new String(retByte);
     }
 
-
 }
