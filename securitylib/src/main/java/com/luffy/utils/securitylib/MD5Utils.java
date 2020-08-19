@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by lvlufei on 2018/1/1
  *
- * @name MD5加密-辅助工具
+ * @name MD5加解密-辅助工具
  */
 public class MD5Utils {
 

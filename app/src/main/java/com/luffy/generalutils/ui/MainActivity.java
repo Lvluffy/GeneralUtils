@@ -73,7 +73,9 @@ public class MainActivity extends BaseActivity {
             R.id.item_4,
             R.id.item_5,
             R.id.item_6,
-            R.id.item_7})
+            R.id.item_7,
+            R.id.item_8
+    })
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.item_1) {
@@ -111,6 +113,8 @@ public class MainActivity extends BaseActivity {
 
                 }
             }, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
+        } else if (i == R.id.item_8) {
+            IntentUtils.getInstance().startActivity(this, SecurityActivity.class);
         }
     }
 }
