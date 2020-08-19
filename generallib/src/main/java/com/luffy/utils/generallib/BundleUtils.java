@@ -24,12 +24,12 @@ public class BundleUtils {
     }
 
     /**
-     * 打印Bundle数据
+     * Bundle转String
      *
      * @param bundle
      * @return
      */
-    public String printBundle(Bundle bundle) {
+    public String bundleToString(Bundle bundle) {
         if (bundle == null) {
             return null;
         }
@@ -38,12 +38,44 @@ public class BundleUtils {
         while (keys.hasNext()) {
             String key = keys.next();
             Object value = bundle.get(key);
-            if (value != null && value instanceof Bundle) {
-                stringBuilder.append(printBundle((Bundle) value));
+            if (value instanceof Bundle) {
+                stringBuilder.append(bundleToString((Bundle) value));
             } else {
                 stringBuilder.append(key).append("=").append(value).append(",");
             }
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * 从Bundle中获取指定key的值
+     *
+     * @param bundle
+     * @param targetKey
+     * @return
+     */
+    public String getValueFromBundleByKey(Bundle bundle, String targetKey) {
+        if (bundle == null || targetKey == null) {
+            return null;
+        }
+        String data = null;
+        Iterator<String> keys = bundle.keySet().iterator();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            Object value = bundle.get(key);
+            if (value instanceof Bundle) {
+                String temp = getValueFromBundleByKey((Bundle) value, targetKey);
+                if (temp != null) {
+                    data = temp;
+                    break;
+                }
+            } else {
+                if (targetKey.equals(key)) {
+                    data = (String) value;
+                    break;
+                }
+            }
+        }
+        return data;
     }
 }
