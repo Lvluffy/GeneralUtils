@@ -1,5 +1,7 @@
 package com.luffy.utils.securitylib;
 
+import android.util.Base64;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -41,12 +43,13 @@ public class DESUtils {
     /**
      * 加密
      *
-     * @param message
-     * @param key     长度必须是8位
+     * @param value
+     * @param key   长度必须是8位
      */
-    public String encrypt(String message, String key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
+    public String encrypt(String value, String key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
         // 创建密码器
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        // 创建Key对象
         DESKeySpec desKeySpec = new DESKeySpec(key.getBytes(CHARSET_NAME));
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
         SecretKey secretKey = keyFactory.generateSecret(desKeySpec);
@@ -54,23 +57,25 @@ public class DESUtils {
         IvParameterSpec iv = new IvParameterSpec(key.getBytes(CHARSET_NAME));
         // 用密码初始化Cipher对象
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
-        byte[] results = cipher.doFinal(message.getBytes(CHARSET_NAME));
-        // Base64加密
-        return Base64Utils.getInstance().encodeBase64NoWrap(results);
+        // 获取加密后的数据
+        byte[] encrypted = cipher.doFinal(value.getBytes(CHARSET_NAME));
+        // 进行Base64加密
+        return Base64.encodeToString(encrypted, Base64.NO_WRAP);
     }
 
     /**
      * 解密
      *
-     * @param message
-     * @param key     长度必须是8位
+     * @param encrypted
+     * @param key       长度必须是8位
      * @return
      */
-    public String decrypt(String message, String key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
+    public String decrypt(String encrypted, String key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
         // Base64解密
-        byte[] bytesrc = Base64Utils.getInstance().decodeBase64Bytes(message);
+        byte[] byteSrc = Base64.decode(encrypted, Base64.DEFAULT);
         // 创建密码器
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+        // 创建Key对象
         DESKeySpec desKeySpec = new DESKeySpec(key.getBytes(CHARSET_NAME));
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
         SecretKey secretKey = keyFactory.generateSecret(desKeySpec);
@@ -79,7 +84,7 @@ public class DESUtils {
         // 用密码初始化Cipher对象
         cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
         // 获取解密后的数据
-        byte[] retByte = cipher.doFinal(bytesrc);
+        byte[] retByte = cipher.doFinal(byteSrc);
         return new String(retByte);
     }
 
