@@ -41,7 +41,7 @@ public class AESUtils {
      * 加密
      *
      * @param value
-     * @param key
+     * @param key   长度必须是16位
      * @return
      */
     public String encrypt(String value, String key) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
@@ -61,7 +61,7 @@ public class AESUtils {
      * 解密
      *
      * @param encrypted
-     * @param key
+     * @param key       长度必须是16位
      * @return
      */
     public String decrypt(String encrypted, String key) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
