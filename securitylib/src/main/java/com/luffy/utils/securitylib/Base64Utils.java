@@ -5,7 +5,7 @@ import android.util.Base64;
 /**
  * Created by lvlufei on 2020-08-19
  *
- * @name Base64加解密-辅助工具
+ * @name Base64加解密（可逆算法加密）-辅助工具
  */
 public class Base64Utils {
     private Base64Utils() {
