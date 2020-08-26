@@ -35,11 +35,13 @@ public class NetUtils {
     }
 
     /**
-     * @param mContext 上下文
-     * @return 获取当前网络连接的类型
+     * 获取当前网络连接的类型
+     *
+     * @param context 上下文
+     * @return
      */
-    public int getConnectedType(Context mContext) {
-        ConnectivityManager mConnectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public int getConnectedType(Context context) {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null != mConnectivityManager) {
             NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
             if (null != info && info.isConnected()) {
@@ -54,11 +56,13 @@ public class NetUtils {
     }
 
     /**
-     * @param mContext mContext
-     * @return 网络是否连接
+     * 网络是否连接
+     *
+     * @param context 上下文
+     * @return
      */
-    public boolean isConnected(Context mContext) {
-        ConnectivityManager mConnectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public boolean isConnected(Context context) {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null != mConnectivityManager) {
             NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
             if (null != info && info.isConnected()) {
@@ -71,11 +75,13 @@ public class NetUtils {
     }
 
     /**
-     * @param mContext mContext
-     * @return 是否是Wifi连接
+     * 是否是Wifi连接
+     *
+     * @param context
+     * @return
      */
-    public boolean isWifi(Context mContext) {
-        ConnectivityManager mConnectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public boolean isWifi(Context context) {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null != mConnectivityManager) {
             NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
             if (null != info && info.getType() == ConnectivityManager.TYPE_WIFI) {
@@ -86,11 +92,13 @@ public class NetUtils {
     }
 
     /**
-     * @param mContext mContext
-     * @return 是否是手机连接
+     * 是否是手机连接
+     *
+     * @param context
+     * @return
      */
-    public boolean isMobile(Context mContext) {
-        ConnectivityManager mConnectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public boolean isMobile(Context context) {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null != mConnectivityManager) {
             NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
             if (null != info && info.getType() == ConnectivityManager.TYPE_MOBILE) {

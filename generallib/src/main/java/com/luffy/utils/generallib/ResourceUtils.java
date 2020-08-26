@@ -30,4 +30,49 @@ public class ResourceUtils {
     public String[] getStringArray(Context context, int arrayResourceId) {
         return context.getResources().getStringArray(arrayResourceId);
     }
+
+    public int getStringIdentifier(Context context, String resName) {
+        return getIdentifier(context, resName, "string");
+    }
+
+    public int getStyleIdentifier(Context context, String resName) {
+        return getIdentifier(context, resName, "style");
+    }
+
+    public int getDimenIdentifier(Context context, String resName) {
+        return getIdentifier(context, resName, "dimen");
+    }
+
+    public int getDrawableIdentifier(Context context, String resName) {
+        return getIdentifier(context, resName, "drawable");
+    }
+
+    public int getAnimatorIdentifier(Context context, String resName) {
+        return getIdentifier(context, resName, "animator");
+    }
+
+    public int getId(Context context, String resName) {
+        return getIdentifier(context, resName, "id");
+    }
+
+    public int getColorIdentifier(Context context, String resName) {
+        return getIdentifier(context, resName, "color");
+    }
+
+    public int getLayoutIdentifier(Context context, String resName) {
+        return getIdentifier(context, resName, "layout");
+    }
+
+    public String getString(Context context, String resName) {
+        String value = "";
+        int id = getStringIdentifier(context, resName);
+        if (id != 0) {
+            value = context.getString(id);
+        }
+        return value;
+    }
+
+    private int getIdentifier(Context context, String resName, String type) {
+        return context.getResources().getIdentifier(resName, type, context.getPackageName());
+    }
 }

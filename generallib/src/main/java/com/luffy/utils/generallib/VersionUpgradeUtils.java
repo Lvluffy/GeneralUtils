@@ -34,29 +34,29 @@ public class VersionUpgradeUtils {
     /**
      * 外部升级（应用宝市场更新）
      *
-     * @param mContext 上下文
-     * @param url      链接地址
+     * @param context 上下文
+     * @param url     链接地址
      */
-    public void externalUpgrade(Context mContext, String url) {
-        if (AppUtils.getInstance().isInstallApp(mContext, "com.tencent.android.qqdownloader")) {
-            IntentUtils.getInstance().openAppDetail(mContext, AppUtils.getInstance().getAppPackName(mContext), "com.tencent.android.qqdownloader");
+    public void externalUpgrade(Context context, String url) {
+        if (AppUtils.getInstance().isInstallApp(context, "com.tencent.android.qqdownloader")) {
+            IntentUtils.getInstance().openAppDetail(context, AppUtils.getInstance().getAppPackName(context), "com.tencent.android.qqdownloader");
         } else {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
-            mContext.startActivity(intent);
+            context.startActivity(intent);
         }
     }
 
     /**
      * 外部升级（下载apk）
      *
-     * @param mContext 是否有效
-     * @param uri      下载地址
+     * @param context 是否有效
+     * @param uri     下载地址
      */
-    public void internalUpgrade(final Context mContext, final String uri) {
+    public void internalUpgrade(final Context context, final String uri) {
         final ProgressDialog mProgressDialog;    //进度条对话框
-        mProgressDialog = new ProgressDialog(mContext);
+        mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         mProgressDialog.setMessage("正在下载更新");
         mProgressDialog.setCanceledOnTouchOutside(false);
@@ -69,7 +69,7 @@ public class VersionUpgradeUtils {
                 try {
                     File file = downloadApk(uri, mProgressDialog);
                     sleep(3000);
-                    installApk(mContext, file);
+                    installApk(context, file);
                     mProgressDialog.dismiss(); //结束掉进度条对话框
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -120,10 +120,10 @@ public class VersionUpgradeUtils {
     /**
      * 安装Apk
      *
-     * @param mContext 上下文
-     * @param file     文件
+     * @param context 上下文
+     * @param file    文件
      */
-    public void installApk(Context mContext, File file) {
+    public void installApk(Context context, File file) {
         Intent intent = new Intent();
         //执行动作
         intent.setAction(Intent.ACTION_VIEW);
@@ -131,6 +131,6 @@ public class VersionUpgradeUtils {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //执行的数据类型
         intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-        mContext.startActivity(intent);
+        context.startActivity(intent);
     }
 }

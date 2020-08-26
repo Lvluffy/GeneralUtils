@@ -31,12 +31,12 @@ public class PermissionUtils {
     /**
      * 是否开启了指定权限
      *
-     * @param ctx      上下文
+     * @param context  上下文
      * @param permName 权限名称
      * @return 是否开启了指定权限
      */
-    public boolean checkPermission(Context ctx, String permName) {
-        return PackageManager.PERMISSION_GRANTED == ctx.checkCallingOrSelfPermission(permName);
+    public boolean checkPermission(Context context, String permName) {
+        return PackageManager.PERMISSION_GRANTED == context.checkCallingOrSelfPermission(permName);
     }
 
     /**

@@ -39,7 +39,9 @@ public class IntentUtils {
      * @param intentExtra 自定义传参
      */
     public void startActivity(Context context, String action, IntentExtra intentExtra) {
-        if (action == null) throw new NullPointerException("Action cannot be empty");
+        if (action == null) {
+            throw new NullPointerException("Action cannot be empty");
+        }
         Intent intent = new Intent(action);
         if (intentExtra != null) {
             context.startActivity(intentExtra.putExtra(intent));
@@ -60,7 +62,9 @@ public class IntentUtils {
      * @param intentExtra 自定义传参
      */
     public void startActivity(Context context, Class<?> target, IntentExtra intentExtra) {
-        if (target == null) throw new NullPointerException("Target cannot be empty");
+        if (target == null) {
+            throw new NullPointerException("Target cannot be empty");
+        }
         Intent intent = new Intent(context, target);
         if (intentExtra != null) {
             context.startActivity(intentExtra.putExtra(intent));
@@ -82,7 +86,9 @@ public class IntentUtils {
      * @param intentExtra 自定义传参
      */
     public void startActivityForResult(Activity context, Class<?> target, int requestCode, IntentExtra intentExtra) {
-        if (target == null) throw new NullPointerException("Target cannot be empty");
+        if (target == null) {
+            throw new NullPointerException("Target cannot be empty");
+        }
         Intent intent = new Intent(context, target);
         if (intentExtra != null) {
             context.startActivityForResult(intentExtra.putExtra(intent), requestCode);
@@ -104,7 +110,9 @@ public class IntentUtils {
      * @param intentExtra 自定义传参
      */
     public void startActivityForResult(android.support.v4.app.Fragment context, Class<?> target, int requestCode, IntentExtra intentExtra) {
-        if (target == null) throw new NullPointerException("Target cannot be empty");
+        if (target == null) {
+            throw new NullPointerException("Target cannot be empty");
+        }
         Intent intent = new Intent(context.getActivity(), target);
         if (intentExtra != null) {
             context.startActivityForResult(intentExtra.putExtra(intent), requestCode);
@@ -126,7 +134,9 @@ public class IntentUtils {
      * @param intentExtra 自定义传参
      */
     public void startActivityForResult(android.app.Fragment context, Class<?> target, int requestCode, IntentExtra intentExtra) {
-        if (target == null) throw new NullPointerException("Target cannot be empty");
+        if (target == null) {
+            throw new NullPointerException("Target cannot be empty");
+        }
         Intent intent = new Intent(context.getActivity(), target);
         if (intentExtra != null) {
             context.startActivityForResult(intentExtra.putExtra(intent), requestCode);
@@ -143,7 +153,9 @@ public class IntentUtils {
      * @param marketPackageName 应用商店包名
      */
     public void openAppDetail(Context context, String appPackageName, String marketPackageName) {
-        if (TextUtils.isEmpty(appPackageName) || TextUtils.isEmpty(marketPackageName)) return;
+        if (TextUtils.isEmpty(appPackageName) || TextUtils.isEmpty(marketPackageName)) {
+            return;
+        }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
         intent.setPackage(marketPackageName);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

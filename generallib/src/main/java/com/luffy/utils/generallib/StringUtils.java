@@ -1,5 +1,7 @@
 package com.luffy.utils.generallib;
 
+import android.text.TextUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -30,22 +32,21 @@ public class StringUtils {
      * @return 处理后的数据
      */
     public String formatSummary(String str) {
-        if (str != null) {
-            str = str.replaceAll("【*", "");//替换来自服务器上的，特殊空格
-            str = str.replaceAll("】", "");//替换来自服务器上的，特殊空格
-            str = str.replaceAll("", "");//替换来自服务器上的，特殊空格
-            str = str.replaceAll("】", "");//替换来自服务器上的，特殊空格
-            str = str.replaceAll(" *", "");//
-            str = str.replaceAll("——", "");//
-            str = str.replaceAll("-", "");//
-            str = str.replaceAll("<br />", "");//
-            str = str.replaceAll("　　", "");//
-            str = str.replaceAll("\r\n\r\n", "\n");//
-            str = str.replace("\n  ", "");
-            str = str.replace("\n\n", "\n");
-            return str;
+        if (TextUtils.isEmpty(str)) {
+            return null;
         }
-        return "";
+        return str.replaceAll("【*", "")
+                .replaceAll("】", "")
+                .replaceAll("", "")
+                .replaceAll("】", "")
+                .replaceAll(" *", "")
+                .replaceAll("——", "")
+                .replaceAll("-", "")
+                .replaceAll("<br />", "")
+                .replaceAll("　　", "")
+                .replaceAll("\r\n\r\n", "\n")
+                .replace("\n  ", "")
+                .replace("\n\n", "\n");
     }
 
     /**
@@ -53,7 +54,9 @@ public class StringUtils {
      * @return 正则匹配取出中文, 返回数组
      */
     public List<String> getReplaceAll(String input) {
-        if (input == null) return null;
+        if (input == null) {
+            return null;
+        }
         List<String> stringList = new ArrayList<>();
         Pattern p = Pattern.compile("([\u4e00-\u9fa5]+)");
         Matcher m = p.matcher(input);

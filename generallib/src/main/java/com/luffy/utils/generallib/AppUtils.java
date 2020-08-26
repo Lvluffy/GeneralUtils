@@ -194,21 +194,21 @@ public class AppUtils {
         }
     }
 
-    public String getAppChannel(Context mContext, String key) {
-        return getAppChannel(mContext, mContext.getPackageName(), key);
+    public String getAppChannel(Context context, String key) {
+        return getAppChannel(context, context.getPackageName(), key);
     }
 
     /**
      * 获取应用程序-渠道-通过包名
      *
-     * @param mContext    上下文
+     * @param context     上下文
      * @param packageName 应用包名
      * @param key         application中指定的meta-data
      * @return 渠道信息
      */
-    public String getAppChannel(Context mContext, String packageName, String key) {
+    public String getAppChannel(Context context, String packageName, String key) {
         try {
-            return mContext.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData.getString(key);
+            return context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData.getString(key);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             return null;

@@ -32,12 +32,12 @@ public class ScreenShotUtils {
     /**
      * 截取-除了导航栏之外的屏幕
      *
-     * @param mContext 上下文
+     * @param activity 上下文
      * @return Bitmap
      */
-    public Bitmap getScreenBitmap(Activity mContext) {
+    public Bitmap getScreenBitmap(Activity activity) {
         Bitmap bitmap;
-        View view = mContext.getWindow().getDecorView();
+        View view = activity.getWindow().getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         bitmap = Bitmap.createBitmap(view.getDrawingCache());
