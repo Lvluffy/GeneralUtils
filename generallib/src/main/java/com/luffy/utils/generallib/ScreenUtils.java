@@ -36,16 +36,17 @@ public class ScreenUtils {
      * 获取屏幕宽度、高度、分辨率
      *
      * @param context 上下文
-     * @return [0]=宽度;[1]=高度;[2]=分辨率
+     * @return [0]=宽度;[1]=高度;[2]=分辨率;[3]=屏幕密度
      */
     public int[] getScreenWidthHeightDensity(Context context) {
         WindowManager mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics mDisplayMetrics = new DisplayMetrics();
         mWindowManager.getDefaultDisplay().getMetrics(mDisplayMetrics);
-        int[] result = new int[3];
+        int[] result = new int[4];
         result[0] = mDisplayMetrics.widthPixels;
         result[1] = mDisplayMetrics.heightPixels;
         result[2] = mDisplayMetrics.densityDpi;
+        result[3] = (int) mDisplayMetrics.density;
         return result;
     }
 

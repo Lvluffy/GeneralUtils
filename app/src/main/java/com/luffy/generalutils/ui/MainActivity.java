@@ -4,6 +4,7 @@ import android.Manifest;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import com.luffy.utils.generallib.DoubleClickExitUtils;
 import com.luffy.utils.generallib.IntentUtils;
 import com.luffy.utils.generallib.MoneyFormatUtils;
 import com.luffy.utils.generallib.ScreenShotUtils;
+import com.luffy.utils.generallib.ScreenUtils;
 import com.luffy.utils.locationlib.LocationService;
 import com.luffy.utils.rxlib.PermissionUtils;
 
@@ -115,6 +117,9 @@ public class MainActivity extends BaseActivity {
             }, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
         } else if (i == R.id.item_8) {
             IntentUtils.getInstance().startActivity(this, SecurityActivity.class);
+
+            int[] ints = ScreenUtils.getInstance().getScreenWidthHeightDensity(this);
+            Log.d("ScreenUtils", "width = " + ints[0] + " height = " + ints[1] + " densityDpi = " + ints[2] + " density = " + ints[3]);
         }
     }
 }
