@@ -2,6 +2,7 @@ package com.luffy.utils.generallib;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -31,7 +32,7 @@ public class AppUtils {
     }
 
     /**
-     * 获取应用程序-包名
+     * 获取应用包名
      *
      * @param context 上下文
      * @return 应用包名
@@ -52,12 +53,18 @@ public class AppUtils {
         return "";
     }
 
+    /**
+     * 获取应用名称-当前应用程序
+     *
+     * @param context
+     * @return
+     */
     public String getAppName(Context context) {
         return getAppName(context, context.getPackageName());
     }
 
     /**
-     * 获取应用程序-名称-通过包名
+     * 获取应用名称-通过包名
      *
      * @param context     上下文
      * @param packageName 包名
@@ -71,12 +78,18 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用图标-当前应用程序
+     *
+     * @param context
+     * @return
+     */
     public Drawable getAppIcon(Context context) {
         return getAppIcon(context, context.getPackageName());
     }
 
     /**
-     * 获取应用程序-图标-通过包名
+     * 获取应用图标-通过包名
      *
      * @param context     上下文
      * @param packageName 应用包名
@@ -90,12 +103,18 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用版本名称-当前应用程序
+     *
+     * @param context
+     * @return
+     */
     public String getAppVersionName(Context context) {
         return getAppVersionName(context, context.getPackageName());
     }
 
     /**
-     * 获取应用程序-版本名称-通过包名
+     * 获取应用版本名称-通过包名
      *
      * @param context     上下文
      * @param packageName 应用包名
@@ -109,12 +128,18 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用版本号-当前应用程序
+     *
+     * @param context
+     * @return
+     */
     public int getAppVersionCode(Context context) {
         return getAppVersionCode(context, context.getPackageName());
     }
 
     /**
-     * 获取应用程序-版本号-通过包名
+     * 获取应用版本号-通过包名
      *
      * @param context     上下文
      * @param packageName 应用包名
@@ -128,12 +153,18 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用大小-当前应用程序
+     *
+     * @param context
+     * @return
+     */
     public String getAppSize(Context context) {
         return getAppSize(context, context.getPackageName());
     }
 
     /**
-     * 获取应用程序-APK大小-通过包名
+     * 获取应用大小-通过包名
      *
      * @param context     上下文
      * @param packageName 应用包名
@@ -152,12 +183,18 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用签名-当前应用程序
+     *
+     * @param context
+     * @return
+     */
     public Signature getAppSign(Context context) {
         return getAppSign(context, context.getPackageName());
     }
 
     /**
-     * 获取应用程序-签名信息-通过包名
+     * 获取应用签名-通过包名
      *
      * @param context     上下文
      * @param packageName 应用包名
@@ -171,12 +208,18 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用签名信息MD5-当前应用程序
+     *
+     * @param context
+     * @return
+     */
     public String getAppSignMD5(Context context) {
         return getAppSignMD5(context, context.getPackageName());
     }
 
     /**
-     * 获取应用程序-签名信息MD5-通过包名
+     * 获取应签名信息MD5-通过包名
      *
      * @param context     上下文
      * @param packageName 应用包名
@@ -194,12 +237,19 @@ public class AppUtils {
         }
     }
 
+    /**
+     * 获取应用渠道-当前应用程序
+     *
+     * @param context
+     * @param key
+     * @return
+     */
     public String getAppChannel(Context context, String key) {
         return getAppChannel(context, context.getPackageName(), key);
     }
 
     /**
-     * 获取应用程序-渠道-通过包名
+     * 获取应用渠道-通过包名
      *
      * @param context     上下文
      * @param packageName 应用包名
@@ -230,6 +280,20 @@ public class AppUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 启动应用程序-通过包名
+     *
+     * @param context
+     * @param packageName
+     */
+    public void startApp(Context context, String packageName) {
+        PackageManager packageManager = context.getPackageManager();
+        Intent intent = packageManager.getLaunchIntentForPackage(packageName);
+        if (intent != null) {
+            context.startActivity(intent);
+        }
     }
 
     private String toHexString(byte[] block) {
