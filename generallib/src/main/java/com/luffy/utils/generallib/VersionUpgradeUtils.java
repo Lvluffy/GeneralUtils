@@ -38,8 +38,19 @@ public class VersionUpgradeUtils {
      * @param url     链接地址
      */
     public void externalUpgrade(Context context, String url) {
-        if (AppUtils.getInstance().isInstallApp(context, "com.tencent.android.qqdownloader")) {
-            IntentUtils.getInstance().openAppDetail(context, AppUtils.getInstance().getAppPackName(context), "com.tencent.android.qqdownloader");
+        externalUpgrade(context, url, "com.tencent.android.qqdownloader");
+    }
+
+    /**
+     * 外部升级
+     *
+     * @param context     上下文
+     * @param url         链接地址
+     * @param packageName 市场包名
+     */
+    public void externalUpgrade(Context context, String url, String packageName) {
+        if (AppUtils.getInstance().isInstallApp(context, packageName)) {
+            IntentUtils.getInstance().openAppDetail(context, AppUtils.getInstance().getAppPackName(context), packageName);
         } else {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);

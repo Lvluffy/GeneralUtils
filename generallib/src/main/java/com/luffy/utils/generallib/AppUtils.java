@@ -189,7 +189,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public Signature getAppSign(Context context) {
+    public String getAppSign(Context context) {
         return getAppSign(context, context.getPackageName());
     }
 
@@ -200,12 +200,17 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用签名信息
      */
-    public Signature getAppSign(Context context, String packageName) {
+    public String getAppSign(Context context, String packageName) {
+        Signature signature = null;
         try {
-            return context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0];
+            signature = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0];
         } catch (PackageManager.NameNotFoundException e) {
-            return null;
+            e.printStackTrace();
         }
+        if (signature == null) {
+            signature = new Signature("");
+        }
+        return signature.toCharsString();
     }
 
     /**

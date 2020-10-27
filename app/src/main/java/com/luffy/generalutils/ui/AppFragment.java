@@ -61,7 +61,7 @@ public class AppFragment extends BaseFragment {
                 String appVersionName = AppUtils.getInstance().getAppVersionName(getActivity(), edit.getText().toString());
                 int appVersionCode = AppUtils.getInstance().getAppVersionCode(getActivity(), edit.getText().toString());
                 String appSize = AppUtils.getInstance().getAppSize(getActivity(), edit.getText().toString());
-                String appSign = AppUtils.getInstance().getAppSign(getActivity(), edit.getText().toString()).toCharsString();
+                String appSign = AppUtils.getInstance().getAppSign(getActivity(), edit.getText().toString());
                 String appSignMD5 = AppUtils.getInstance().getAppSignMD5(getActivity(), edit.getText().toString());
                 String appChannel = AppUtils.getInstance().getAppChannel(getActivity(), edit.getText().toString(), "BaiduMobAd_CHANNEL");
 

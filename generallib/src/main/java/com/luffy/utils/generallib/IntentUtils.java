@@ -1,6 +1,7 @@
 package com.luffy.utils.generallib;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -66,6 +67,9 @@ public class IntentUtils {
             throw new NullPointerException("Target cannot be empty");
         }
         Intent intent = new Intent(context, target);
+        if (context instanceof Application) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
         if (intentExtra != null) {
             context.startActivity(intentExtra.putExtra(intent));
         } else {
