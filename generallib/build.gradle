@@ -46,3 +46,10 @@ dependencies {
     compileOnly rootProject.supportDepends["support-v4"]
     compileOnly rootProject.supportDepends["recyclerview-v7"]
 }
+
+task makejar(type: Copy) {
+    from('build/intermediates/intermediate-jars/debug')
+    into('build/libs')
+    include('classes.jar')
+    rename('classes.jar', 'GeneralUtils_general_' + rootProject.android.versionCode + '.jar')
+}
