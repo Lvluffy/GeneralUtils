@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -51,6 +52,34 @@ public class AppUtils {
                 return info.processName;
         }
         return "";
+    }
+
+    /**
+     * 获取元数据-当前应用程序
+     *
+     * @param context
+     * @return
+     */
+    public Bundle getMetaData(Context context) {
+        return getMetaData(context, context.getPackageName());
+    }
+
+    /**
+     * 获取元数据-通过包名
+     *
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public Bundle getMetaData(Context context, String packageName) {
+        try {
+            return context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
