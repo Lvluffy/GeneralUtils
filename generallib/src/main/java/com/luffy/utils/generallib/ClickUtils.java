@@ -47,11 +47,11 @@ public class ClickUtils {
      * @return true:快速点击;false:非快速点击
      */
     public synchronized boolean isFastClick(long clickTime) {
-        long time = System.currentTimeMillis();
-        if (time - lastClickTime < clickTime) {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastClickTime < clickTime) {
             return true;
         }
-        lastClickTime = time;
+        lastClickTime = currentTime;
         return false;
     }
 }
