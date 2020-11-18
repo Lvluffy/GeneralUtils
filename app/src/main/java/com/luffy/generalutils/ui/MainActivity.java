@@ -69,21 +69,12 @@ public class MainActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick({R.id.item_1,
-            R.id.item_2,
-            R.id.item_3,
-            R.id.item_4,
-            R.id.item_5,
-            R.id.item_6,
-            R.id.item_7,
-            R.id.item_8
-    })
+    @OnClick({R.id.item_1, R.id.item_2, R.id.item_3, R.id.item_4, R.id.item_5, R.id.item_6, R.id.item_7, R.id.item_8})
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.item_1) {
             Bitmap bitmap = ScreenShotUtils.getInstance().getScreenBitmap(this);
             FileConversionUtils.getInstance().bitmap2File(bitmap, FileStorageUtils.getInstance().getExternalCachePath(this), "屏幕截屏.png");
-
         } else if (i == R.id.item_2) {
             Bitmap bitmap = ScreenShotUtils.getInstance().getWidgetBitmap(item2);
             FileConversionUtils.getInstance().bitmap2File(bitmap, FileStorageUtils.getInstance().getExternalCachePath(this), "区域截屏.png");
@@ -122,4 +113,5 @@ public class MainActivity extends BaseActivity {
             Log.d("ScreenUtils", "width = " + ints[0] + " height = " + ints[1] + " densityDpi = " + ints[2] + " density = " + ints[3]);
         }
     }
+
 }

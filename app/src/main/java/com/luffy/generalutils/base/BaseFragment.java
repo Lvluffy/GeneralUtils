@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.luffy.utils.generallib.LogUtils;
 
 public class BaseFragment extends Fragment {
 
@@ -17,67 +18,67 @@ public class BaseFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.v(TAG, "onAttach");
+        LogUtils.getInstance().logDebug(TAG, "onAttach");
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.v(TAG, "onCreate");
+        LogUtils.getInstance().logDebug(TAG, "onCreate");
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.v(TAG, "onCreateView");
+        LogUtils.getInstance().logDebug(TAG, "onCreateView");
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.v(TAG, "onActivityCreated");
+        LogUtils.getInstance().logDebug(TAG, "onActivityCreated");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.v(TAG, "onStart");
+        LogUtils.getInstance().logDebug(TAG, "onStart");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.v(TAG, "onResume");
+        LogUtils.getInstance().logDebug(TAG, "onResume");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.v(TAG, "onPause");
+        LogUtils.getInstance().logDebug(TAG, "onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.v(TAG, "onStop");
+        LogUtils.getInstance().logDebug(TAG, "onStop");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.v(TAG, "onDestroyView");
+        LogUtils.getInstance().logDebug(TAG, "onDestroyView");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.v(TAG, "onDestroy");
+        LogUtils.getInstance().logDebug(TAG, "onDestroy");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.v(TAG, "onDetach");
+        LogUtils.getInstance().logDebug(TAG, "onDetach");
     }
 }

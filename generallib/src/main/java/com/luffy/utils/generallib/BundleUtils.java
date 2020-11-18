@@ -2,7 +2,9 @@ package com.luffy.utils.generallib;
 
 import android.os.Bundle;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by lvlufei on 2020-08-10
@@ -23,28 +25,32 @@ public class BundleUtils {
         private static final BundleUtils instance = new BundleUtils();
     }
 
+    public String bundleToString(Bundle bundle) {
+        return bundleToMap(bundle).toString();
+    }
+
     /**
      * Bundle转String
      *
      * @param bundle
      * @return
      */
-    public String bundleToString(Bundle bundle) {
+    public Map bundleToMap(Bundle bundle) {
         if (bundle == null) {
             return null;
         }
-        StringBuilder stringBuilder = new StringBuilder();
+        Map<String, Object> map = new HashMap<>();
         Iterator<String> keys = bundle.keySet().iterator();
         while (keys.hasNext()) {
             String key = keys.next();
             Object value = bundle.get(key);
             if (value instanceof Bundle) {
-                stringBuilder.append(bundleToString((Bundle) value));
+                map.put(key, bundleToMap((Bundle) value));
             } else {
-                stringBuilder.append(key).append("=").append(value).append(",");
+                map.put(key, value);
             }
         }
-        return stringBuilder.toString();
+        return map;
     }
 
     /**

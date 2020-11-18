@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
+import com.luffy.utils.generallib.LogUtils;
 
 /**
  * Created by lvlufei on 2019/10/11
@@ -14,54 +15,54 @@ import android.util.Log;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    private String TAG = getClass().getSimpleName();
+    public String TAG = getClass().getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.v(TAG, "onCreate");
+        LogUtils.getInstance().logDebug(TAG, "onCreate");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.v(TAG, "onStart");
+        LogUtils.getInstance().logDebug(TAG, "onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.v(TAG, "onResume");
+        LogUtils.getInstance().logDebug(TAG, "onResume");
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Log.v(TAG, "onBackPressed");
+        LogUtils.getInstance().logDebug(TAG, "onBackPressed");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.v(TAG, "onPause");
+        LogUtils.getInstance().logDebug(TAG, "onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.v(TAG, "onStop");
+        LogUtils.getInstance().logDebug(TAG, "onStop");
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
-        Log.v(TAG, "onSaveInstanceState");
+        LogUtils.getInstance().logDebug(TAG, "onSaveInstanceState");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.v(TAG, "onDestroy");
+        LogUtils.getInstance().logDebug(TAG, "onDestroy");
     }
 
 }
