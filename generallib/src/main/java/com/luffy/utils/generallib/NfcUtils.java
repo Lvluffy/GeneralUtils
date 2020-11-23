@@ -65,7 +65,6 @@ public class NfcUtils {
             return;
         }
         try {
-            mNfcAdapter.getClass().getDeclaredMethods();
             Method method = mNfcAdapter.getClass().getDeclaredMethod("disable");
             method.setAccessible(true);
             method.invoke(mNfcAdapter);
@@ -87,7 +86,7 @@ public class NfcUtils {
         if (mContextRF.get() == null) {
             return false;
         }
-        if (mNfcAdapter != null && mNfcAdapter.isEnabled()) {
+        if (isSupportNfc() && mNfcAdapter.isEnabled()) {
             return true;
         }
         return false;
