@@ -2,6 +2,8 @@ package com.luffy.generalutils.ui;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import com.luffy.generalutils.R;
 import com.luffy.generalutils.base.BaseFragment;
 import com.luffy.utils.generallib.AppUtils;
+import com.luffy.utils.generallib.DeviceUtils;
 import com.luffy.utils.generallib.ValidUtils;
 
 import butterknife.BindView;
@@ -21,6 +24,8 @@ import butterknife.OnClick;
 
 public class AppFragment extends BaseFragment {
 
+    @BindView(R.id.txt_device_info)
+    TextView txtDeviceInfo;
     @BindView(R.id.edit)
     EditText edit;
     @BindView(R.id.txt_name)
@@ -45,6 +50,20 @@ public class AppFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_app, container, false);
         ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        StringBuilder sb = new StringBuilder();
+        sb.append("Imei:").append(DeviceUtils.getInstance().getImei(getContext())).append("\n");
+        sb.append("Imsi:").append(DeviceUtils.getInstance().getImsi(getContext())).append("\n");
+        sb.append("DeviceBrand:").append(DeviceUtils.getInstance().getDeviceBrand()).append("\n");
+        sb.append("MacAddress:").append(DeviceUtils.getInstance().getMacAddress()).append("\n");
+        sb.append("DeviceModel:").append(DeviceUtils.getInstance().getDeviceModel()).append("\n");
+        sb.append("DeviceSystemVersion:").append(DeviceUtils.getInstance().getDeviceSystemVersion()).append("\n");
+        sb.append("DeviceManufacturer:").append(DeviceUtils.getInstance().getDeviceManufacturer());
+        txtDeviceInfo.setText(sb.toString());
     }
 
     @OnClick({R.id.btn_get, R.id.btn_back})
