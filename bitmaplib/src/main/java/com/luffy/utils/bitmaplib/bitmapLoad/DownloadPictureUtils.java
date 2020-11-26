@@ -1,4 +1,4 @@
-package com.luffy.utils.bitmaplib;
+package com.luffy.utils.bitmaplib.bitmapLoad;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
