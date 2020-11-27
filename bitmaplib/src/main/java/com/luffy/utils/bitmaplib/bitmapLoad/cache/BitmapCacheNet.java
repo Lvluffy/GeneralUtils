@@ -1,27 +1,44 @@
-package com.luffy.utils.bitmaplib.bitmapLoad;
+package com.luffy.utils.bitmaplib.bitmapLoad.cache;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.widget.ImageView;
+
+import com.luffy.utils.bitmaplib.bitmapLoad.BitmapDownloadUtils;
 
 /**
  * Created by lvlufei on 2020-11-25
  *
  * @name 网络缓存
  */
-public class NetBitmapCache {
+public class BitmapCacheNet implements IBitmapCache {
 
-    private LocalBitmapCache mLocalCacheUtil;
-    private MemoryBitmapCache mMemoryCacheUtil;
+    private BitmapCacheLocal mBitmapCacheLocal;
+    private BitmapCacheMemory mBitmapCacheMemory;
 
-    public NetBitmapCache(LocalBitmapCache localCacheUtil, MemoryBitmapCache memoryCacheUtil) {
-        this.mLocalCacheUtil = localCacheUtil;
-        this.mMemoryCacheUtil = memoryCacheUtil;
+    public BitmapCacheNet(BitmapCacheLocal bitmapCacheLocal, BitmapCacheMemory bitmapCacheMemory) {
+        this.mBitmapCacheLocal = bitmapCacheLocal;
+        this.mBitmapCacheMemory = bitmapCacheMemory;
     }
 
     // 从网络加载图片
     public void getBitmapFromNet(ImageView imageView, String url) {
         new BitmapTask().execute(imageView, url);
+    }
+
+    @Override
+    public void setBitmapCache(String url, Bitmap bitmap) {
+
+    }
+
+    @Override
+    public Bitmap getBitmapCache(String url) {
+        return null;
+    }
+
+    @Override
+    public void clearBitmapCache() {
+
     }
 
     class BitmapTask extends AsyncTask<Object, Integer, Bitmap> {
@@ -45,7 +62,7 @@ public class NetBitmapCache {
             imageView = (ImageView) params[0];
             url = (String) params[1];
             imageView.setTag(url);
-            return DownloadPictureUtils.getInstance().download(url);
+            return BitmapDownloadUtils.getInstance().download(url);
         }
 
         /**
@@ -69,9 +86,9 @@ public class NetBitmapCache {
                 // 从网络加载图片
                 imageView.setImageBitmap(result);
                 // 写本地缓存
-                mLocalCacheUtil.setBitmapCache(url, result);
+                mBitmapCacheLocal.setBitmapCache(url, result);
                 //写内存缓存
-                mMemoryCacheUtil.setBitmapCache(url, result);
+                mBitmapCacheMemory.setBitmapCache(url, result);
             }
         }
     }

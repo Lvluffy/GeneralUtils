@@ -1,4 +1,4 @@
-package com.luffy.generalutils.ui;
+package com.luffy.generalutils.ui.security;
 
 import android.os.Bundle;
 import android.widget.TextView;

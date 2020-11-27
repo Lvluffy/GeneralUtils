@@ -184,6 +184,25 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/item_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/main_bitmap_load" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#f0f0f0" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

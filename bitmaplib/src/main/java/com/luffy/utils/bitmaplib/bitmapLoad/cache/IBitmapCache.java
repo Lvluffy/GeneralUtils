@@ -1,4 +1,4 @@
-package com.luffy.utils.bitmaplib.bitmapLoad;
+package com.luffy.utils.bitmaplib.bitmapLoad.cache;
 
 import android.graphics.Bitmap;
 

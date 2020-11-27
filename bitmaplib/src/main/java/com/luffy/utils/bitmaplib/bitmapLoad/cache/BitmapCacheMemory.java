@@ -1,4 +1,4 @@
-package com.luffy.utils.bitmaplib.bitmapLoad;
+package com.luffy.utils.bitmaplib.bitmapLoad.cache;
 
 import android.graphics.Bitmap;
 
@@ -10,7 +10,7 @@ import java.util.HashMap;
  *
  * @name 内存缓存
  */
-public class MemoryBitmapCache implements IBitmapCache {
+public class BitmapCacheMemory implements IBitmapCache {
 
     private HashMap<String, SoftReference<Bitmap>> hash;
 

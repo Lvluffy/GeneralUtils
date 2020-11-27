@@ -1,4 +1,4 @@
-package com.luffy.utils.bitmaplib.bitmapLoad;
+package com.luffy.utils.bitmaplib.bitmapLoad.cache;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,27 +9,27 @@ import android.widget.ImageView;
  *
  * @name 图片加载客户端
  */
-public class BitmapLoadClient {
+public class BitmapCacheClient {
 
-    private MemoryBitmapCache mMemoryBitmapCache;//内存缓存工具类
-    private LocalBitmapCache mLocalBitmapCache;//本地缓存工具类
-    private NetBitmapCache mNetBitmapCache;//网络缓存工具类
+    private BitmapCacheMemory mBitmapCacheMemory;//内存缓存工具类
+    private BitmapCacheLocal mBitmapCacheLocal;//本地缓存工具类
+    private BitmapCacheNet mBitmapCacheNet;//网络缓存工具类
 
-    private BitmapLoadClient(Context context) {
-        mMemoryBitmapCache = new MemoryBitmapCache();
-        mLocalBitmapCache = new LocalBitmapCache(context.getApplicationContext());
-        mNetBitmapCache = new NetBitmapCache(mLocalBitmapCache, mMemoryBitmapCache);
+    private BitmapCacheClient(Context context) {
+        mBitmapCacheMemory = new BitmapCacheMemory();
+        mBitmapCacheLocal = new BitmapCacheLocal(context.getApplicationContext());
+        mBitmapCacheNet = new BitmapCacheNet(mBitmapCacheLocal, mBitmapCacheMemory);
     }
 
-    public static BitmapLoadClient getInstance(Context context) {
+    public static BitmapCacheClient getInstance(Context context) {
         return new BitmapUtilsHolder(context).instance;
     }
 
     private static class BitmapUtilsHolder {
-        private static BitmapLoadClient instance;
+        private static BitmapCacheClient instance;
 
         public BitmapUtilsHolder(Context context) {
-            instance = new BitmapLoadClient(context);
+            instance = new BitmapCacheClient(context);
         }
     }
 
@@ -48,23 +48,23 @@ public class BitmapLoadClient {
 
         Bitmap bitmap;
         // 1,从内存加载
-        bitmap = mMemoryBitmapCache.getBitmapCache(url);
+        bitmap = mBitmapCacheMemory.getBitmapCache(url);
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
             return;
         }
 
         // 2,从本地加载
-        bitmap = mLocalBitmapCache.getBitmapCache(url);
+        bitmap = mBitmapCacheLocal.getBitmapCache(url);
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
             //写内存缓存
-            mMemoryBitmapCache.setBitmapCache(url, bitmap);
+            mBitmapCacheMemory.setBitmapCache(url, bitmap);
             return;
         }
 
         // 3,从网络加载
-        mNetBitmapCache.getBitmapFromNet(imageView, url);
+        mBitmapCacheNet.getBitmapFromNet(imageView, url);
 
     }
 }

@@ -1,4 +1,4 @@
-package com.luffy.utils.bitmaplib.bitmapLoad;
+package com.luffy.utils.bitmaplib.bitmapLoad.cache;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,11 +17,11 @@ import java.security.NoSuchAlgorithmException;
  *
  * @name 本地缓存
  */
-public class LocalBitmapCache implements IBitmapCache {
+public class BitmapCacheLocal implements IBitmapCache {
 
     private String cachePath;
 
-    public LocalBitmapCache(Context context) {
+    public BitmapCacheLocal(Context context) {
         cachePath = getExternalCachePath(context);
     }
 

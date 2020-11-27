@@ -1,4 +1,4 @@
-package com.luffy.generalutils.ui;
+package com.luffy.generalutils.ui.app;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;

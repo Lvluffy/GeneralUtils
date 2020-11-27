@@ -13,16 +13,16 @@ import java.net.URL;
  *
  * @name 下载图片-辅助工具
  */
-public class DownloadPictureUtils {
-    private DownloadPictureUtils() {
+public class BitmapDownloadUtils {
+    private BitmapDownloadUtils() {
     }
 
-    public static DownloadPictureUtils getInstance() {
+    public static BitmapDownloadUtils getInstance() {
         return DownloadPictureUtilsHolder.instance;
     }
 
     private static class DownloadPictureUtilsHolder {
-        private static final DownloadPictureUtils instance = new DownloadPictureUtils();
+        private static final BitmapDownloadUtils instance = new BitmapDownloadUtils();
     }
 
     /**
@@ -47,7 +47,9 @@ public class DownloadPictureUtils {
             e.printStackTrace();
         } finally {
             try {
-                inputStream.close();
+                if (inputStream != null) {
+                    inputStream.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

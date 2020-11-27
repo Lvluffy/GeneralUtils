@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.luffy.generalutils.R;
 import com.luffy.generalutils.base.BaseActivity;
+import com.luffy.generalutils.ui.app.AppActivity;
+import com.luffy.generalutils.ui.bitmapLoad.BitmapLoadActivity;
+import com.luffy.generalutils.ui.security.SecurityActivity;
 import com.luffy.utils.bitmaplib.IconColourUtils;
 import com.luffy.utils.filelib.FileConversionUtils;
 import com.luffy.utils.filelib.FileStorageUtils;
@@ -69,7 +72,15 @@ public class MainActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick({R.id.item_1, R.id.item_2, R.id.item_3, R.id.item_4, R.id.item_5, R.id.item_6, R.id.item_7, R.id.item_8})
+    @OnClick({R.id.item_1,
+            R.id.item_2,
+            R.id.item_3,
+            R.id.item_4,
+            R.id.item_5,
+            R.id.item_6,
+            R.id.item_7,
+            R.id.item_8,
+            R.id.item_9})
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.item_1) {
@@ -111,6 +122,8 @@ public class MainActivity extends BaseActivity {
 
             int[] ints = ScreenUtils.getInstance().getScreenWidthHeightDensity(this);
             Log.d("ScreenUtils", "width = " + ints[0] + " height = " + ints[1] + " densityDpi = " + ints[2] + " density = " + ints[3]);
+        } else if (i == R.id.item_9) {
+            IntentUtils.getInstance().startActivity(this, BitmapLoadActivity.class);
         }
     }
 
