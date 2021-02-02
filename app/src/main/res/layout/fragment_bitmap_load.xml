@@ -29,13 +29,39 @@
                 android:layout_height="40dp" />
 
             <TextView
-                android:id="@+id/btn_display"
+                android:id="@+id/btn_load_handler"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:background="@drawable/res_bg_normal_radius_ture_stroke_true_white_selector"
                 android:gravity="center"
-                android:text="三种显示加载" />
+                android:text="Handler" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/btn_load_async_task"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/res_bg_normal_radius_ture_stroke_true_white_selector"
+                android:gravity="center"
+                android:text="AsyncTask" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:id="@+id/btn_load_executor"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/res_bg_normal_radius_ture_stroke_true_white_selector"
+                android:gravity="center"
+                android:text="Executor" />
         </LinearLayout>
 
 

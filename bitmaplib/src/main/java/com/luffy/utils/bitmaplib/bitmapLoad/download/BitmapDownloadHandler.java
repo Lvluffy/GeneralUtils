@@ -1,44 +1,34 @@
-package com.luffy.utils.bitmaplib.bitmapLoad.display;
+package com.luffy.utils.bitmaplib.bitmapLoad.download;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ImageView;
 
-import com.luffy.utils.bitmaplib.bitmapLoad.BitmapDownloadUtils;
+import com.luffy.utils.bitmaplib.bitmapLoad.cache.BitmapCacheNet;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lvlufei on 2020-11-27
+ * Created by lvlufei on 2020-11-25
  *
- * @name 图片显示方式-Handler
+ * @name 网络缓存
  */
-public class BitmapDisplayHandler implements IBitmapDisplayMode {
+public class BitmapDownloadHandler extends BitmapCacheNet {
 
     private ImageHandler imageHandler = new ImageHandler();
 
-    private BitmapDisplayHandler() {
-
-    }
-
-    public static BitmapDisplayHandler getInstance() {
-        return LoadImageHandlerHolder.instance;
-    }
-
-    private static class LoadImageHandlerHolder {
-        private static final BitmapDisplayHandler instance = new BitmapDisplayHandler();
-    }
-
     @Override
-    public void display(final ImageView imageView, final String urlStr) {
+    public void download(final ImageView imageView, final String url) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     List<Object> obj = new ArrayList<>();
-                    Bitmap bitmap = BitmapDownloadUtils.getInstance().download(urlStr);
+                    Bitmap bitmap = BitmapDownloadUtils.getInstance().download(url);
+                    // 设置缓存
+                    setBitmapCache(url, bitmap);
                     obj.add(imageView);
                     obj.add(bitmap);
                     Message msg = new Message();

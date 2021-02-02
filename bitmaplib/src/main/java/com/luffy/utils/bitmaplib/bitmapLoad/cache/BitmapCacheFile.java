@@ -15,13 +15,13 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Created by lvlufei on 2020-11-25
  *
- * @name 本地缓存
+ * @name 文件缓存
  */
-public class BitmapCacheLocal implements IBitmapCache {
+public class BitmapCacheFile implements IBitmapCache {
 
     private String cachePath;
 
-    public BitmapCacheLocal(Context context) {
+    public BitmapCacheFile(Context context) {
         cachePath = getExternalCachePath(context);
     }
 
@@ -116,7 +116,7 @@ public class BitmapCacheLocal implements IBitmapCache {
      * @return storage/sdcard/Android/data/包名/cache
      */
     private String getExternalCachePath(Context context) {
-        return context.getExternalCacheDir().getPath();
+        return context.getExternalCacheDir().getPath() + File.separator + "image";
     }
 }
 

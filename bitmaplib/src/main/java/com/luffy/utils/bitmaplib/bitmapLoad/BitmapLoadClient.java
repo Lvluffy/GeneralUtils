@@ -1,35 +1,45 @@
-package com.luffy.utils.bitmaplib.bitmapLoad.cache;
+package com.luffy.utils.bitmaplib.bitmapLoad;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
+
+import com.luffy.utils.bitmaplib.bitmapLoad.cache.BitmapCacheFile;
+import com.luffy.utils.bitmaplib.bitmapLoad.cache.BitmapCacheMemory;
+import com.luffy.utils.bitmaplib.bitmapLoad.cache.BitmapCacheNet;
+import com.luffy.utils.bitmaplib.bitmapLoad.download.BitmapDownloadFactory;
+import com.luffy.utils.bitmaplib.bitmapLoad.download.BitmapDownloadMode;
 
 /**
  * Created by lvlufei on 2020-11-25
  *
  * @name 图片加载客户端
  */
-public class BitmapCacheClient {
+public class BitmapLoadClient {
 
-    private BitmapCacheMemory mBitmapCacheMemory;//内存缓存工具类
-    private BitmapCacheLocal mBitmapCacheLocal;//本地缓存工具类
-    private BitmapCacheNet mBitmapCacheNet;//网络缓存工具类
+    private BitmapCacheMemory mBitmapCacheMemory;//内存缓存
+    private BitmapCacheFile mBitmapCacheFile;//文件缓存
+    private BitmapCacheNet mBitmapCacheNet;//网络缓存
 
-    private BitmapCacheClient(Context context) {
+    private BitmapLoadClient(Context context) {
         mBitmapCacheMemory = new BitmapCacheMemory();
-        mBitmapCacheLocal = new BitmapCacheLocal(context.getApplicationContext());
-        mBitmapCacheNet = new BitmapCacheNet(mBitmapCacheLocal, mBitmapCacheMemory);
+        mBitmapCacheFile = new BitmapCacheFile(context.getApplicationContext());
+        mBitmapCacheNet = BitmapDownloadFactory.getInstance()
+                .setBitmapCacheMemory(mBitmapCacheMemory)
+                .setBitmapCacheFile(mBitmapCacheFile)
+                .setBitmapDownloadMode(BitmapDownloadMode.EXECUTOR)
+                .build();
     }
 
-    public static BitmapCacheClient getInstance(Context context) {
+    public static BitmapLoadClient getInstance(Context context) {
         return new BitmapUtilsHolder(context).instance;
     }
 
     private static class BitmapUtilsHolder {
-        private static BitmapCacheClient instance;
+        private static BitmapLoadClient instance;
 
         public BitmapUtilsHolder(Context context) {
-            instance = new BitmapCacheClient(context);
+            instance = new BitmapLoadClient(context);
         }
     }
 
@@ -55,7 +65,7 @@ public class BitmapCacheClient {
         }
 
         // 2,从本地加载
-        bitmap = mBitmapCacheLocal.getBitmapCache(url);
+        bitmap = mBitmapCacheFile.getBitmapCache(url);
         if (bitmap != null) {
             imageView.setImageBitmap(bitmap);
             //写内存缓存
@@ -64,7 +74,7 @@ public class BitmapCacheClient {
         }
 
         // 3,从网络加载
-        mBitmapCacheNet.getBitmapFromNet(imageView, url);
+        mBitmapCacheNet.download(imageView, url);
 
     }
 }
