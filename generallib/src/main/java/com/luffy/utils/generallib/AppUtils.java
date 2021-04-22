@@ -74,8 +74,6 @@ public class AppUtils {
     public Bundle getMetaData(Context context, String packageName) {
         try {
             return context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,7 +100,7 @@ public class AppUtils {
     public String getAppName(Context context, String packageName) {
         try {
             return context.getPackageManager().getApplicationLabel(context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA)).toString();
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -127,7 +125,7 @@ public class AppUtils {
     public Drawable getAppIcon(Context context, String packageName) {
         try {
             return context.getPackageManager().getApplicationIcon(context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA));
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -152,7 +150,7 @@ public class AppUtils {
     public String getAppVersionName(Context context, String packageName) {
         try {
             return context.getPackageManager().getPackageInfo(packageName, 0).versionName;
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -177,7 +175,7 @@ public class AppUtils {
     public int getAppVersionCode(Context context, String packageName) {
         try {
             return context.getPackageManager().getPackageInfo(packageName, 0).versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             return 0;
         }
     }
@@ -207,7 +205,7 @@ public class AppUtils {
             int size = (int) new File(dir).length();
             // 处理应用的大小
             return new BigDecimal(size / (1024 * 1024)).setScale(2, BigDecimal.ROUND_DOWN).toString() + "M";
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -233,7 +231,7 @@ public class AppUtils {
         Signature signature = null;
         try {
             signature = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0];
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         if (signature == null) {
@@ -293,7 +291,7 @@ public class AppUtils {
     public String getAppChannel(Context context, String packageName, String key) {
         try {
             return context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData.getString(key);
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
