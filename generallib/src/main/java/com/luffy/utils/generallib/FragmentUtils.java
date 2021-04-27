@@ -11,22 +11,12 @@ import android.support.annotation.RequiresApi;
  * @name 碎片-辅助工具
  */
 public class FragmentUtils {
-    private FragmentUtils() {
-    }
 
-    public static FragmentUtils getInstance() {
-        return FragmentUtilsHolder.instance;
-    }
-
-    private static class FragmentUtilsHolder {
-        private static final FragmentUtils instance = new FragmentUtils();
-    }
-
-    public void replaceFragment(android.app.Activity activity, android.app.Fragment target) {
+    public static void replaceFragment(android.app.Activity activity, android.app.Fragment target) {
         replaceFragment(activity, android.R.id.content, target);
     }
 
-    public void replaceFragment(android.app.Activity activity, int resId, android.app.Fragment target) {
+    public static void replaceFragment(android.app.Activity activity, int resId, android.app.Fragment target) {
         replaceFragment(activity, resId, target, null);
     }
 
@@ -38,7 +28,7 @@ public class FragmentUtils {
      * @param target        目标对象
      * @param fragmentExtra 参数接口传参
      */
-    public void replaceFragment(android.app.Activity activity, int resId, android.app.Fragment target, FragmentExtra fragmentExtra) {
+    public static void replaceFragment(android.app.Activity activity, int resId, android.app.Fragment target, FragmentExtra fragmentExtra) {
         if (activity == null) return;
         if (fragmentExtra != null) {
             target.setArguments(fragmentExtra.putExtra());
@@ -53,11 +43,11 @@ public class FragmentUtils {
         transaction.commitAllowingStateLoss();
     }
 
-    public void replaceFragment(android.support.v4.app.FragmentActivity activity, android.support.v4.app.Fragment target) {
+    public static void replaceFragment(android.support.v4.app.FragmentActivity activity, android.support.v4.app.Fragment target) {
         replaceFragment(activity, android.R.id.content, target);
     }
 
-    public void replaceFragment(android.support.v4.app.FragmentActivity activity, int resId, android.support.v4.app.Fragment target) {
+    public static void replaceFragment(android.support.v4.app.FragmentActivity activity, int resId, android.support.v4.app.Fragment target) {
         replaceFragment(activity, resId, target, null);
     }
 
@@ -69,7 +59,7 @@ public class FragmentUtils {
      * @param target        目标对象
      * @param fragmentExtra 参数接口传参
      */
-    public void replaceFragment(android.support.v4.app.FragmentActivity activity, int resId, android.support.v4.app.Fragment target, FragmentExtra fragmentExtra) {
+    public static void replaceFragment(android.support.v4.app.FragmentActivity activity, int resId, android.support.v4.app.Fragment target, FragmentExtra fragmentExtra) {
         if (activity == null) return;
         if (fragmentExtra != null) {
             target.setArguments(fragmentExtra.putExtra());
@@ -85,12 +75,12 @@ public class FragmentUtils {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public void replaceFragment(android.app.Fragment fragment, android.app.Fragment target) {
+    public static void replaceFragment(android.app.Fragment fragment, android.app.Fragment target) {
         replaceFragment(fragment, android.R.id.content, target);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public void replaceFragment(android.app.Fragment fragment, int resId, android.app.Fragment target) {
+    public static void replaceFragment(android.app.Fragment fragment, int resId, android.app.Fragment target) {
         replaceFragment(fragment, resId, target, null);
     }
 
@@ -103,7 +93,7 @@ public class FragmentUtils {
      * @param fragmentExtra 参数接口传参
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public void replaceFragment(android.app.Fragment fragment, int resId, android.app.Fragment target, FragmentExtra fragmentExtra) {
+    public static void replaceFragment(android.app.Fragment fragment, int resId, android.app.Fragment target, FragmentExtra fragmentExtra) {
         if (fragment == null) return;
         if (fragmentExtra != null) {
             target.setArguments(fragmentExtra.putExtra());
@@ -118,11 +108,11 @@ public class FragmentUtils {
         transaction.commitAllowingStateLoss();
     }
 
-    public void replaceFragment(android.support.v4.app.Fragment fragment, android.support.v4.app.Fragment target) {
+    public static void replaceFragment(android.support.v4.app.Fragment fragment, android.support.v4.app.Fragment target) {
         replaceFragment(fragment, android.R.id.content, target);
     }
 
-    public void replaceFragment(android.support.v4.app.Fragment fragment, int resId, android.support.v4.app.Fragment target) {
+    public static void replaceFragment(android.support.v4.app.Fragment fragment, int resId, android.support.v4.app.Fragment target) {
         replaceFragment(fragment, resId, target, null);
     }
 
@@ -134,7 +124,7 @@ public class FragmentUtils {
      * @param target        目标对象
      * @param fragmentExtra 参数接口传参
      */
-    public void replaceFragment(android.support.v4.app.Fragment fragment, int resId, android.support.v4.app.Fragment target, FragmentExtra fragmentExtra) {
+    public static void replaceFragment(android.support.v4.app.Fragment fragment, int resId, android.support.v4.app.Fragment target, FragmentExtra fragmentExtra) {
         if (fragment == null) return;
         if (fragmentExtra != null) {
             target.setArguments(fragmentExtra.putExtra());

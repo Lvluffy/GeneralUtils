@@ -12,17 +12,6 @@ import android.widget.ImageView;
  */
 public class PasswordShowUtils {
 
-    private PasswordShowUtils() {
-    }
-
-    public static PasswordShowUtils getInstance() {
-        return PasswordShowUtilsHolder.instance;
-    }
-
-    private static class PasswordShowUtilsHolder {
-        private static final PasswordShowUtils instance = new PasswordShowUtils();
-    }
-
     /**
      * 密码隐藏显示
      *
@@ -31,7 +20,7 @@ public class PasswordShowUtils {
      * @param showResourceId 显示资源ID
      * @param hintResourceId 隐藏资源ID
      */
-    public void passwordShowHint(ImageView imageView, EditText editText, int showResourceId, int hintResourceId, PasswordShowHintCallback passwordShowHintCallback) {
+    public static void passwordShowHint(ImageView imageView, EditText editText, int showResourceId, int hintResourceId, PasswordShowHintCallback passwordShowHintCallback) {
         if (passwordShowHintCallback.isShowPassword()) {
             /*显示密码*/
             showPassword(imageView, editText, showResourceId);
@@ -49,7 +38,7 @@ public class PasswordShowUtils {
      * @param editText       编辑框
      * @param showResourceId 显示资源ID
      */
-    public void showPassword(ImageView imageView, EditText editText, int showResourceId) {
+    public static void showPassword(ImageView imageView, EditText editText, int showResourceId) {
         imageView.setImageResource(showResourceId);
         editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         editText.setSelection(editText.getText().toString().length());
@@ -62,7 +51,7 @@ public class PasswordShowUtils {
      * @param editText       编辑框
      * @param hintResourceId 隐藏资源ID
      */
-    public void hintPassword(ImageView imageView, EditText editText, int hintResourceId) {
+    public static void hintPassword(ImageView imageView, EditText editText, int hintResourceId) {
         imageView.setImageResource(hintResourceId);
         editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
         editText.setSelection(editText.getText().toString().length());

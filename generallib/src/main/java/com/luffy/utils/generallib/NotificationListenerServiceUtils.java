@@ -20,24 +20,13 @@ import java.util.List;
  */
 public class NotificationListenerServiceUtils {
 
-    private NotificationListenerServiceUtils() {
-    }
-
-    public static NotificationListenerServiceUtils getInstance() {
-        return NotificationListenerServiceUtilsHolder.instance;
-    }
-
-    private static class NotificationListenerServiceUtilsHolder {
-        private static final NotificationListenerServiceUtils instance = new NotificationListenerServiceUtils();
-    }
-
     /**
      * 检测通知监听服务是否被授权
      *
      * @param context 上下文
      * @return 通知监听服务是否被授权
      */
-    public boolean isNotificationListenerEnabled(Context context) {
+    public static boolean isNotificationListenerEnabled(Context context) {
         String pkgName = context.getPackageName();
         final String flat = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
         if (!TextUtils.isEmpty(flat)) {
@@ -59,7 +48,7 @@ public class NotificationListenerServiceUtils {
      *
      * @param contex 上下文
      */
-    public void openNotificationListenerSettings(Context contex) {
+    public static void openNotificationListenerSettings(Context contex) {
         try {
             Intent intent;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
@@ -76,10 +65,10 @@ public class NotificationListenerServiceUtils {
     /**
      * 把应用的NotificationListenerService实现类disable再enable，即可触发系统rebing操作
      *
-     * @param context 上下文
+     * @param context                     上下文
      * @param notificationListenerService NotificationListenerService
      */
-    public void toggleNotificationListenerService(Context context, Class<? extends NotificationListenerService> notificationListenerService) {
+    public static void toggleNotificationListenerService(Context context, Class<? extends NotificationListenerService> notificationListenerService) {
         ComponentName thisComponent = new ComponentName(context, notificationListenerService);
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(thisComponent, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
@@ -89,10 +78,10 @@ public class NotificationListenerServiceUtils {
     /**
      * 确保运行
      *
-     * @param context 上下文
+     * @param context                     上下文
      * @param notificationListenerService NotificationListenerService
      */
-    public void ensureCollectorRunning(Context context, Class<? extends NotificationListenerService> notificationListenerService) {
+    public static void ensureCollectorRunning(Context context, Class<? extends NotificationListenerService> notificationListenerService) {
         ComponentName collectorComponent = new ComponentName(context, notificationListenerService);
         ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         boolean collectorRunning = false;

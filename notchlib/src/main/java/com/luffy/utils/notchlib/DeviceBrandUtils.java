@@ -9,23 +9,12 @@ import android.os.Build;
  */
 public class DeviceBrandUtils {
 
-    private DeviceBrandUtils() {
-    }
-
-    public static DeviceBrandUtils getInstance() {
-        return DeviceBrandUtilsHolder.instance;
-    }
-
-    private static class DeviceBrandUtilsHolder {
-        private static final DeviceBrandUtils instance = new DeviceBrandUtils();
-    }
-
     /**
      * 获取手机厂商
      *
      * @return 手机厂商
      */
-    public OSType getOSType() {
+    public static OSType getOSType() {
         String brand = Build.BRAND;
         if (brand.equalsIgnoreCase(Huawei.BRAND_1) || brand.equalsIgnoreCase(Huawei.BRAND_2)) {
             return OSType.Huawei;

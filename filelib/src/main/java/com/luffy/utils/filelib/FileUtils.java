@@ -18,23 +18,12 @@ import java.util.List;
  */
 public class FileUtils {
 
-    private FileUtils() {
-    }
-
-    public static FileUtils getInstance() {
-        return FileUtilsHolder.instance;
-    }
-
-    private static class FileUtilsHolder {
-        private static final FileUtils instance = new FileUtils();
-    }
-
     /**
      * 创建根缓存目录
      *
      * @return 目录
      */
-    public String createRootPath(Context context) {
+    public static String createRootPath(Context context) {
         String cacheRootPath = "";
         if (isSdCardAvailable()) {
             cacheRootPath = context.getExternalCacheDir().getPath();
@@ -49,7 +38,7 @@ public class FileUtils {
      *
      * @return SD卡权限是否可用
      */
-    public boolean isSdCardAvailable() {
+    public static boolean isSdCardAvailable() {
         return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
     }
 
@@ -59,7 +48,7 @@ public class FileUtils {
      * @param dirPath 目录路径
      * @return 创建失败返回""
      */
-    public String createDir(String dirPath) {
+    public static String createDir(String dirPath) {
         try {
             File file = new File(dirPath);
             if (file.getParentFile().exists()) {
@@ -81,7 +70,7 @@ public class FileUtils {
      * @param file 文件
      * @return 创建失败返回""
      */
-    public String createFile(File file) {
+    public static String createFile(File file) {
         try {
             if (file.getParentFile().exists()) {
                 file.createNewFile();
@@ -102,7 +91,7 @@ public class FileUtils {
      * @param file file
      * @return boolean 是否删除
      */
-    public boolean deleteFileOrDirectory(File file) {
+    public static boolean deleteFileOrDirectory(File file) {
         try {
             if (file != null && file.isFile()) {
                 return file.delete();
@@ -132,7 +121,7 @@ public class FileUtils {
      * @param content  内容
      * @param isAppend 是否追加
      */
-    public void writeFile(String filePath, String content, boolean isAppend) {
+    public static void writeFile(String filePath, String content, boolean isAppend) {
         try {
             FileOutputStream fout = new FileOutputStream(filePath, isAppend);
             byte[] bytes = content.getBytes();
@@ -149,7 +138,7 @@ public class FileUtils {
      * @param fileName 文件名称
      * @return 字符串
      */
-    public String getCharset(String fileName) {
+    public static String getCharset(String fileName) {
         BufferedInputStream bis = null;
         String charset = "GBK";
         byte[] first3Bytes = new byte[3];
@@ -220,7 +209,7 @@ public class FileUtils {
      * @param strPath 文件路径
      * @return 文件集合
      */
-    public List<File> getFileList(String strPath) {
+    public static List<File> getFileList(String strPath) {
         List<File> filelist = new ArrayList<>();
         File dir = new File(strPath);
         /*该文件目录下文件全部放入数组*/

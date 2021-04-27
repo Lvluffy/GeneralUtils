@@ -21,23 +21,12 @@ import java.util.UUID;
  */
 public class DeviceUtils {
 
-    private DeviceUtils() {
-    }
-
-    public static DeviceUtils getInstance() {
-        return DeviceUtilsHolder.instance;
-    }
-
-    private static class DeviceUtilsHolder {
-        private static final DeviceUtils instance = new DeviceUtils();
-    }
-
     /**
      * 获取手机厂商
      *
      * @return 手机厂商
      */
-    public synchronized String getDeviceManufacturer() {
+    public static synchronized String getDeviceManufacturer() {
         return Build.MANUFACTURER;
     }
 
@@ -46,7 +35,7 @@ public class DeviceUtils {
      *
      * @return 手机品牌
      */
-    public synchronized String getDeviceBrand() {
+    public static synchronized String getDeviceBrand() {
         return Build.BRAND;
     }
 
@@ -55,7 +44,7 @@ public class DeviceUtils {
      *
      * @return 手机型号
      */
-    public synchronized String getDeviceModel() {
+    public static synchronized String getDeviceModel() {
         return Build.MODEL;
     }
 
@@ -64,7 +53,7 @@ public class DeviceUtils {
      *
      * @return 手机系统版本
      */
-    public synchronized String getDeviceSystemVersion() {
+    public static synchronized String getDeviceSystemVersion() {
         return Build.VERSION.RELEASE;
     }
 
@@ -75,7 +64,7 @@ public class DeviceUtils {
      * @return IMSI
      */
     @SuppressLint({"MissingPermission", "HardwareIds"})
-    public synchronized String getImsi(Context context) {
+    public static synchronized String getImsi(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return mTelephonyManager != null ? mTelephonyManager.getSubscriberId() : null;
     }
@@ -87,7 +76,7 @@ public class DeviceUtils {
      * @return IMEI
      */
     @SuppressLint({"MissingPermission", "HardwareIds"})
-    public synchronized String getImei(Context context) {
+    public static synchronized String getImei(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         return mTelephonyManager != null ? mTelephonyManager.getDeviceId() : null;
     }
@@ -99,7 +88,7 @@ public class DeviceUtils {
      * @return UUID
      */
     @SuppressLint({"MissingPermission"})
-    public synchronized String getUUID(Context context) {
+    public static synchronized String getUUID(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (mTelephonyManager != null) {
             @SuppressLint("HardwareIds") final String tmDevice = String.format("%s", mTelephonyManager.getDeviceId());
@@ -116,7 +105,7 @@ public class DeviceUtils {
      *
      * @return MAC地址
      */
-    public synchronized String getMacAddress() {
+    public static synchronized String getMacAddress() {
         try {
             return loadFileAsString("/sys/class/net/wlan0/address").toUpperCase().substring(0, 17);
         } catch (IOException e) {
@@ -125,7 +114,7 @@ public class DeviceUtils {
         }
     }
 
-    private synchronized String loadFileAsString(String filePath) throws IOException {
+    private static synchronized String loadFileAsString(String filePath) throws IOException {
         StringBuilder fileData = new StringBuilder(1000);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         char[] buf = new char[1024];
@@ -143,7 +132,7 @@ public class DeviceUtils {
      *
      * @return 本地IP
      */
-    public synchronized String getLocalIpAddress() {
+    public static synchronized String getLocalIpAddress() {
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
                 NetworkInterface intf = en.nextElement();

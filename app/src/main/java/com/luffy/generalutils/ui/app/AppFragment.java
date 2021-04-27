@@ -56,13 +56,13 @@ public class AppFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         StringBuilder sb = new StringBuilder();
-        sb.append("Imei:").append(DeviceUtils.getInstance().getImei(getContext())).append("\n");
-        sb.append("Imsi:").append(DeviceUtils.getInstance().getImsi(getContext())).append("\n");
-        sb.append("DeviceBrand:").append(DeviceUtils.getInstance().getDeviceBrand()).append("\n");
-        sb.append("MacAddress:").append(DeviceUtils.getInstance().getMacAddress()).append("\n");
-        sb.append("DeviceModel:").append(DeviceUtils.getInstance().getDeviceModel()).append("\n");
-        sb.append("DeviceSystemVersion:").append(DeviceUtils.getInstance().getDeviceSystemVersion()).append("\n");
-        sb.append("DeviceManufacturer:").append(DeviceUtils.getInstance().getDeviceManufacturer());
+        sb.append("Imei:").append(DeviceUtils.getImei(getContext())).append("\n");
+        sb.append("Imsi:").append(DeviceUtils.getImsi(getContext())).append("\n");
+        sb.append("DeviceBrand:").append(DeviceUtils.getDeviceBrand()).append("\n");
+        sb.append("MacAddress:").append(DeviceUtils.getMacAddress()).append("\n");
+        sb.append("DeviceModel:").append(DeviceUtils.getDeviceModel()).append("\n");
+        sb.append("DeviceSystemVersion:").append(DeviceUtils.getDeviceSystemVersion()).append("\n");
+        sb.append("DeviceManufacturer:").append(DeviceUtils.getDeviceManufacturer());
         txtDeviceInfo.setText(sb.toString());
     }
 
@@ -70,19 +70,19 @@ public class AppFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_get:
-                if (!ValidUtils.getInstance().isValid(edit.getText().toString())) {
+                if (!ValidUtils.isValid(edit.getText().toString())) {
                     Toast.makeText(getActivity(), "请输入包名", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 /*获取信息*/
-                String appName = AppUtils.getInstance().getAppName(getActivity(), edit.getText().toString());
-                Drawable appIcon = AppUtils.getInstance().getAppIcon(getActivity(), edit.getText().toString());
-                String appVersionName = AppUtils.getInstance().getAppVersionName(getActivity(), edit.getText().toString());
-                int appVersionCode = AppUtils.getInstance().getAppVersionCode(getActivity(), edit.getText().toString());
-                String appSize = AppUtils.getInstance().getAppSize(getActivity(), edit.getText().toString());
-                String appSign = AppUtils.getInstance().getAppSign(getActivity(), edit.getText().toString());
-                String appSignMD5 = AppUtils.getInstance().getAppSignMD5(getActivity(), edit.getText().toString());
-                String appChannel = AppUtils.getInstance().getAppChannel(getActivity(), edit.getText().toString(), "BaiduMobAd_CHANNEL");
+                String appName = AppUtils.getAppName(getActivity(), edit.getText().toString());
+                Drawable appIcon = AppUtils.getAppIcon(getActivity(), edit.getText().toString());
+                String appVersionName = AppUtils.getAppVersionName(getActivity(), edit.getText().toString());
+                int appVersionCode = AppUtils.getAppVersionCode(getActivity(), edit.getText().toString());
+                String appSize = AppUtils.getAppSize(getActivity(), edit.getText().toString());
+                String appSign = AppUtils.getAppSign(getActivity(), edit.getText().toString());
+                String appSignMD5 = AppUtils.getAppSignMD5(getActivity(), edit.getText().toString());
+                String appChannel = AppUtils.getAppChannel(getActivity(), edit.getText().toString(), "BaiduMobAd_CHANNEL");
 
                 /*绑定信息*/
                 txtName.setText(appName);

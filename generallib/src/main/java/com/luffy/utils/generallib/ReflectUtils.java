@@ -15,20 +15,9 @@ import java.lang.reflect.Proxy;
  */
 public class ReflectUtils {
 
-    private String TAG = getClass().getSimpleName();
+    private static final String TAG = "ReflectUtils";
 
-    private ReflectUtils() {
-    }
-
-    public static ReflectUtils getInstance() {
-        return ReflectUtilsHolder.instance;
-    }
-
-    private static class ReflectUtilsHolder {
-        private static final ReflectUtils instance = new ReflectUtils();
-    }
-
-    public Object invokeMethod(Object target, String method, Class<?>[] parameterTypes, Object... values)
+    public static Object invokeMethod(Object target, String method, Class<?>[] parameterTypes, Object... values)
             throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Class<? extends Object> clazz = target.getClass();
         Method declaredMethod = clazz.getDeclaredMethod(method, parameterTypes);
@@ -36,7 +25,7 @@ public class ReflectUtils {
         return declaredMethod.invoke(target, values);
     }
 
-    public Class<?> getClassFromName(String className) {
+    public static Class<?> getClassFromName(String className) {
         Class<?> clazz = null;
         try {
             clazz = Class.forName(className);
@@ -46,7 +35,7 @@ public class ReflectUtils {
         return clazz;
     }
 
-    public Object newInstance(String className, Class<?>[] parameterTypes, Object... values) {
+    public static Object newInstance(String className, Class<?>[] parameterTypes, Object... values) {
         Object instance = null;
         Class<?> clazz = getClassFromName(className);
         if (clazz != null) {
@@ -55,7 +44,7 @@ public class ReflectUtils {
         return instance;
     }
 
-    public Object newInstance(Class<?> clazz, Class<?>[] parameterTypes, Object... values) {
+    public static Object newInstance(Class<?> clazz, Class<?>[] parameterTypes, Object... values) {
         Object instance = null;
         try {
             Constructor constructor = clazz.getConstructor(parameterTypes);
@@ -66,7 +55,7 @@ public class ReflectUtils {
         return instance;
     }
 
-    public Object proxyCallBack(ClassLoader loader, String callBackName, InvocationHandler invocationHandler) {
+    public static Object proxyCallBack(ClassLoader loader, String callBackName, InvocationHandler invocationHandler) {
         return Proxy.newProxyInstance(loader, new Class[]{getClassFromName(callBackName)}, invocationHandler);
     }
 }

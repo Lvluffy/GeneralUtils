@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            return DoubleClickExitUtils.getInstance().exit(this, null);
+            return DoubleClickExitUtils.exit(this, null);
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -84,27 +84,27 @@ public class MainActivity extends BaseActivity {
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.item_1) {
-            Bitmap bitmap = ScreenShotUtils.getInstance().getScreenBitmap(this);
-            FileConversionUtils.getInstance().bitmap2File(bitmap, FileStorageUtils.getInstance().getExternalCachePath(this), "屏幕截屏.png");
+            Bitmap bitmap = ScreenShotUtils.getScreenBitmap(this);
+            FileConversionUtils.bitmap2File(bitmap, FileStorageUtils.getExternalCachePath(this), "屏幕截屏.png");
         } else if (i == R.id.item_2) {
-            Bitmap bitmap = ScreenShotUtils.getInstance().getWidgetBitmap(item2);
-            FileConversionUtils.getInstance().bitmap2File(bitmap, FileStorageUtils.getInstance().getExternalCachePath(this), "区域截屏.png");
+            Bitmap bitmap = ScreenShotUtils.getWidgetBitmap(item2);
+            FileConversionUtils.bitmap2File(bitmap, FileStorageUtils.getExternalCachePath(this), "区域截屏.png");
 
         } else if (i == R.id.item_3) {
-            Bitmap bitmap = ScreenShotUtils.getInstance().getScrollViewBitmap(scrollView);
-            FileConversionUtils.getInstance().bitmap2File(bitmap, FileStorageUtils.getInstance().getExternalCachePath(this), "ScrollView截屏.png");
+            Bitmap bitmap = ScreenShotUtils.getScrollViewBitmap(scrollView);
+            FileConversionUtils.bitmap2File(bitmap, FileStorageUtils.getExternalCachePath(this), "ScrollView截屏.png");
 
         } else if (i == R.id.item_4) {
-            IconColourUtils.getInstance().setImageViewColor(imageView4, R.color.colorAccent);
+            IconColourUtils.setImageViewColor(imageView4, R.color.colorAccent);
 
         } else if (i == R.id.item_5) {
-            Toast.makeText(this, MoneyFormatUtils.getInstance().doubleToStringRoundingNo(0.166), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, MoneyFormatUtils.doubleToStringRoundingNo(0.166), Toast.LENGTH_SHORT).show();
 
         } else if (i == R.id.item_6) {
-            IntentUtils.getInstance().startActivity(this, AppActivity.class);
+            IntentUtils.startActivity(this, AppActivity.class);
 
         } else if (i == R.id.item_7) {
-            PermissionUtils.getInstance().meanWhileApplyMultiPermission(this, new PermissionUtils.MeanWhileApplyPermissionCallBack() {
+            PermissionUtils.meanWhileApplyMultiPermission(this, new PermissionUtils.MeanWhileApplyPermissionCallBack() {
                 @Override
                 public void onSucceed() {
                     Location location = LocationService.getInstance(MainActivity.this).getLastLocation();
@@ -118,12 +118,12 @@ public class MainActivity extends BaseActivity {
                 }
             }, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION);
         } else if (i == R.id.item_8) {
-            IntentUtils.getInstance().startActivity(this, SecurityActivity.class);
+            IntentUtils.startActivity(this, SecurityActivity.class);
 
-            int[] ints = ScreenUtils.getInstance().getScreenWidthHeightDensity(this);
+            int[] ints = ScreenUtils.getScreenWidthHeightDensity(this);
             Log.d("ScreenUtils", "width = " + ints[0] + " height = " + ints[1] + " densityDpi = " + ints[2] + " density = " + ints[3]);
         } else if (i == R.id.item_9) {
-            IntentUtils.getInstance().startActivity(this, BitmapLoadActivity.class);
+            IntentUtils.startActivity(this, BitmapLoadActivity.class);
         }
     }
 

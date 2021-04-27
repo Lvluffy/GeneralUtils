@@ -14,24 +14,13 @@ import java.io.File;
  */
 public class MemoryUtils {
 
-    private MemoryUtils() {
-    }
-
-    public static MemoryUtils getInstance() {
-        return MemoryUtilsHolder.instance;
-    }
-
-    private static class MemoryUtilsHolder {
-        private static final MemoryUtils instance = new MemoryUtils();
-    }
-
     /**
      * 获得SD卡总大小
      *
      * @param context 上下文
      * @return SD卡总大小
      */
-    public String getSDTotalSize(Context context) {
+    public static String getSDTotalSize(Context context) {
         File path = Environment.getExternalStorageDirectory();
         StatFs stat = new StatFs(path.getPath());
         long blockSize = 0;
@@ -55,7 +44,7 @@ public class MemoryUtils {
      * @param context 上下文
      * @return sd卡剩余容量
      */
-    public String getSDAvailableSize(Context context) {
+    public static String getSDAvailableSize(Context context) {
         File path = Environment.getExternalStorageDirectory();
         StatFs stat = new StatFs(path.getPath());
         long blockSize = 0;
@@ -79,7 +68,7 @@ public class MemoryUtils {
      * @param context 上下文
      * @return 机身内存总大小
      */
-    public String getRomTotalSize(Context context) {
+    public static String getRomTotalSize(Context context) {
         File path = Environment.getDataDirectory();
         StatFs stat = new StatFs(path.getPath());
         long blockSize = 0;
@@ -103,7 +92,7 @@ public class MemoryUtils {
      * @param context 上下文
      * @return 机身可用内存
      */
-    public String getRomAvailableSize(Context context) {
+    public static String getRomAvailableSize(Context context) {
         File path = Environment.getDataDirectory();
         StatFs stat = new StatFs(path.getPath());
         long blockSize = 0;

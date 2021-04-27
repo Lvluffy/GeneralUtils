@@ -21,24 +21,13 @@ import java.lang.reflect.Method;
  * @name 屏幕-辅助工具
  */
 public class ScreenUtils {
-    private ScreenUtils() {
-    }
-
-    public static ScreenUtils getInstance() {
-        return ScreenUtilsHolder.instance;
-    }
-
-    private static class ScreenUtilsHolder {
-        private static final ScreenUtils instance = new ScreenUtils();
-    }
-
     /**
      * 获取屏幕宽度、高度、分辨率
      *
      * @param context 上下文
      * @return [0]=宽度;[1]=高度;[2]=分辨率;[3]=屏幕密度
      */
-    public int[] getScreenWidthHeightDensity(Context context) {
+    public static int[] getScreenWidthHeightDensity(Context context) {
         WindowManager mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics mDisplayMetrics = new DisplayMetrics();
         mWindowManager.getDefaultDisplay().getMetrics(mDisplayMetrics);
@@ -56,7 +45,7 @@ public class ScreenUtils {
      * @param context 上下文
      * @return navigationBar的高度
      */
-    public int getNavigationBarHeight(Context context) {
+    public static int getNavigationBarHeight(Context context) {
         return getDimensionPixel(context, "navigation_bar_height");
     }
 
@@ -66,7 +55,7 @@ public class ScreenUtils {
      * @param context 上下文
      * @return statusBar的高度
      */
-    public int getStatusBarHeight(Context context) {
+    public static int getStatusBarHeight(Context context) {
         return getDimensionPixel(context, "status_bar_height");
     }
 
@@ -77,7 +66,7 @@ public class ScreenUtils {
      * @param navigation_bar_height navigationBar的高度
      * @return imension像素
      */
-    private int getDimensionPixel(Context context, String navigation_bar_height) {
+    private static int getDimensionPixel(Context context, String navigation_bar_height) {
         int result = 0;
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier(navigation_bar_height, "dimen", "android");
@@ -93,7 +82,7 @@ public class ScreenUtils {
      * @param context 上下文
      * @return 虚拟键盘的高度
      */
-    public int getVirtualKeyboardHeight(Context context) {
+    public static int getVirtualKeyboardHeight(Context context) {
         int vh = 0;
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
@@ -117,7 +106,7 @@ public class ScreenUtils {
      * @param mActivity    Activity
      * @param isFullScreen 是否显示全屏
      */
-    public void switchFullScreen(Activity mActivity, boolean isFullScreen) {
+    public static void switchFullScreen(Activity mActivity, boolean isFullScreen) {
         if (isFullScreen) {
             WindowManager.LayoutParams params = mActivity.getWindow().getAttributes();
             params.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
@@ -136,7 +125,7 @@ public class ScreenUtils {
      *
      * @param mActivity Activity
      */
-    public void hideStatusBar(Activity mActivity) {
+    public static void hideStatusBar(Activity mActivity) {
         WindowManager.LayoutParams attrs = mActivity.getWindow().getAttributes();
         attrs.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
         mActivity.getWindow().setAttributes(attrs);
@@ -147,7 +136,7 @@ public class ScreenUtils {
      *
      * @param mActivity Activity
      */
-    public void showStatusBar(Activity mActivity) {
+    public static void showStatusBar(Activity mActivity) {
         WindowManager.LayoutParams attrs = mActivity.getWindow().getAttributes();
         attrs.flags &= ~WindowManager.LayoutParams.FLAG_FULLSCREEN;
         mActivity.getWindow().setAttributes(attrs);
@@ -160,7 +149,7 @@ public class ScreenUtils {
      * @return 是否存在NavigationBarø
      */
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public boolean hasNavigationBar(Activity mActivity) {
+    public static boolean hasNavigationBar(Activity mActivity) {
         boolean show;
         Display display = mActivity.getWindow().getWindowManager().getDefaultDisplay();
         Point point = new Point();

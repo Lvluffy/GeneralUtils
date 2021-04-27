@@ -15,18 +15,7 @@ import android.widget.FrameLayout;
  */
 public class KeyBoardUtils {
 
-    int usableHeightPrevious;//可用高度之前
-
-    private KeyBoardUtils() {
-    }
-
-    public static KeyBoardUtils getInstance() {
-        return KeyBoardUtilsHolder.instance;
-    }
-
-    private static class KeyBoardUtilsHolder {
-        private static final KeyBoardUtils instance = new KeyBoardUtils();
-    }
+    private static int usableHeightPrevious;//可用高度之前
 
     /**
      * 打开软键盘
@@ -34,7 +23,7 @@ public class KeyBoardUtils {
      * @param context 上下文
      * @param view    View
      */
-    public void openKeyBoard(Context context, View view) {
+    public static void openKeyBoard(Context context, View view) {
         InputMethodManager mInputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.showSoftInput(view, InputMethodManager.RESULT_SHOWN);
         mInputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -46,7 +35,7 @@ public class KeyBoardUtils {
      * @param context 上下文
      * @param view    View
      */
-    public void closeKeyBoard(Context context, View view) {
+    public static void closeKeyBoard(Context context, View view) {
         InputMethodManager mInputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
@@ -58,7 +47,7 @@ public class KeyBoardUtils {
      * @param rootView    根布局
      * @param visibleView 可视布局
      */
-    public void controlKeyboardLayout(final Context context, final View rootView, final View visibleView) {
+    public static void controlKeyboardLayout(final Context context, final View rootView, final View visibleView) {
         rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -68,7 +57,7 @@ public class KeyBoardUtils {
                 //获取root在窗体的不可视区域高度(被其他View遮挡的区域高度)
                 int rootInVisibleHeigh = rootView.getRootView().getHeight() - rect.bottom;
                 //若不可视区域高度大于100，则键盘显示
-                if (rootInVisibleHeigh > ScreenUtils.getInstance().getVirtualKeyboardHeight(context)) {
+                if (rootInVisibleHeigh > ScreenUtils.getVirtualKeyboardHeight(context)) {
                     int[] location = new int[2];
                     //获取editLayout在窗体的坐标
                     visibleView.getLocationInWindow(location);
@@ -89,7 +78,7 @@ public class KeyBoardUtils {
      * @param activity Activity
      * @param listener 回调
      */
-    public void keyboardStateObserver(Activity activity, final OnKeyboardVisibilityListener listener) {
+    public static void keyboardStateObserver(Activity activity, final OnKeyboardVisibilityListener listener) {
         final FrameLayout content = activity.findViewById(android.R.id.content);
         final View contentView = content.getChildAt(0);
         contentView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -113,14 +102,13 @@ public class KeyBoardUtils {
         });
     }
 
-
     /**
      * 计算可用高度
      *
      * @param contentView 内容视图
      * @return 可用高度
      */
-    private int computeUsableHeight(View contentView) {
+    private static int computeUsableHeight(View contentView) {
         Rect r = new Rect();
         contentView.getWindowVisibleDisplayFrame(r);
         return (r.bottom - r.top);// 全屏模式下： return r.bottom

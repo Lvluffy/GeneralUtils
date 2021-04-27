@@ -10,25 +10,14 @@ import java.util.Date;
  */
 public class IdCardUtils {
 
-    private IdCardUtils() {
-    }
-
-    public static IdCardUtils getInstance() {
-        return IdCardUtilsHolder.instance;
-    }
-
-    private static class IdCardUtilsHolder {
-        private static final IdCardUtils instance = new IdCardUtils();
-    }
-
     /**
      * 是否成年
      *
      * @param idCard 身份证号
      * @return 是否成年
      */
-    public boolean isGrownUp(String idCard) {
-        if (!ValidUtils.getInstance().isValid(idCard)) {
+    public static boolean isGrownUp(String idCard) {
+        if (!ValidUtils.isValid(idCard)) {
             return false;
         }
         String today = new SimpleDateFormat("yyyyMMdd").format(new Date());

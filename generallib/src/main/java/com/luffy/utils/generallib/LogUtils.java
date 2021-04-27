@@ -8,106 +8,105 @@ import android.util.Log;
  * @name 日志-辅助工具
  */
 public class LogUtils {
-    public static final String LOG_TAG = LogUtils.class.getSimpleName();
+    public static final String LOG_TAG = "LogUtils";
     private static boolean DEBUG;
 
-    private LogUtils() {
-    }
-
-    public static LogUtils getInstance() {
-        return LogUtilsHolder.instance;
-    }
-
-    private static class LogUtilsHolder {
-        private static final LogUtils instance = new LogUtils();
-    }
-
-    public void init(boolean isDebug) {
+    public static void init(boolean isDebug) {
         DEBUG = isDebug;
     }
 
     /**
      * @param log 日志
      */
-    public void logVerbose(String log) {
-        if (DEBUG)
+    public static void logVerbose(String log) {
+        if (DEBUG) {
             Log.v(LOG_TAG, log);
+        }
     }
 
     /**
      * @param tag 标签
      * @param log 日志
      */
-    public void logVerbose(String tag, String log) {
-        if (DEBUG)
+    public static void logVerbose(String tag, String log) {
+        if (DEBUG) {
             Log.v(tag, log);
+        }
     }
 
     /**
      * @param log 日志
      */
-    public void logDebug(String log) {
-        if (DEBUG)
+    public static void logDebug(String log) {
+        if (DEBUG) {
             Log.d(LOG_TAG, log);
+        }
     }
 
     /**
      * @param tag 标签
      * @param log 日志
      */
-    public void logDebug(String tag, String log) {
-        if (DEBUG)
+    public static void logDebug(String tag, String log) {
+        if (DEBUG) {
             Log.d(tag, log);
+        }
     }
 
     /**
      * @param log 日志
      */
-    public void logError(String log) {
-        if (DEBUG)
+    public static void logError(String log) {
+        if (DEBUG) {
             Log.e(LOG_TAG, log);
+        }
     }
 
     /**
      * @param tag 标签
      * @param log 日志
      */
-    public void logError(String tag, String log) {
-        if (DEBUG)
+    public static void logError(String tag, String log) {
+        if (DEBUG) {
             Log.e(tag, log);
+        }
     }
 
     /**
      * @param log 日志
      */
-    public void logInfo(String log) {
-        if (DEBUG)
+    public static void logInfo(String log) {
+        if (DEBUG) {
             Log.i(LOG_TAG, log);
+        }
     }
 
     /**
      * @param tag 标签
      * @param log 日志
      */
-    public void logInfo(String tag, String log) {
-        if (DEBUG)
+    public static void logInfo(String tag, String log) {
+        if (DEBUG) {
             Log.i(tag, log);
+        }
     }
 
     /**
      * @param log 日志
      */
-    public void logWarn(String log) {
-        if (DEBUG)
+    public static void logWarn(String log) {
+        if (DEBUG) {
             Log.v(LOG_TAG, log);
+        }
     }
 
     /**
      * @param tag 标签
      * @param log 日志
      */
-    public void logWarn(String tag, String log) {
-        if (DEBUG)
+    public static void logWarn(String tag, String log) {
+        if (DEBUG) {
             Log.w(tag, log);
+        }
     }
 }

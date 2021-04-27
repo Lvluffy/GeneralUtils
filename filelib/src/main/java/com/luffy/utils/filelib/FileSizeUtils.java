@@ -10,24 +10,13 @@ import java.text.DecimalFormat;
  */
 public class FileSizeUtils {
 
-    private FileSizeUtils() {
-    }
-
-    public static FileSizeUtils getInstance() {
-        return FileSizeUtilsHolder.instance;
-    }
-
-    private static class FileSizeUtilsHolder {
-        private static final FileSizeUtils instance = new FileSizeUtils();
-    }
-
     /**
      * 转换指定文件夹或文件大小
      *
      * @param filePath 文件路径
      * @return 文件大小
      */
-    public String getFormatFileSize(String filePath) {
+    public static String getFormatFileSize(String filePath) {
         File file = new File(filePath);
         long blockSize = 0;
         try {
@@ -49,7 +38,7 @@ public class FileSizeUtils {
      * @return 文件大小
      * @throws Exception 异常
      */
-    public long getFileSizes(File file) throws Exception {
+    public static long getFileSizes(File file) throws Exception {
         long size = 0;
         if (file.exists()) {
             File files[] = file.listFiles();
@@ -71,7 +60,7 @@ public class FileSizeUtils {
      * @return 文件大小
      * @throws Exception 异常
      */
-    public long getFileSize(File file) throws Exception {
+    public static long getFileSize(File file) throws Exception {
         return file.exists() ? file.length() : 0;
     }
 
@@ -80,7 +69,7 @@ public class FileSizeUtils {
      *
      * @param fileSize 文件大小
      */
-    public String FormatFileSize(long fileSize) {
+    public static String FormatFileSize(long fileSize) {
         DecimalFormat df = new DecimalFormat("#.00");
         String fileSizeString = "";
         String wrongSize = "0B";
@@ -105,7 +94,7 @@ public class FileSizeUtils {
      * @param file 文件
      * @return 是否删除
      */
-    public boolean deleteFile(File file) {
+    public static boolean deleteFile(File file) {
         if (file != null && file.isDirectory()) {
             String[] children = file.list();
             for (String aChildren : children) {

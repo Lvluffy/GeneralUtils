@@ -13,24 +13,13 @@ import android.view.WindowManager;
  */
 public class SystemBrightUtils {
 
-    private SystemBrightUtils() {
-    }
-
-    public static SystemBrightUtils getInstance() {
-        return SystemBrightUtilsHolder.instance;
-    }
-
-    private static class SystemBrightUtilsHolder {
-        private static final SystemBrightUtils instance = new SystemBrightUtils();
-    }
-
     /**
      * 判断是否开启了自动亮度调节
      *
      * @param activity Activity
      * @return 是否开启了自动亮度调节
      */
-    public boolean isAutoBrightness(Activity activity) {
+    public static boolean isAutoBrightness(Activity activity) {
         boolean autoBrightness = false;
         ContentResolver contentResolver = activity.getContentResolver();
         try {
@@ -47,7 +36,7 @@ public class SystemBrightUtils {
      * @param activity Activity
      * @return 当前系统亮度值
      */
-    public int getBrightness(Activity activity) {
+    public static int getBrightness(Activity activity) {
         int brightValue = 0;
         ContentResolver contentResolver = activity.getContentResolver();
         try {
@@ -59,14 +48,14 @@ public class SystemBrightUtils {
     }
 
     // 改变屏幕亮度
-    public void setBrightness(Activity activity, int brightValue) {
+    public static void setBrightness(Activity activity, int brightValue) {
         WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
         lp.screenBrightness = (brightValue <= 0 ? 0f : brightValue / 255f);
         activity.getWindow().setAttributes(lp);
     }
 
     // 开启亮度自动亮度模式
-    public void startAutoBrightness(Activity activity) {
+    public static void startAutoBrightness(Activity activity) {
         Settings.System.putInt(activity.getContentResolver(),
                 Settings.System.SCREEN_BRIGHTNESS_MODE,
                 Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC);
@@ -75,7 +64,7 @@ public class SystemBrightUtils {
     }
 
     // 停止自动亮度模式
-    public void stopAutoBrightness(Activity activity) {
+    public static void stopAutoBrightness(Activity activity) {
         Settings.System.putInt(activity.getContentResolver(),
                 Settings.System.SCREEN_BRIGHTNESS_MODE,
                 Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
@@ -88,7 +77,7 @@ public class SystemBrightUtils {
      * SCREEN_BRIGHTNESS_MODE_AUTOMATIC=1 为自动调节屏幕亮度
      * SCREEN_BRIGHTNESS_MODE_MANUAL=0 为手动调节屏幕亮度
      */
-    public void setBrightnessMode(Activity activity, int brightMode) {
+    public static void setBrightnessMode(Activity activity, int brightMode) {
         Settings.System.putInt(activity.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, brightMode);
     }
 }

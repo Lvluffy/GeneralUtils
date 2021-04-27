@@ -8,22 +8,12 @@ import android.os.Handler;
  * @name 快速点击-辅助工具
  */
 public class QuickClickUtils {
-    private QuickClickUtils() {
-    }
-
-    public static QuickClickUtils getInstance() {
-        return QuickClickUtilsHolder.instance;
-    }
-
-    private static class QuickClickUtilsHolder {
-        private static final QuickClickUtils instance = new QuickClickUtils();
-    }
 
     /*记录点击的次数*/
-    private int mClickTimes = 0;
-    private final MyHandler handler = new MyHandler();
+    private static int mClickTimes = 0;
+    private static final MyHandler handler = new MyHandler();
     /*点击间距的有效时间处理*/
-    private final Runnable mDebugClickRunnable = new Runnable() {
+    private static final Runnable mDebugClickRunnable = new Runnable() {
         @Override
         public void run() {
             mClickTimes = 0;
@@ -36,7 +26,7 @@ public class QuickClickUtils {
      * @param times              点击次数
      * @param quickClickCallback 执行回调
      */
-    public void quickClick(int times, QuickClickCallback quickClickCallback) {
+    public static void quickClick(int times, QuickClickCallback quickClickCallback) {
         //点击数量增加
         mClickTimes++;
         //移除上次点击间距的有效时间处理事件
@@ -55,7 +45,7 @@ public class QuickClickUtils {
         void onExecute();
     }
 
-    private static class MyHandler extends Handler{
+    private static class MyHandler extends Handler {
 
     }
 }

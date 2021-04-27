@@ -30,16 +30,6 @@ import android.os.Environment;
  * 2、storage/sdcard/Android/data/包名/cache
  */
 public class FileStorageUtils {
-    private FileStorageUtils() {
-    }
-
-    public static FileStorageUtils getInstance() {
-        return FileStorageUtilsHolder.instance;
-    }
-
-    private static class FileStorageUtilsHolder {
-        private static final FileStorageUtils instance = new FileStorageUtils();
-    }
 
     /**
      * 获取内部文件路径
@@ -47,7 +37,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return data/data/包名/files（/data/user/0/包名/files）
      */
-    public String getInternalFilesPath(Context context) {
+    public static String getInternalFilesPath(Context context) {
         return context.getFilesDir().getPath();
     }
 
@@ -57,7 +47,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return data/data/包名/cache（/data/user/0/包名/cache）
      */
-    public String getInternalCachePath(Context context) {
+    public static String getInternalCachePath(Context context) {
         return context.getCacheDir().getPath();
     }
 
@@ -67,7 +57,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Alarms
      */
-    public String getExternalFilesAlarmsPath(Context context) {
+    public static String getExternalFilesAlarmsPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_ALARMS).getPath();
     }
 
@@ -77,7 +67,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Dcim
      */
-    public String getExternalFilesDcimPath(Context context) {
+    public static String getExternalFilesDcimPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_DCIM).getPath();
     }
 
@@ -87,7 +77,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Documents
      */
-    public String getExternalFilesDocumentsPath(Context context) {
+    public static String getExternalFilesDocumentsPath(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
             return context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getPath();
         return null;
@@ -99,7 +89,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Downloads
      */
-    public String getExternalFilesDownloadsPath(Context context) {
+    public static String getExternalFilesDownloadsPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).getPath();
     }
 
@@ -109,7 +99,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Movies
      */
-    public String getExternalFilesMoviesPath(Context context) {
+    public static String getExternalFilesMoviesPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_MOVIES).getPath();
     }
 
@@ -119,7 +109,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Music
      */
-    public String getExternalFilesMusicPath(Context context) {
+    public static String getExternalFilesMusicPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_MUSIC).getPath();
     }
 
@@ -129,7 +119,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Notifications
      */
-    public String getExternalFilesNotificationsPath(Context context) {
+    public static String getExternalFilesNotificationsPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_NOTIFICATIONS).getPath();
     }
 
@@ -139,7 +129,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Podcasts
      */
-    public String getExternalFilesPicturesPath(Context context) {
+    public static String getExternalFilesPicturesPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath();
     }
 
@@ -149,7 +139,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Podcasts
      */
-    public String getExternalFilesPodcastsPath(Context context) {
+    public static String getExternalFilesPodcastsPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_PODCASTS).getPath();
     }
 
@@ -159,7 +149,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/files/Ringtones
      */
-    public String getExternalFilesRingtonesPath(Context context) {
+    public static String getExternalFilesRingtonesPath(Context context) {
         return context.getExternalFilesDir(Environment.DIRECTORY_RINGTONES).getPath();
     }
 
@@ -169,7 +159,7 @@ public class FileStorageUtils {
      * @param context 上下文
      * @return storage/sdcard/Android/data/包名/cache
      */
-    public String getExternalCachePath(Context context) {
+    public static String getExternalCachePath(Context context) {
         return context.getExternalCacheDir().getPath();
     }
 }

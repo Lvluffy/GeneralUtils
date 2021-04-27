@@ -10,24 +10,13 @@ import java.util.regex.Pattern;
  */
 public class MobileUtils {
 
-    private MobileUtils() {
-    }
-
-    public static MobileUtils getInstance() {
-        return MobileUtilsHolder.instance;
-    }
-
-    private static class MobileUtilsHolder {
-        private static final MobileUtils instance = new MobileUtils();
-    }
-
     /**
      * 替换手机号中间4位数
      *
      * @param mobilePhone 手机号
      * @return 处理后的字符串
      */
-    public String hintMobile(String mobilePhone) {
+    public static String hintMobile(String mobilePhone) {
         return mobilePhone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
     }
 
@@ -37,7 +26,7 @@ public class MobileUtils {
      * @param str 手机号
      * @return 是否为手机号码
      */
-    public boolean isMobile(String str) {
+    public static boolean isMobile(String str) {
         // ^：首字母
         // [1]：第一个数字必须是1
         // [0-9]：第二个数字为0-9之间

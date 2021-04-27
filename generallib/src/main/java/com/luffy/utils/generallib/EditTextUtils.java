@@ -9,24 +9,13 @@ import android.widget.EditText;
  */
 public class EditTextUtils {
 
-    private EditTextUtils() {
-    }
-
-    public static EditTextUtils getInstance() {
-        return EditTextUtilsHolder.instance;
-    }
-
-    private static class EditTextUtilsHolder {
-        private static final EditTextUtils instance = new EditTextUtils();
-    }
-
     /**
      * 设置编辑状态
      *
      * @param mEditText 编辑框
      * @param editable  是否可编辑（true-可编辑 false-不可编辑）
      */
-    public void setEditState(EditText mEditText, boolean editable) {
+    public static void setEditState(EditText mEditText, boolean editable) {
         if (editable) {
             mEditText.setFocusableInTouchMode(true);
             mEditText.setFocusable(true);
@@ -43,7 +32,7 @@ public class EditTextUtils {
      *
      * @param mEditText 编辑框
      */
-    public void setCursorLocation(EditText mEditText) {
+    public static void setCursorLocation(EditText mEditText) {
         if (mEditText != null) {
             mEditText.setSelection(mEditText.getText().length());
         }

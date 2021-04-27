@@ -39,17 +39,17 @@ public class SecurityActivity extends BaseActivity {
         String data = "123";
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Base64加密前：").append(data).append("\n");
-        stringBuilder.append("Base64加密后：").append(Base64Utils.getInstance().encodeBase64NoWrap(data)).append("\n");
-        stringBuilder.append("Base64解密前：").append(Base64Utils.getInstance().encodeBase64NoWrap(data)).append("\n");
-        stringBuilder.append("Base64解密后：").append(Base64Utils.getInstance().decodeBase64(Base64Utils.getInstance().encodeBase64NoWrap(data))).append("\n");
+        stringBuilder.append("Base64加密后：").append(Base64Utils.encodeBase64NoWrap(data)).append("\n");
+        stringBuilder.append("Base64解密前：").append(Base64Utils.encodeBase64NoWrap(data)).append("\n");
+        stringBuilder.append("Base64解密后：").append(Base64Utils.decodeBase64(Base64Utils.encodeBase64NoWrap(data))).append("\n");
 
         try {
             String des_key = "12345678".substring(0, 8);
             stringBuilder.append("DES加密前：").append(data).append("\n");
-            String des_encrypt_data = DESUtils.getInstance().encrypt(data, des_key);
+            String des_encrypt_data = DESUtils.encrypt(data, des_key);
             stringBuilder.append("DES加密后：").append(des_encrypt_data).append("\n");
             stringBuilder.append("DES解密前：").append(des_encrypt_data).append("\n");
-            stringBuilder.append("DES解密后：").append(DESUtils.getInstance().decrypt(des_encrypt_data, des_key)).append("\n");
+            stringBuilder.append("DES解密后：").append(DESUtils.decrypt(des_encrypt_data, des_key)).append("\n");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
@@ -71,10 +71,10 @@ public class SecurityActivity extends BaseActivity {
         try {
             String aes_key = "12345678asdfqwer".substring(0, 16);
             stringBuilder.append("AES加密前：").append(data).append("\n");
-            String aes_encrypt_data = AESUtils.getInstance().encrypt(data, aes_key);
+            String aes_encrypt_data = AESUtils.encrypt(data, aes_key);
             stringBuilder.append("AES加密后：").append(aes_encrypt_data).append("\n");
             stringBuilder.append("AES解密前：").append(aes_encrypt_data).append("\n");
-            stringBuilder.append("AES解密后：").append(AESUtils.getInstance().decrypt(aes_encrypt_data, aes_key)).append("\n");
+            stringBuilder.append("AES解密后：").append(AESUtils.decrypt(aes_encrypt_data, aes_key)).append("\n");
         } catch (NoSuchPaddingException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {

@@ -9,6 +9,6 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LogUtils.getInstance().init(true);
+        LogUtils.init(true);
     }
 }

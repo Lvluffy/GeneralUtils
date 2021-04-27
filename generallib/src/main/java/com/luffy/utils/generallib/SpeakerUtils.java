@@ -10,25 +10,14 @@ import android.media.AudioManager;
  */
 public class SpeakerUtils {
 
-    private int currVolume = 0;
-
-    private SpeakerUtils() {
-    }
-
-    public static SpeakerUtils getInstance() {
-        return SpeakerUtilsHolder.instance;
-    }
-
-    private static class SpeakerUtilsHolder {
-        private static final SpeakerUtils instance = new SpeakerUtils();
-    }
+    private static int currVolume = 0;
 
     /**
      * 打开扬声器
      *
      * @param context 上下文
      */
-    public void openSpeaker(Context context) {
+    public static void openSpeaker(Context context) {
         try {
             AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             audioManager.setMode(AudioManager.MODE_IN_CALL);
@@ -49,7 +38,7 @@ public class SpeakerUtils {
      *
      * @param context 上下文
      */
-    public void closeSpeaker(Context context) {
+    public static void closeSpeaker(Context context) {
         try {
             AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             if (audioManager != null) {

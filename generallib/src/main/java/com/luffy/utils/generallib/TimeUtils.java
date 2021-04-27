@@ -59,17 +59,6 @@ public class TimeUtils {
     public static final SimpleDateFormat DATE_FORMAT_MD_HM_4 = new SimpleDateFormat("MM月dd日 HH:mm");
     public static final SimpleDateFormat DATE_FORMAT_MD_HM_5 = new SimpleDateFormat("MM.dd HH:mm");
 
-    private TimeUtils() {
-    }
-
-    public static TimeUtils getInstance() {
-        return TimeUtilsHolder.instance;
-    }
-
-    private static class TimeUtilsHolder {
-        private static final TimeUtils instance = new TimeUtils();
-    }
-
     /**
      * 获取格式化时间
      *
@@ -77,8 +66,8 @@ public class TimeUtils {
      * @param dateFormat 时间格式
      * @return 格式化时间
      */
-    public String getTime(Date date, SimpleDateFormat dateFormat) {
-        if (ValidUtils.getInstance().isValid(date)) {
+    public static String getTime(Date date, SimpleDateFormat dateFormat) {
+        if (ValidUtils.isValid(date)) {
             return dateFormat.format(date);
         }
         return null;
@@ -91,9 +80,9 @@ public class TimeUtils {
      * @param dateFormat 时间格式
      * @return 格式化时间
      */
-    public String getTime(long time, SimpleDateFormat dateFormat) {
+    public static String getTime(long time, SimpleDateFormat dateFormat) {
         if (time > 0) {
-            return this.getTime(new Date(time), dateFormat);
+            return getTime(new Date(time), dateFormat);
         }
         return null;
     }
@@ -105,9 +94,9 @@ public class TimeUtils {
      * @param dateFormat 时间格式
      * @return 格式化时间
      */
-    public String getTime(String time, SimpleDateFormat dateFormat) {
+    public static String getTime(String time, SimpleDateFormat dateFormat) {
         try {
-            return this.getTime(Long.parseLong(time), dateFormat);
+            return getTime(Long.parseLong(time), dateFormat);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -120,7 +109,7 @@ public class TimeUtils {
      * @param time 时间戳
      * @return 默认格式化时间
      */
-    public String getTime(long time) {
+    public static String getTime(long time) {
         if (time > 0) {
             return getTime(time, DATE_FORMAT_YMD_HMS_1);
         }
@@ -133,7 +122,7 @@ public class TimeUtils {
      * @param date 日期
      * @return 时间戳
      */
-    public long getTimeLong(Date date) {
+    public static long getTimeLong(Date date) {
         try {
             return date.getTime();
         } catch (Exception e) {
@@ -149,9 +138,9 @@ public class TimeUtils {
      * @param simpleDateFormat 时间格式
      * @return 时间戳
      */
-    public long getTimeLong(String time, SimpleDateFormat simpleDateFormat) {
+    public static long getTimeLong(String time, SimpleDateFormat simpleDateFormat) {
         try {
-            return this.getTimeLong(simpleDateFormat.parse(time));
+            return getTimeLong(simpleDateFormat.parse(time));
         } catch (ParseException e) {
             e.printStackTrace();
             return 0;
@@ -163,7 +152,7 @@ public class TimeUtils {
      *
      * @return 时间戳
      */
-    public long getCurrentTimeLong() {
+    public static long getCurrentTimeLong() {
         return System.currentTimeMillis();
     }
 
@@ -172,7 +161,7 @@ public class TimeUtils {
      *
      * @return 当前时间
      */
-    public String getCurrentTimeString() {
+    public static String getCurrentTimeString() {
         return String.valueOf(getCurrentTimeLong());
     }
 
@@ -182,7 +171,7 @@ public class TimeUtils {
      * @param dateFormat 时间格式
      * @return 格式化时间
      */
-    public String getCurrentTimeString(SimpleDateFormat dateFormat) {
+    public static String getCurrentTimeString(SimpleDateFormat dateFormat) {
         return getTime(getCurrentTimeLong(), dateFormat);
     }
 
@@ -193,7 +182,7 @@ public class TimeUtils {
      * @param simpleDateFormat 时间格式
      * @return 日期
      */
-    public Date stringToDate(String strTime, SimpleDateFormat simpleDateFormat) {
+    public static Date stringToDate(String strTime, SimpleDateFormat simpleDateFormat) {
         Date date = null;
         try {
             date = simpleDateFormat.parse(strTime);
@@ -210,7 +199,7 @@ public class TimeUtils {
      * @param time 时间戳
      * @return 是否是今天
      */
-    public boolean isToday(long time) {
+    public static boolean isToday(long time) {
         return isThisTime(time, "yyyy-MM-dd");
     }
 
@@ -220,7 +209,7 @@ public class TimeUtils {
      * @param time 时间戳
      * @return 是否是本周
      */
-    public boolean isThisWeek(long time) {
+    public static boolean isThisWeek(long time) {
         Calendar calendar = Calendar.getInstance();
         int currentWeek = calendar.get(Calendar.WEEK_OF_YEAR);
         calendar.setTime(new Date(time));
@@ -234,11 +223,11 @@ public class TimeUtils {
      * @param time 时间戳
      * @return 是否是本月
      */
-    public boolean isThisMonth(long time) {
+    public static boolean isThisMonth(long time) {
         return isThisTime(time, "yyyy-MM");
     }
 
-    private boolean isThisTime(long time, String pattern) {
+    private static boolean isThisTime(long time, String pattern) {
         Date date = new Date(time);
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         String param = sdf.format(date);//参数时间
@@ -254,7 +243,7 @@ public class TimeUtils {
      * @param minute 正数表示在条件时间minute分钟之后，负数表示在条件时间minute分钟之前
      * @return true:不显示 false：显示
      */
-    public boolean belongDate(long now, long time, int minute) {
+    public static boolean belongDate(long now, long time, int minute) {
         //得到日历
         Calendar calendar = Calendar.getInstance();
         //把当前时间赋给日历
@@ -270,7 +259,7 @@ public class TimeUtils {
      *
      * @return
      */
-    public String dayForWeek() {
+    public static String dayForWeek() {
         String[] weekDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
         Calendar.getInstance().setTime(new Date());
         int w = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
@@ -291,7 +280,7 @@ public class TimeUtils {
      * @param date 时间戳
      * @return 日期描述
      */
-    public String getTimeFormatText(long date) {
+    public static String getTimeFormatText(long date) {
         long diff = new Date().getTime() - date;
         long r = 0;
         if (diff > DAY) {

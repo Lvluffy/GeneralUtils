@@ -28,25 +28,13 @@ public class DESUtils {
     private static final String CHARSET_NAME = "UTF-8";
     private static final String ALGORITHM = "DES";
 
-    private DESUtils() {
-
-    }
-
-    public static DESUtils getInstance() {
-        return DESUtilsHolder.instance;
-    }
-
-    private static class DESUtilsHolder {
-        private static final DESUtils instance = new DESUtils();
-    }
-
     /**
      * 加密
      *
      * @param value
      * @param key   长度必须是8位
      */
-    public String encrypt(String value, String key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
+    public static String encrypt(String value, String key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
         // 创建密码器
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
         // 创建Key对象
@@ -70,7 +58,7 @@ public class DESUtils {
      * @param key       长度必须是8位
      * @return
      */
-    public String decrypt(String encrypted, String key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
+    public static String decrypt(String encrypted, String key) throws NoSuchAlgorithmException, NoSuchPaddingException, UnsupportedEncodingException, InvalidKeyException, InvalidKeySpecException, InvalidAlgorithmParameterException, BadPaddingException, IllegalBlockSizeException {
         // Base64解密
         byte[] byteSrc = Base64.decode(encrypted, Base64.DEFAULT);
         // 创建密码器

@@ -18,16 +18,6 @@ import android.widget.ScrollView;
  * @name 截屏-辅助工具
  */
 public class ScreenShotUtils {
-    private ScreenShotUtils() {
-    }
-
-    public static ScreenShotUtils getInstance() {
-        return ScreenShotUtilsHolder.instance;
-    }
-
-    private static class ScreenShotUtilsHolder {
-        private static final ScreenShotUtils instance = new ScreenShotUtils();
-    }
 
     /**
      * 截取-除了导航栏之外的屏幕
@@ -35,7 +25,7 @@ public class ScreenShotUtils {
      * @param activity 上下文
      * @return Bitmap
      */
-    public Bitmap getScreenBitmap(Activity activity) {
+    public static Bitmap getScreenBitmap(Activity activity) {
         Bitmap bitmap;
         View view = activity.getWindow().getDecorView();
         view.setDrawingCacheEnabled(true);
@@ -50,7 +40,7 @@ public class ScreenShotUtils {
      * @param view View
      * @return Bitmap
      */
-    public Bitmap getWidgetBitmap(View view) {
+    public static Bitmap getWidgetBitmap(View view) {
         Bitmap bitmap;
         view.setBackgroundColor(Color.WHITE);
         view.setDrawingCacheEnabled(true);
@@ -65,13 +55,13 @@ public class ScreenShotUtils {
      * @param activity Activity
      * @return Bitmap
      */
-    public Bitmap getScreenShotWithStatusBar(Activity activity) {
+    public static Bitmap getScreenShotWithStatusBar(Activity activity) {
         View view = activity.getWindow().getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
         Bitmap bmp = view.getDrawingCache();
-        int width = ScreenUtils.getInstance().getScreenWidthHeightDensity(activity)[0];
-        int height = ScreenUtils.getInstance().getScreenWidthHeightDensity(activity)[1];
+        int width = ScreenUtils.getScreenWidthHeightDensity(activity)[0];
+        int height = ScreenUtils.getScreenWidthHeightDensity(activity)[1];
         Bitmap bp = null;
         bp = Bitmap.createBitmap(bmp, 0, 0, width, height);
         view.destroyDrawingCache();
@@ -84,7 +74,7 @@ public class ScreenShotUtils {
      * @param activity Activity
      * @return Bitmap
      */
-    public Bitmap getScreenShotWithoutStatusBar(Activity activity) {
+    public static Bitmap getScreenShotWithoutStatusBar(Activity activity) {
         View view = activity.getWindow().getDecorView();
         view.setDrawingCacheEnabled(true);
         view.buildDrawingCache();
@@ -92,8 +82,8 @@ public class ScreenShotUtils {
         Rect frame = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
         int statusBarHeight = frame.top;
-        int width = ScreenUtils.getInstance().getScreenWidthHeightDensity(activity)[0];
-        int height = ScreenUtils.getInstance().getScreenWidthHeightDensity(activity)[1];
+        int width = ScreenUtils.getScreenWidthHeightDensity(activity)[0];
+        int height = ScreenUtils.getScreenWidthHeightDensity(activity)[1];
         Bitmap bp = null;
         bp = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height - statusBarHeight);
         view.destroyDrawingCache();
@@ -110,7 +100,7 @@ public class ScreenShotUtils {
      * @param scrollView ScrollView
      * @return Bitmap
      */
-    public Bitmap getScrollViewBitmap(ScrollView scrollView) {
+    public static Bitmap getScrollViewBitmap(ScrollView scrollView) {
         Bitmap bitmap;
         // 获取ScrollView实际高度
         int h = 0;
@@ -131,7 +121,7 @@ public class ScreenShotUtils {
      * @param listView ListView
      * @return Bitmap
      */
-    public Bitmap getListViewBitmap(ListView listView) {
+    public static Bitmap getListViewBitmap(ListView listView) {
         Bitmap bitmap;
         int h = 0;
         // 获取ListView实际高度
@@ -152,7 +142,7 @@ public class ScreenShotUtils {
      * @param webView WebView
      * @return Bitmap
      */
-    public Bitmap getWebViewBitmap(WebView webView) {
+    public static Bitmap getWebViewBitmap(WebView webView) {
         Bitmap bitmap;
         webView.setBackgroundColor(Color.WHITE);
         Picture mPicture = webView.capturePicture();

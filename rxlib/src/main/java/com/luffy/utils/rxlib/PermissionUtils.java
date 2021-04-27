@@ -17,17 +17,6 @@ import io.reactivex.functions.Consumer;
  */
 public class PermissionUtils {
 
-    private PermissionUtils() {
-    }
-
-    public static PermissionUtils getInstance() {
-        return PermissionUtilsHolder.instance;
-    }
-
-    private static class PermissionUtilsHolder {
-        private static final PermissionUtils instance = new PermissionUtils();
-    }
-
     /**
      * 是否开启了指定权限
      *
@@ -35,7 +24,7 @@ public class PermissionUtils {
      * @param permName 权限名称
      * @return 是否开启了指定权限
      */
-    public boolean checkPermission(Context context, String permName) {
+    public static boolean checkPermission(Context context, String permName) {
         return PackageManager.PERMISSION_GRANTED == context.checkCallingOrSelfPermission(permName);
     }
 
@@ -46,7 +35,7 @@ public class PermissionUtils {
      * @param meanWhileApplyPermissionCallBack 回调
      * @param permissions                      权限
      */
-    public void meanWhileApplySinglePermission(Activity activity, final MeanWhileApplyPermissionCallBack meanWhileApplyPermissionCallBack, final String... permissions) {
+    public static void meanWhileApplySinglePermission(Activity activity, final MeanWhileApplyPermissionCallBack meanWhileApplyPermissionCallBack, final String... permissions) {
         new RxPermissions(activity)
                 .request(permissions)
                 .subscribe(new Consumer<Boolean>() {
@@ -69,7 +58,7 @@ public class PermissionUtils {
      * @param meanWhileApplyPermissionCallBack 回调
      * @param permissions                      权限
      */
-    public void meanWhileApplyMultiPermission(Activity activity, final MeanWhileApplyPermissionCallBack meanWhileApplyPermissionCallBack, final String... permissions) {
+    public static void meanWhileApplyMultiPermission(Activity activity, final MeanWhileApplyPermissionCallBack meanWhileApplyPermissionCallBack, final String... permissions) {
         new RxPermissions(activity)
                 .request(permissions)
                 .subscribe(new Consumer<Boolean>() {
@@ -92,7 +81,7 @@ public class PermissionUtils {
      * @param separateApplyPermissionCallBack 回调
      * @param permissions                     权限
      */
-    public void separateApplyPermission(Activity activity, final SeparateApplyPermissionCallBack separateApplyPermissionCallBack, final String... permissions) {
+    public static void separateApplyPermission(Activity activity, final SeparateApplyPermissionCallBack separateApplyPermissionCallBack, final String... permissions) {
         new RxPermissions(activity)
                 .requestEach(permissions)
                 .subscribe(new Consumer<Permission>() {

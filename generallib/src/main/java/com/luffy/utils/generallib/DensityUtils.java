@@ -10,17 +10,6 @@ import android.util.TypedValue;
  */
 public class DensityUtils {
 
-    private DensityUtils() {
-    }
-
-    public static DensityUtils getInstance() {
-        return DensityUtilsHolder.instance;
-    }
-
-    private static class DensityUtilsHolder {
-        private static final DensityUtils instance = new DensityUtils();
-    }
-
     /**
      * dp转px
      *
@@ -28,7 +17,7 @@ public class DensityUtils {
      * @param dpVal   dp
      * @return px
      */
-    public int dp2px(Context context, float dpVal) {
+    public static int dp2px(Context context, float dpVal) {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
                 dpVal,
@@ -42,7 +31,7 @@ public class DensityUtils {
      * @param spVal   sp
      * @return px
      */
-    public int sp2px(Context context, float spVal) {
+    public static int sp2px(Context context, float spVal) {
         return (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_SP,
                 spVal,
@@ -56,7 +45,7 @@ public class DensityUtils {
      * @param pxVal   px
      * @return dp
      */
-    public int px2dp(Context context, float pxVal) {
+    public static int px2dp(Context context, float pxVal) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxVal / scale);
     }
@@ -68,7 +57,7 @@ public class DensityUtils {
      * @param pxVal   px
      * @return sp
      */
-    public int px2sp(Context context, float pxVal) {
+    public static int px2sp(Context context, float pxVal) {
         return (int) (pxVal / context.getResources().getDisplayMetrics().scaledDensity);
     }
 }

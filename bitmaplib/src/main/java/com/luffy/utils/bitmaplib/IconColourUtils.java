@@ -11,24 +11,13 @@ import android.widget.ImageView;
  * @name 图标着色-辅助工具
  */
 public class IconColourUtils {
-    private IconColourUtils() {
-    }
-
-    public static IconColourUtils getInstance() {
-        return IconColourUtilsHolder.instance;
-    }
-
-    private static class IconColourUtilsHolder {
-        private static final IconColourUtils instance = new IconColourUtils();
-    }
-
     /**
      * 设置-ImageView图标颜色
      *
      * @param view       ImageView
      * @param colorResId 颜色值
      */
-    public void setImageViewColor(ImageView view, int colorResId) {
+    public static void setImageViewColor(ImageView view, int colorResId) {
         Drawable modeDrawable = view.getDrawable().mutate();
         Drawable temp = DrawableCompat.wrap(modeDrawable);
         ColorStateList colorStateList = ColorStateList.valueOf(view.getResources().getColor(colorResId));

@@ -10,19 +10,7 @@ import java.io.IOException;
  */
 public class ExceptionCloseUtils {
 
-    private ExceptionCloseUtils() {
-
-    }
-
-    public static ExceptionCloseUtils getInstance() {
-        return ExceptionCloseUtilsHolder.instance;
-    }
-
-    private static class ExceptionCloseUtilsHolder {
-        private static final ExceptionCloseUtils instance = new ExceptionCloseUtils();
-    }
-
-    public void close(Closeable closeable) {
+    public static void close(Closeable closeable) {
         if (closeable != null) {
             try {
                 closeable.close();

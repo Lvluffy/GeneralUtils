@@ -7,27 +7,13 @@ package com.luffy.utils.generallib;
  */
 public class ClickUtils {
 
-    /**
-     * 上次点击时间
-     */
-    private long lastClickTime;
-
-    private ClickUtils() {
-
-    }
-
-    public static ClickUtils getInstance() {
-        return ClickUtilsHolder.instance;
-    }
-
-    private static class ClickUtilsHolder {
-        private static final ClickUtils instance = new ClickUtils();
-    }
+    // 上次点击时间
+    private static long lastClickTime;
 
     /**
      * 重置 最后点击
      */
-    public void resetLastClickTime() {
+    public static void resetLastClickTime() {
         lastClickTime = 0;
     }
 
@@ -36,7 +22,7 @@ public class ClickUtils {
      *
      * @return true:快速点击;false:非快速点击
      */
-    public synchronized boolean isFastClick() {
+    public static synchronized boolean isFastClick() {
         return isFastClick(1000);
     }
 
@@ -46,7 +32,7 @@ public class ClickUtils {
      * @param clickTime 时间戳
      * @return true:快速点击;false:非快速点击
      */
-    public synchronized boolean isFastClick(long clickTime) {
+    public static synchronized boolean isFastClick(long clickTime) {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastClickTime < clickTime) {
             return true;

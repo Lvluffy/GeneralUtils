@@ -13,19 +13,7 @@ import java.util.Map;
  */
 public class BundleUtils {
 
-    private BundleUtils() {
-
-    }
-
-    public static BundleUtils getInstance() {
-        return BundleUtilsHolder.instance;
-    }
-
-    private static class BundleUtilsHolder {
-        private static final BundleUtils instance = new BundleUtils();
-    }
-
-    public String bundleToString(Bundle bundle) {
+    public static String bundleToString(Bundle bundle) {
         return bundleToMap(bundle).toString();
     }
 
@@ -35,7 +23,7 @@ public class BundleUtils {
      * @param bundle
      * @return
      */
-    public Map bundleToMap(Bundle bundle) {
+    public static Map bundleToMap(Bundle bundle) {
         if (bundle == null) {
             return null;
         }
@@ -60,7 +48,7 @@ public class BundleUtils {
      * @param targetKey
      * @return
      */
-    public String getValueFromBundleByKey(Bundle bundle, String targetKey) {
+    public static String getValueFromBundleByKey(Bundle bundle, String targetKey) {
         if (bundle == null || targetKey == null) {
             return null;
         }

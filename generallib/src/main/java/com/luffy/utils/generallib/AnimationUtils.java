@@ -18,18 +18,7 @@ public class AnimationUtils {
     /**
      * 默认动画持续时间
      */
-    private final long DEFAULT_ANIMATION_DURATION = 2000;
-
-    private AnimationUtils() {
-    }
-
-    public static AnimationUtils getInstance() {
-        return AnimationUtilsHolder.instance;
-    }
-
-    private static class AnimationUtilsHolder {
-        private static final AnimationUtils instance = new AnimationUtils();
-    }
+    private static final long DEFAULT_ANIMATION_DURATION = 2000;
 
     /**
      * 获取一个旋转动画
@@ -44,14 +33,14 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个旋转动画
      */
-    public RotateAnimation getRotateAnimationBase(float fromDegrees,
-                                                  float toDegrees,
-                                                  int pivotXType,
-                                                  float pivotXValue,
-                                                  int pivotYType,
-                                                  float pivotYValue,
-                                                  long durationMillis,
-                                                  Animation.AnimationListener animationListener) {
+    public static RotateAnimation getRotateAnimationBase(float fromDegrees,
+                                                         float toDegrees,
+                                                         int pivotXType,
+                                                         float pivotXValue,
+                                                         int pivotYType,
+                                                         float pivotYValue,
+                                                         long durationMillis,
+                                                         Animation.AnimationListener animationListener) {
         RotateAnimation rotateAnimation = new RotateAnimation(
                 fromDegrees,
                 toDegrees,
@@ -73,8 +62,8 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个根据中心点旋转的动画
      */
-    public RotateAnimation getRotateAnimationByCenter(long durationMillis,
-                                                      Animation.AnimationListener animationListener) {
+    public static RotateAnimation getRotateAnimationByCenter(long durationMillis,
+                                                             Animation.AnimationListener animationListener) {
         return getRotateAnimationBase(
                 0f,
                 359f,
@@ -92,7 +81,7 @@ public class AnimationUtils {
      * @param duration 动画持续时间
      * @return 一个根据中心点旋转的动画
      */
-    public RotateAnimation getRotateAnimationByCenter(long duration) {
+    public static RotateAnimation getRotateAnimationByCenter(long duration) {
         return getRotateAnimationByCenter(duration,
                 null);
     }
@@ -103,7 +92,7 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个根据中心点旋转的动画
      */
-    public RotateAnimation getRotateAnimationByCenter(Animation.AnimationListener animationListener) {
+    public static RotateAnimation getRotateAnimationByCenter(Animation.AnimationListener animationListener) {
         return getRotateAnimationByCenter(DEFAULT_ANIMATION_DURATION,
                 animationListener);
     }
@@ -113,7 +102,7 @@ public class AnimationUtils {
      *
      * @return 一个根据中心点旋转的动画，默认持续时间为DEFAULT_ANIMATION_DURATION
      */
-    public RotateAnimation getRotateAnimationByCenter() {
+    public static RotateAnimation getRotateAnimationByCenter() {
         return getRotateAnimationByCenter(DEFAULT_ANIMATION_DURATION,
                 null);
     }
@@ -127,10 +116,10 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个透明度渐变动画
      */
-    public AlphaAnimation getAlphaAnimationBase(float fromAlpha,
-                                                float toAlpha,
-                                                long durationMillis,
-                                                Animation.AnimationListener animationListener) {
+    public static AlphaAnimation getAlphaAnimationBase(float fromAlpha,
+                                                       float toAlpha,
+                                                       long durationMillis,
+                                                       Animation.AnimationListener animationListener) {
         AlphaAnimation alphaAnimation = new AlphaAnimation(fromAlpha, toAlpha);
         alphaAnimation.setDuration(durationMillis);
         if (animationListener != null) {
@@ -147,9 +136,9 @@ public class AnimationUtils {
      * @param durationMillis 持续时间
      * @return 一个透明度渐变动画
      */
-    public AlphaAnimation getAlphaAnimation(float fromAlpha,
-                                            float toAlpha,
-                                            long durationMillis) {
+    public static AlphaAnimation getAlphaAnimation(float fromAlpha,
+                                                   float toAlpha,
+                                                   long durationMillis) {
         return getAlphaAnimationBase(fromAlpha,
                 toAlpha,
                 durationMillis,
@@ -164,9 +153,9 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个透明度渐变动画，默认持续时间为DEFAULT_ANIMATION_DURATION
      */
-    public AlphaAnimation getAlphaAnimation(float fromAlpha,
-                                            float toAlpha,
-                                            Animation.AnimationListener animationListener) {
+    public static AlphaAnimation getAlphaAnimation(float fromAlpha,
+                                                   float toAlpha,
+                                                   Animation.AnimationListener animationListener) {
         return getAlphaAnimationBase(fromAlpha,
                 toAlpha,
                 DEFAULT_ANIMATION_DURATION,
@@ -180,8 +169,8 @@ public class AnimationUtils {
      * @param toAlpha   结束时的透明度都
      * @return 一个透明度渐变动画，默认持续时间为DEFAULT_ANIMATION_DURATION
      */
-    public AlphaAnimation getAlphaAnimation(float fromAlpha,
-                                            float toAlpha) {
+    public static AlphaAnimation getAlphaAnimation(float fromAlpha,
+                                                   float toAlpha) {
         return getAlphaAnimationBase(fromAlpha,
                 toAlpha,
                 DEFAULT_ANIMATION_DURATION,
@@ -195,8 +184,8 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个由完全显示变为不可见的透明度渐变动画
      */
-    public AlphaAnimation getHiddenAlphaAnimation(long durationMillis,
-                                                  Animation.AnimationListener animationListener) {
+    public static AlphaAnimation getHiddenAlphaAnimation(long durationMillis,
+                                                         Animation.AnimationListener animationListener) {
         return getAlphaAnimationBase(1.0f,
                 0.0f,
                 durationMillis,
@@ -209,7 +198,7 @@ public class AnimationUtils {
      * @param durationMillis 持续时间
      * @return 一个由完全显示变为不可见的透明度渐变动画
      */
-    public AlphaAnimation getHiddenAlphaAnimation(long durationMillis) {
+    public static AlphaAnimation getHiddenAlphaAnimation(long durationMillis) {
         return getHiddenAlphaAnimation(durationMillis, null);
     }
 
@@ -219,7 +208,7 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个由完全显示变为不可见的透明度渐变动画，默认持续时间为DEFAULT_ANIMATION_DURATION
      */
-    public AlphaAnimation getHiddenAlphaAnimation(Animation.AnimationListener animationListener) {
+    public static AlphaAnimation getHiddenAlphaAnimation(Animation.AnimationListener animationListener) {
         return getHiddenAlphaAnimation(DEFAULT_ANIMATION_DURATION,
                 animationListener);
     }
@@ -229,7 +218,7 @@ public class AnimationUtils {
      *
      * @return 一个由完全显示变为不可见的透明度渐变动画，默认持续时间为DEFAULT_ANIMATION_DURATION
      */
-    public AlphaAnimation getHiddenAlphaAnimation() {
+    public static AlphaAnimation getHiddenAlphaAnimation() {
         return getHiddenAlphaAnimation(DEFAULT_ANIMATION_DURATION,
                 null);
     }
@@ -241,8 +230,8 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个由不可见变为完全显示的透明度渐变动画
      */
-    public AlphaAnimation getShowAlphaAnimation(long durationMillis,
-                                                Animation.AnimationListener animationListener) {
+    public static AlphaAnimation getShowAlphaAnimation(long durationMillis,
+                                                       Animation.AnimationListener animationListener) {
         return getAlphaAnimationBase(0.0f,
                 1.0f,
                 durationMillis,
@@ -255,7 +244,7 @@ public class AnimationUtils {
      * @param durationMillis 持续时间
      * @return 一个由不可见变为完全显示的透明度渐变动画
      */
-    public AlphaAnimation getShowAlphaAnimation(long durationMillis) {
+    public static AlphaAnimation getShowAlphaAnimation(long durationMillis) {
         return getAlphaAnimationBase(0.0f,
                 1.0f,
                 durationMillis,
@@ -268,7 +257,7 @@ public class AnimationUtils {
      * @param animationListener 动画监听器
      * @return 一个由不可见变为完全显示的透明度渐变动画，默认持续时间为DEFAULT_ANIMATION_DURATION
      */
-    public AlphaAnimation getShowAlphaAnimation(Animation.AnimationListener animationListener) {
+    public static AlphaAnimation getShowAlphaAnimation(Animation.AnimationListener animationListener) {
         return getAlphaAnimationBase(0.0f,
                 1.0f,
                 DEFAULT_ANIMATION_DURATION,
@@ -280,7 +269,7 @@ public class AnimationUtils {
      *
      * @return 一个由不可见变为完全显示的透明度渐变动画，默认持续时间为DEFAULT_ANIMATION_DURATION
      */
-    public AlphaAnimation getShowAlphaAnimation() {
+    public static AlphaAnimation getShowAlphaAnimation() {
         return getAlphaAnimationBase(0.0f,
                 1.0f,
                 DEFAULT_ANIMATION_DURATION,
@@ -294,8 +283,8 @@ public class AnimationUtils {
      * @param animationListener 监听
      * @return 一个缩小动画
      */
-    public ScaleAnimation getLessenScaleAnimation(long durationMillis,
-                                                  Animation.AnimationListener animationListener) {
+    public static ScaleAnimation getLessenScaleAnimation(long durationMillis,
+                                                         Animation.AnimationListener animationListener) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f,
                 0.0f,
                 1.0f,
@@ -313,7 +302,7 @@ public class AnimationUtils {
      * @param durationMillis 时间
      * @return 一个缩小动画
      */
-    public ScaleAnimation getLessenScaleAnimation(long durationMillis) {
+    public static ScaleAnimation getLessenScaleAnimation(long durationMillis) {
         return getLessenScaleAnimation(durationMillis, null);
     }
 
@@ -323,7 +312,7 @@ public class AnimationUtils {
      * @param animationListener 监听
      * @return 返回一个缩小的动画
      */
-    public ScaleAnimation getLessenScaleAnimation(Animation.AnimationListener animationListener) {
+    public static ScaleAnimation getLessenScaleAnimation(Animation.AnimationListener animationListener) {
         return getLessenScaleAnimation(DEFAULT_ANIMATION_DURATION,
                 animationListener);
     }
@@ -335,8 +324,8 @@ public class AnimationUtils {
      * @param animationListener 监听
      * @return 返回一个放大的效果
      */
-    public ScaleAnimation getAmplificationAnimation(long durationMillis,
-                                                    Animation.AnimationListener animationListener) {
+    public static ScaleAnimation getAmplificationAnimation(long durationMillis,
+                                                           Animation.AnimationListener animationListener) {
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,
                 1.0f,
                 0.0f,
@@ -354,7 +343,7 @@ public class AnimationUtils {
      * @param durationMillis 时间
      * @return 返回一个放大的效果
      */
-    public ScaleAnimation getAmplificationAnimation(long durationMillis) {
+    public static ScaleAnimation getAmplificationAnimation(long durationMillis) {
         return getAmplificationAnimation(durationMillis, null);
     }
 
@@ -364,9 +353,8 @@ public class AnimationUtils {
      * @param animationListener 监听
      * @return 返回一个放大的效果
      */
-    public ScaleAnimation getAmplificationAnimation(Animation.AnimationListener animationListener) {
-        return getAmplificationAnimation(DEFAULT_ANIMATION_DURATION,
-                animationListener);
+    public static ScaleAnimation getAmplificationAnimation(Animation.AnimationListener animationListener) {
+        return getAmplificationAnimation(DEFAULT_ANIMATION_DURATION, animationListener);
     }
 
     /**
@@ -377,7 +365,7 @@ public class AnimationUtils {
      * @param end   结束
      * @return 动画对象
      */
-    public ValueAnimator getValueAnimator(final View view, int start, int end) {
+    public static ValueAnimator getValueAnimator(final View view, int start, int end) {
         ValueAnimator animator = ValueAnimator.ofInt(start, end);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

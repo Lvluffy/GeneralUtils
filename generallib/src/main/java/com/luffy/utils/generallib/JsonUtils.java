@@ -17,16 +17,6 @@ import java.util.Map;
  * @name Json转化-辅助工具
  */
 public class JsonUtils {
-    private JsonUtils() {
-    }
-
-    public static JsonUtils getInstance() {
-        return JsonUtilsHolder.instance;
-    }
-
-    private static class JsonUtilsHolder {
-        private static final JsonUtils instance = new JsonUtils();
-    }
 
     /**
      * Json字符串转Map
@@ -34,7 +24,7 @@ public class JsonUtils {
      * @param jsonStr
      * @return
      */
-    public Map<String, Object> json2Map(String jsonStr) {
+    public static Map<String, Object> json2Map(String jsonStr) {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(jsonStr);
@@ -50,7 +40,7 @@ public class JsonUtils {
      * @param jsonObject
      * @return
      */
-    public Map<String, Object> json2Map(JSONObject jsonObject) {
+    public static Map<String, Object> json2Map(JSONObject jsonObject) {
         if (jsonObject == null) {
             return null;
         } else {
@@ -67,7 +57,7 @@ public class JsonUtils {
         }
     }
 
-    private Object convertObj(Object obj) {
+    private static Object convertObj(Object obj) {
         if (obj instanceof JSONObject) {
             return json2Map((JSONObject) obj);
         } else if (obj instanceof JSONArray) {

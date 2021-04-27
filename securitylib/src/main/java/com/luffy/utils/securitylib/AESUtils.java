@@ -24,19 +24,6 @@ public class AESUtils {
     private static final String CHARSET_NAME = "UTF-8";
     private static final String ALGORITHM = "AES";
 
-    private AESUtils() {
-
-    }
-
-    public static AESUtils getInstance() {
-        return AESUtilsHolder.instance;
-    }
-
-    private static class AESUtilsHolder {
-        private static final AESUtils instance = new AESUtils();
-
-    }
-
     /**
      * 加密
      *
@@ -44,7 +31,7 @@ public class AESUtils {
      * @param key   长度必须是16位
      * @return
      */
-    public String encrypt(String value, String key) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
+    public static String encrypt(String value, String key) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidKeySpecException {
         // 创建密码器
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
         // 创建Key对象
@@ -64,7 +51,7 @@ public class AESUtils {
      * @param key       长度必须是16位
      * @return
      */
-    public String decrypt(String encrypted, String key) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+    public static String decrypt(String encrypted, String key) throws NoSuchPaddingException, NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         // Base64解密
         byte[] byteSrc = Base64.decode(encrypted, Base64.DEFAULT);
         // 创建密码器

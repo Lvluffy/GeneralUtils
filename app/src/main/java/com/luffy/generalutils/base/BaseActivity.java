@@ -20,49 +20,49 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogUtils.getInstance().logDebug(TAG, "onCreate");
+        LogUtils.logDebug(TAG, "onCreate");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        LogUtils.getInstance().logDebug(TAG, "onStart");
+        LogUtils.logDebug(TAG, "onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtils.getInstance().logDebug(TAG, "onResume");
+        LogUtils.logDebug(TAG, "onResume");
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        LogUtils.getInstance().logDebug(TAG, "onBackPressed");
+        LogUtils.logDebug(TAG, "onBackPressed");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LogUtils.getInstance().logDebug(TAG, "onPause");
+        LogUtils.logDebug(TAG, "onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        LogUtils.getInstance().logDebug(TAG, "onStop");
+        LogUtils.logDebug(TAG, "onStop");
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
-        LogUtils.getInstance().logDebug(TAG, "onSaveInstanceState");
+        LogUtils.logDebug(TAG, "onSaveInstanceState");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtils.getInstance().logDebug(TAG, "onDestroy");
+        LogUtils.logDebug(TAG, "onDestroy");
     }
 
 }

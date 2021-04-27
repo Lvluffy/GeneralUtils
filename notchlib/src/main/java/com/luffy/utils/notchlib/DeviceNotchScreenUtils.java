@@ -16,23 +16,11 @@ import com.luffy.utils.notchlib.impl.VivoNotchScreen;
  */
 public class DeviceNotchScreenUtils {
 
-    private DeviceNotchScreenUtils() {
-
-    }
-
-    public static DeviceNotchScreenUtils getInstance() {
-        return DeviceNotchScreenUtilsHolder.instance;
-    }
-
-    private static class DeviceNotchScreenUtilsHolder {
-        private static final DeviceNotchScreenUtils instance = new DeviceNotchScreenUtils();
-    }
-
     /**
      * @param context             上下文
      * @param notchScreenCallback 回调
      */
-    public void getNotchInfo(final Context context, final INotchScreen.NotchScreenCallback notchScreenCallback) {
+    public static void getNotchInfo(final Context context, final INotchScreen.NotchScreenCallback notchScreenCallback) {
         INotchScreen notchScreen = getNotchScreen();
         final INotchScreen.NotchScreenInfo notchScreenInfo = new INotchScreen.NotchScreenInfo();
         if (notchScreen != null && notchScreen.hasNotch(context)) {
@@ -54,15 +42,15 @@ public class DeviceNotchScreenUtils {
     /**
      * @return 刘海屏接口实例
      */
-    private INotchScreen getNotchScreen() {
+    private static INotchScreen getNotchScreen() {
         INotchScreen notchScreen = null;
-        if (DeviceBrandUtils.getInstance().getOSType() == DeviceBrandUtils.OSType.Huawei) {
+        if (DeviceBrandUtils.getOSType() == DeviceBrandUtils.OSType.Huawei) {
             notchScreen = new HuaweiNotchScreen();
-        } else if (DeviceBrandUtils.getInstance().getOSType() == DeviceBrandUtils.OSType.Oppo) {
+        } else if (DeviceBrandUtils.getOSType() == DeviceBrandUtils.OSType.Oppo) {
             notchScreen = new OppoNotchScreen();
-        } else if (DeviceBrandUtils.getInstance().getOSType() == DeviceBrandUtils.OSType.Vivo) {
+        } else if (DeviceBrandUtils.getOSType() == DeviceBrandUtils.OSType.Vivo) {
             notchScreen = new VivoNotchScreen();
-        } else if (DeviceBrandUtils.getInstance().getOSType() == DeviceBrandUtils.OSType.Xiaomi) {
+        } else if (DeviceBrandUtils.getOSType() == DeviceBrandUtils.OSType.Xiaomi) {
             notchScreen = new MiNotchScreen();
         } else {
             notchScreen = new AndroidPNotchScreen();

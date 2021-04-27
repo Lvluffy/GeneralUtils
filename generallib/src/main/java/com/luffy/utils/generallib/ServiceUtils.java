@@ -14,17 +14,6 @@ import java.util.List;
  */
 public class ServiceUtils {
 
-    private ServiceUtils() {
-    }
-
-    public static ServiceUtils getInstance() {
-        return ServiceUtilsHolder.instance;
-    }
-
-    private static class ServiceUtilsHolder {
-        private static final ServiceUtils instance = new ServiceUtils();
-    }
-
     /**
      * 服务是否运行
      *
@@ -32,8 +21,8 @@ public class ServiceUtils {
      * @param serviceClass 类对象
      * @return 服务是否运行
      */
-    public boolean isServiceRun(Context context, Class serviceClass) {
-        String serviceName = ClassUtils.getInstance().getClassName(serviceClass);
+    public static boolean isServiceRun(Context context, Class serviceClass) {
+        String serviceName = ClassUtils.getClassName(serviceClass);
         /*获取正在运行的所有服务*/
         ActivityManager mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningServiceInfo> runningServiceInfoList = mActivityManager.getRunningServices(Integer.MAX_VALUE);
@@ -53,7 +42,7 @@ public class ServiceUtils {
      * @param serviceClass           服务类文件
      * @param iServiceStartIntercept 回调
      */
-    public synchronized void startService(Context context, Class serviceClass, IServiceStartIntercept iServiceStartIntercept) {
+    public static synchronized void startService(Context context, Class serviceClass, IServiceStartIntercept iServiceStartIntercept) {
         /*服务运行状态拦截：已运行结束；未运行执行*/
         if (isServiceRun(context, serviceClass)) {
             return;
@@ -73,7 +62,7 @@ public class ServiceUtils {
      * @param context      上下文
      * @param serviceClass 服务类文件
      */
-    public synchronized void stopService(Context context, Class serviceClass) {
+    public static synchronized void stopService(Context context, Class serviceClass) {
         /*服务运行状态拦截：正在运行执行；未运行结束*/
         if (isServiceRun(context, serviceClass)) {
             Intent intent = new Intent(context, serviceClass);

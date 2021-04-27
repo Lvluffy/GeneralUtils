@@ -10,25 +10,13 @@ import io.reactivex.subjects.Subject;
  * @name RxBus
  */
 public class RxBus {
-    private final Subject<Object> rxBus;
+    private static final Subject<Object> rxBus = PublishSubject.create().toSerialized();
 
-    private RxBus() {
-        rxBus = PublishSubject.create().toSerialized();
-    }
-
-    public static RxBus getInstance() {
-        return RxBusHolder.instance;
-    }
-
-    private static class RxBusHolder {
-        private static final RxBus instance = new RxBus();
-    }
-
-    public void send(Object object) {
+    public static void send(Object object) {
         rxBus.onNext(object);
     }
 
-    public <T> Observable<T> toObserverable(Class<T> eventType) {
+    public static <T> Observable<T> toObserverable(Class<T> eventType) {
         return rxBus.ofType(eventType);
     }
 }

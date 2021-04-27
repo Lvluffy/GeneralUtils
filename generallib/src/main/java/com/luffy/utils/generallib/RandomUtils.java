@@ -9,24 +9,13 @@ import java.util.Random;
  */
 public class RandomUtils {
 
-    private RandomUtils() {
-    }
-
-    public static RandomUtils getInstance() {
-        return RandomUtilsHolder.instance;
-    }
-
-    private static class RandomUtilsHolder {
-        private static final RandomUtils instance = new RandomUtils();
-    }
-
     /**
      * 获取指定长度的随机数字符串
      *
      * @param length 长度
      * @return 字符串
      */
-    public String getRandomStringByLength(int length) {
+    public static String getRandomStringByLength(int length) {
         String base = "abcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
         StringBuilder sb = new StringBuilder();

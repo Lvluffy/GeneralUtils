@@ -14,24 +14,13 @@ import java.util.regex.Pattern;
  */
 public class StringUtils {
 
-    private StringUtils() {
-    }
-
-    public static StringUtils getInstance() {
-        return StringUtilsHolder.instance;
-    }
-
-    private static class StringUtilsHolder {
-        private static final StringUtils instance = new StringUtils();
-    }
-
     /**
      * 格式化简介内容
      *
      * @param str 需要处理的string
      * @return 处理后的数据
      */
-    public String formatSummary(String str) {
+    public static String formatSummary(String str) {
         if (TextUtils.isEmpty(str)) {
             return null;
         }
@@ -53,7 +42,7 @@ public class StringUtils {
      * @param input 输入的内容
      * @return 正则匹配取出中文, 返回数组
      */
-    public List<String> getReplaceAll(String input) {
+    public static List<String> getReplaceAll(String input) {
         if (input == null) {
             return null;
         }
@@ -72,7 +61,7 @@ public class StringUtils {
      * @param str 要处理的字符
      * @return 处理后的字符串
      */
-    public String obscure(String str) {
+    public static String obscure(String str) {
         return obscure(str, null);
     }
 
@@ -80,17 +69,17 @@ public class StringUtils {
      * 字符模糊处理（保留首尾，中间用指定字符替换）
      *
      * @param str        要处理的字符
-     * @param repacleStr 替换字符（默认是*）
+     * @param replaceStr 替换字符（默认是*）
      * @return 处理后的字符串
      */
-    public String obscure(String str, String repacleStr) {
-        if (repacleStr == null || repacleStr.length() == 0 || "".equals(repacleStr)) {
-            repacleStr = "*";
+    public static String obscure(String str, String replaceStr) {
+        if (replaceStr == null || replaceStr.length() == 0 || "".equals(replaceStr)) {
+            replaceStr = "*";
         }
         if (str.length() > 2) {
             StringBuilder content = new StringBuilder();
             for (int i = 1; i < str.length() - 1; i++) {
-                content.append(repacleStr);
+                content.append(replaceStr);
             }
             str = str.substring(0, 1) + content + str.substring(str.length() - 1, str.length());
         } else if (str.length() == 2) {

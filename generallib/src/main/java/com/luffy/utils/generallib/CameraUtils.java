@@ -10,21 +10,10 @@ import android.os.StrictMode;
  */
 public class CameraUtils {
 
-    private CameraUtils() {
-    }
-
-    public static CameraUtils getInstance() {
-        return SystemUtilsHolder.instance;
-    }
-
-    private static class SystemUtilsHolder {
-        private static final CameraUtils instance = new CameraUtils();
-    }
-
     /**
      * 解决7.0拍照问题
      */
-    public void settingCamera() {
+    public static void settingCamera() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());

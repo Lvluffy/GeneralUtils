@@ -23,24 +23,13 @@ public class NetUtils {
      */
     private static final int NETWORK_WIFI = 1;
 
-    private NetUtils() {
-    }
-
-    public static NetUtils getInstance() {
-        return NetUtilsHolder.instance;
-    }
-
-    private static class NetUtilsHolder {
-        private static final NetUtils instance = new NetUtils();
-    }
-
     /**
      * 获取当前网络连接的类型
      *
      * @param context 上下文
      * @return
      */
-    public int getConnectedType(Context context) {
+    public static int getConnectedType(Context context) {
         ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null != mConnectivityManager) {
             NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
@@ -61,7 +50,7 @@ public class NetUtils {
      * @param context 上下文
      * @return
      */
-    public boolean isConnected(Context context) {
+    public static boolean isConnected(Context context) {
         ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null != mConnectivityManager) {
             NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
@@ -80,7 +69,7 @@ public class NetUtils {
      * @param context
      * @return
      */
-    public boolean isWifi(Context context) {
+    public static boolean isWifi(Context context) {
         ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null != mConnectivityManager) {
             NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
@@ -97,7 +86,7 @@ public class NetUtils {
      * @param context
      * @return
      */
-    public boolean isMobile(Context context) {
+    public static boolean isMobile(Context context) {
         ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (null != mConnectivityManager) {
             NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();

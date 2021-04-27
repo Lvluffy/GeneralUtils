@@ -8,9 +8,6 @@ import android.os.Looper;
  * @name 线程辅助工具
  */
 public class ThreadUtils {
-    private ThreadUtils() {
-    }
-
     /**
      * 是否为主线程
      *

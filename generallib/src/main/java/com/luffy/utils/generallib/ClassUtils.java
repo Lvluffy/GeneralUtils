@@ -7,24 +7,13 @@ package com.luffy.utils.generallib;
  */
 public class ClassUtils {
 
-    private ClassUtils() {
-    }
-
-    public static ClassUtils getInstance() {
-        return ClassUtilsHolder.instance;
-    }
-
-    private static class ClassUtilsHolder {
-        private static final ClassUtils instance = new ClassUtils();
-    }
-
     /**
      * 获取包名类名
      *
      * @param cla 类对象
      * @return 包名类名（com.example.test.Main）
      */
-    public String getClassName(Class cla) {
+    public static String getClassName(Class cla) {
         return cla.getName();
     }
 
@@ -35,7 +24,7 @@ public class ClassUtils {
      * @param cla 类对象
      * @return 类名（Main）
      */
-    public String getClassSimpleName(Class cla) {
+    public static String getClassSimpleName(Class cla) {
         return cla.getSimpleName();
     }
 }

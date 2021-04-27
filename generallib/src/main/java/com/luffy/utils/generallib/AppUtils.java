@@ -21,24 +21,13 @@ import java.util.List;
  */
 public class AppUtils {
 
-    private AppUtils() {
-    }
-
-    public static AppUtils getInstance() {
-        return AppUtilsHolder.instance;
-    }
-
-    private static class AppUtilsHolder {
-        private static final AppUtils instance = new AppUtils();
-    }
-
     /**
      * 获取应用包名
      *
      * @param context 上下文
      * @return 应用包名
      */
-    public String getAppPackName(Context context) {
+    public static String getAppPackName(Context context) {
         //当前应用pid
         int pid = android.os.Process.myPid();
         //任务管理类
@@ -60,7 +49,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public Bundle getMetaData(Context context) {
+    public static Bundle getMetaData(Context context) {
         return getMetaData(context, context.getPackageName());
     }
 
@@ -71,7 +60,7 @@ public class AppUtils {
      * @param packageName
      * @return
      */
-    public Bundle getMetaData(Context context, String packageName) {
+    public static Bundle getMetaData(Context context, String packageName) {
         try {
             return context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData;
         } catch (Exception e) {
@@ -86,7 +75,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public String getAppName(Context context) {
+    public static String getAppName(Context context) {
         return getAppName(context, context.getPackageName());
     }
 
@@ -97,7 +86,7 @@ public class AppUtils {
      * @param packageName 包名
      * @return 应用程序名称
      */
-    public String getAppName(Context context, String packageName) {
+    public static String getAppName(Context context, String packageName) {
         try {
             return context.getPackageManager().getApplicationLabel(context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA)).toString();
         } catch (Exception e) {
@@ -111,7 +100,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public Drawable getAppIcon(Context context) {
+    public static Drawable getAppIcon(Context context) {
         return getAppIcon(context, context.getPackageName());
     }
 
@@ -122,7 +111,7 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用图标
      */
-    public Drawable getAppIcon(Context context, String packageName) {
+    public static Drawable getAppIcon(Context context, String packageName) {
         try {
             return context.getPackageManager().getApplicationIcon(context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA));
         } catch (Exception e) {
@@ -136,7 +125,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public String getAppVersionName(Context context) {
+    public static String getAppVersionName(Context context) {
         return getAppVersionName(context, context.getPackageName());
     }
 
@@ -147,7 +136,7 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用版本
      */
-    public String getAppVersionName(Context context, String packageName) {
+    public static String getAppVersionName(Context context, String packageName) {
         try {
             return context.getPackageManager().getPackageInfo(packageName, 0).versionName;
         } catch (Exception e) {
@@ -161,7 +150,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public int getAppVersionCode(Context context) {
+    public static int getAppVersionCode(Context context) {
         return getAppVersionCode(context, context.getPackageName());
     }
 
@@ -172,7 +161,7 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用版本
      */
-    public int getAppVersionCode(Context context, String packageName) {
+    public static int getAppVersionCode(Context context, String packageName) {
         try {
             return context.getPackageManager().getPackageInfo(packageName, 0).versionCode;
         } catch (Exception e) {
@@ -186,7 +175,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public String getAppSize(Context context) {
+    public static String getAppSize(Context context) {
         return getAppSize(context, context.getPackageName());
     }
 
@@ -197,7 +186,7 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用包大小
      */
-    public String getAppSize(Context context, String packageName) {
+    public static String getAppSize(Context context, String packageName) {
         try {
             // 获取应用的路径
             String dir = context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).publicSourceDir;
@@ -216,7 +205,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public String getAppSign(Context context) {
+    public static String getAppSign(Context context) {
         return getAppSign(context, context.getPackageName());
     }
 
@@ -227,7 +216,7 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用签名信息
      */
-    public String getAppSign(Context context, String packageName) {
+    public static String getAppSign(Context context, String packageName) {
         Signature signature = null;
         try {
             signature = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0];
@@ -246,7 +235,7 @@ public class AppUtils {
      * @param context
      * @return
      */
-    public String getAppSignMD5(Context context) {
+    public static String getAppSignMD5(Context context) {
         return getAppSignMD5(context, context.getPackageName());
     }
 
@@ -257,7 +246,7 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 应用MD5签名信息
      */
-    public String getAppSignMD5(Context context, String packageName) {
+    public static String getAppSignMD5(Context context, String packageName) {
         try {
             Signature signatures = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES).signatures[0];
             MessageDigest mDigest = MessageDigest.getInstance("MD5");
@@ -276,7 +265,7 @@ public class AppUtils {
      * @param key
      * @return
      */
-    public String getAppChannel(Context context, String key) {
+    public static String getAppChannel(Context context, String key) {
         return getAppChannel(context, context.getPackageName(), key);
     }
 
@@ -288,7 +277,7 @@ public class AppUtils {
      * @param key         application中指定的meta-data
      * @return 渠道信息
      */
-    public String getAppChannel(Context context, String packageName, String key) {
+    public static String getAppChannel(Context context, String packageName, String key) {
         try {
             return context.getPackageManager().getApplicationInfo(packageName, PackageManager.GET_META_DATA).metaData.getString(key);
         } catch (Exception e) {
@@ -304,7 +293,7 @@ public class AppUtils {
      * @param packageName 应用包名
      * @return 是否安装
      */
-    public boolean isInstallApp(Context context, String packageName) {
+    public static boolean isInstallApp(Context context, String packageName) {
         List<PackageInfo> packageInfos = context.getPackageManager().getInstalledPackages(0);
         for (PackageInfo info : packageInfos) {
             if (info.packageName.equalsIgnoreCase(packageName)) {
@@ -320,7 +309,7 @@ public class AppUtils {
      * @param context
      * @param packageName
      */
-    public void startApp(Context context, String packageName) {
+    public static void startApp(Context context, String packageName) {
         PackageManager packageManager = context.getPackageManager();
         Intent intent = packageManager.getLaunchIntentForPackage(packageName);
         if (intent != null) {
@@ -328,7 +317,7 @@ public class AppUtils {
         }
     }
 
-    private String toHexString(byte[] block) {
+    private static String toHexString(byte[] block) {
         StringBuffer buf = new StringBuffer();
         int len = block.length;
         for (int i = 0; i < len; i++) {
@@ -340,7 +329,7 @@ public class AppUtils {
         return buf.toString();
     }
 
-    private void byte2hex(byte b, StringBuffer buf) {
+    private static void byte2hex(byte b, StringBuffer buf) {
         char[] hexChars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         int high = ((b & 0xf0) >> 4);
         int low = (b & 0x0f);

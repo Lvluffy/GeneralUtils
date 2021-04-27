@@ -20,24 +20,13 @@ import java.net.URL;
  */
 public class VersionUpgradeUtils {
 
-    private VersionUpgradeUtils() {
-    }
-
-    public static VersionUpgradeUtils getInstance() {
-        return VersionUpgradeUtilsHolder.instance;
-    }
-
-    private static class VersionUpgradeUtilsHolder {
-        private static final VersionUpgradeUtils instance = new VersionUpgradeUtils();
-    }
-
     /**
      * 外部升级（应用宝市场更新）
      *
      * @param context 上下文
      * @param url     链接地址
      */
-    public void externalUpgrade(Context context, String url) {
+    public static void externalUpgrade(Context context, String url) {
         externalUpgrade(context, url, "com.tencent.android.qqdownloader");
     }
 
@@ -48,9 +37,9 @@ public class VersionUpgradeUtils {
      * @param url         链接地址
      * @param packageName 市场包名
      */
-    public void externalUpgrade(Context context, String url, String packageName) {
-        if (AppUtils.getInstance().isInstallApp(context, packageName)) {
-            IntentUtils.getInstance().openAppDetail(context, AppUtils.getInstance().getAppPackName(context), packageName);
+    public static void externalUpgrade(Context context, String url, String packageName) {
+        if (AppUtils.isInstallApp(context, packageName)) {
+            IntentUtils.openAppDetail(context, AppUtils.getAppPackName(context), packageName);
         } else {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
@@ -65,7 +54,7 @@ public class VersionUpgradeUtils {
      * @param context 是否有效
      * @param uri     下载地址
      */
-    public void internalUpgrade(final Context context, final String uri) {
+    public static void internalUpgrade(final Context context, final String uri) {
         final ProgressDialog mProgressDialog;    //进度条对话框
         mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -97,7 +86,7 @@ public class VersionUpgradeUtils {
      * @return 文件
      * @throws Exception 异常
      */
-    public File downloadApk(String uri, ProgressDialog mProgressDialog) throws Exception {
+    public static File downloadApk(String uri, ProgressDialog mProgressDialog) throws Exception {
         //如果相等的话表示当前的sdcard挂载在手机上并且是可用的
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             URL url = new URL(uri);
@@ -134,7 +123,7 @@ public class VersionUpgradeUtils {
      * @param context 上下文
      * @param file    文件
      */
-    public void installApk(Context context, File file) {
+    public static void installApk(Context context, File file) {
         Intent intent = new Intent();
         //执行动作
         intent.setAction(Intent.ACTION_VIEW);

@@ -15,17 +15,6 @@ import android.support.v4.app.NotificationCompat;
  */
 public class NotificationUtils {
 
-    private NotificationUtils() {
-    }
-
-    public static NotificationUtils getInstance() {
-        return NotifyUtilsHolder.instance;
-    }
-
-    private static class NotifyUtilsHolder {
-        private static final NotificationUtils instance = new NotificationUtils();
-    }
-
     /**
      * 发送通知
      *
@@ -35,7 +24,7 @@ public class NotificationUtils {
      * @param notification
      * @param notificationId
      */
-    public void notifyNotification(Context context, String channelId, String channelName, Notification notification, int notificationId) {
+    public static void notifyNotification(Context context, String channelId, String channelName, Notification notification, int notificationId) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (notificationManager == null) {
             return;
@@ -50,7 +39,7 @@ public class NotificationUtils {
      * @param context
      * @param notificationId
      */
-    public void cancelNotification(Context context, int notificationId) {
+    public static void cancelNotification(Context context, int notificationId) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (manager != null) {
             manager.cancel(notificationId);
@@ -65,7 +54,7 @@ public class NotificationUtils {
      * @return
      */
     @TargetApi(Build.VERSION_CODES.O)
-    public NotificationCompat.Builder createBuilder(Context context, String channelId) {
+    public static NotificationCompat.Builder createBuilder(Context context, String channelId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return new NotificationCompat.Builder(context, channelId).setAutoCancel(true);
         } else {
@@ -81,7 +70,7 @@ public class NotificationUtils {
      * @param channelName
      */
     @TargetApi(Build.VERSION_CODES.O)
-    private void setChannel(NotificationManager notificationManager, String channelId, String channelName) {
+    private static void setChannel(NotificationManager notificationManager, String channelId, String channelName) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = notificationManager.getNotificationChannel(channelId);
             if (channel == null) {

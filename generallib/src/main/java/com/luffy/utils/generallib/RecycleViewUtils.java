@@ -10,24 +10,13 @@ import android.support.v7.widget.RecyclerView;
  */
 public class RecycleViewUtils {
 
-    private RecycleViewUtils() {
-    }
-
-    public static RecycleViewUtils getInstance() {
-        return RecycleViewUtilsHolder.instance;
-    }
-
-    private static class RecycleViewUtilsHolder {
-        private static final RecycleViewUtils instance = new RecycleViewUtils();
-    }
-
     /**
      * 移动到指定位置
      *
      * @param mRecyclerView 控件
      * @param position      指定位置
      */
-    public void moveToPosition(RecyclerView mRecyclerView, int position) {
+    public static void moveToPosition(RecyclerView mRecyclerView, int position) {
         if (mRecyclerView == null)
             return;
         RecyclerView.LayoutManager layoutManager = mRecyclerView.getLayoutManager();
@@ -44,7 +33,7 @@ public class RecycleViewUtils {
      * @param mRecyclerView 控件
      * @param position      指定位置
      */
-    public void bottomToTopRoll(RecyclerView mRecyclerView, int position) {
+    public static void bottomToTopRoll(RecyclerView mRecyclerView, int position) {
         bottomToTopRoll(mRecyclerView, position, true);
     }
 
@@ -55,7 +44,7 @@ public class RecycleViewUtils {
      * @param position      指定位置
      * @param hasRollEffect 是有有滑动效果
      */
-    public void bottomToTopRoll(RecyclerView mRecyclerView, int position, boolean hasRollEffect) {
+    public static void bottomToTopRoll(RecyclerView mRecyclerView, int position, boolean hasRollEffect) {
         /*判断控件是否有效*/
         if (mRecyclerView == null)
             return;
@@ -75,7 +64,7 @@ public class RecycleViewUtils {
      * @param mRecyclerView 控件
      * @param position      指定位置
      */
-    public void topToBottomRoll(RecyclerView mRecyclerView, int position) {
+    public static void topToBottomRoll(RecyclerView mRecyclerView, int position) {
         /*判断控件是否有效*/
         if (mRecyclerView == null)
             return;

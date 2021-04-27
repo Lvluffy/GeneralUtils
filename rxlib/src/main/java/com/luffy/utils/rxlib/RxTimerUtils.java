@@ -15,18 +15,7 @@ import io.reactivex.disposables.Disposable;
  */
 public class RxTimerUtils {
 
-    private Disposable mDisposable;
-
-    private RxTimerUtils() {
-    }
-
-    public static RxTimerUtils getInstance() {
-        return RxTimerUtilsHolder.instance;
-    }
-
-    private static class RxTimerUtilsHolder {
-        private static final RxTimerUtils instance = new RxTimerUtils();
-    }
+    private static Disposable mDisposable;
 
     /**
      * 指定毫秒后执行next操作
@@ -35,7 +24,7 @@ public class RxTimerUtils {
      * @param unit  时间单位
      * @param next  回调
      */
-    public void timer(long delay, TimeUnit unit, final IRxNext next) {
+    public static void timer(long delay, TimeUnit unit, final IRxNext next) {
         Observable.timer(delay, unit)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
@@ -72,7 +61,7 @@ public class RxTimerUtils {
      * @param unit  时间单位
      * @param next  回调
      */
-    public void interval(long delay, TimeUnit unit, final IRxNext next) {
+    public static void interval(long delay, TimeUnit unit, final IRxNext next) {
         Observable.interval(delay, unit)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Long>() {
@@ -105,7 +94,7 @@ public class RxTimerUtils {
     /**
      * 取消订阅
      */
-    public void cancel() {
+    public static void cancel() {
         if (mDisposable != null && !mDisposable.isDisposed()) {
             mDisposable.dispose();
             mDisposable = null;

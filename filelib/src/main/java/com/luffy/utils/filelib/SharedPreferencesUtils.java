@@ -15,21 +15,10 @@ import java.util.Map;
 public class SharedPreferencesUtils {
 
     /*保存在手机里面的文件名*/
-    private String FILE_NAME = "share_data";
+    private static String FILE_NAME = "share_data";
 
-    private SharedPreferencesUtils() {
-    }
-
-    public static SharedPreferencesUtils getInstance() {
-        return SharedPreferencesUtilsHolder.instance;
-    }
-
-    private static class SharedPreferencesUtilsHolder {
-        private static final SharedPreferencesUtils instance = new SharedPreferencesUtils();
-    }
-
-    public void init(String fileName) {
-        this.FILE_NAME = fileName;
+    public static void init(String fileName) {
+        FILE_NAME = fileName;
     }
 
     /**
@@ -39,7 +28,7 @@ public class SharedPreferencesUtils {
      * @param key     键
      * @param object  值
      */
-    public SharedPreferencesUtils put(Context context, String key, Object object) {
+    public static void put(Context context, String key, Object object) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         if (object instanceof String) {
@@ -56,7 +45,6 @@ public class SharedPreferencesUtils {
             editor.putString(key, object.toString());
         }
         SharedPreferencesCompat.apply(editor);
-        return this;
     }
 
     /**
@@ -67,7 +55,7 @@ public class SharedPreferencesUtils {
      * @param defaultObject 默认值
      * @return Object
      */
-    public Object get(Context context, String key, Object defaultObject) {
+    public static Object get(Context context, String key, Object defaultObject) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         if (defaultObject instanceof String) {
             return sp.getString(key, (String) defaultObject);
@@ -89,7 +77,7 @@ public class SharedPreferencesUtils {
      * @param context 上下文
      * @param key     键
      */
-    public void remove(Context context, String key) {
+    public static void remove(Context context, String key) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove(key);
@@ -101,7 +89,7 @@ public class SharedPreferencesUtils {
      *
      * @param context 上下文
      */
-    public void clear(Context context) {
+    public static void clear(Context context) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
@@ -115,7 +103,7 @@ public class SharedPreferencesUtils {
      * @param key     键
      * @return key是否已经存在
      */
-    public boolean contains(Context context, String key) {
+    public static boolean contains(Context context, String key) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         return sp.contains(key);
     }
@@ -126,7 +114,7 @@ public class SharedPreferencesUtils {
      * @param context 上下文
      * @return 键值对
      */
-    public Map<String, ?> getAll(Context context) {
+    public static Map<String, ?> getAll(Context context) {
         SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         return sp.getAll();
     }

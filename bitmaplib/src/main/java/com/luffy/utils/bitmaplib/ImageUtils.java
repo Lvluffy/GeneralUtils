@@ -16,24 +16,13 @@ import java.lang.reflect.Field;
  */
 public class ImageUtils {
 
-    private ImageUtils() {
-    }
-
-    public static ImageUtils getInstance() {
-        return ImageUtilsHolder.instance;
-    }
-
-    private static class ImageUtilsHolder {
-        private static final ImageUtils instance = new ImageUtils();
-    }
-
     /**
      * 根据InputStream获取图片实际的宽度和高度
      *
      * @param imageStream 输入流
      * @return 图片大小
      */
-    public ImageSize getImageSize(InputStream imageStream) {
+    public static ImageSize getImageSize(InputStream imageStream) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeStream(imageStream, null, options);
@@ -71,7 +60,7 @@ public class ImageUtils {
      * @param targetSize 目标图片大小
      * @return 图片大小
      */
-    public int calculateInSampleSize(ImageSize srcSize, ImageSize targetSize) {
+    public static int calculateInSampleSize(ImageSize srcSize, ImageSize targetSize) {
         // 源图片的宽度
         int width = srcSize.width;
         int height = srcSize.height;
@@ -95,7 +84,7 @@ public class ImageUtils {
      * @param view View
      * @return 图片大小
      */
-    public ImageSize getImageViewSize(View view) {
+    public static ImageSize getImageViewSize(View view) {
         ImageSize imageSize = new ImageSize();
         imageSize.width = getExpectWidth(view);
         imageSize.height = getExpectHeight(view);
@@ -108,7 +97,7 @@ public class ImageUtils {
      * @param view View
      * @return 期望高度
      */
-    private int getExpectHeight(View view) {
+    private static int getExpectHeight(View view) {
         int height = 0;
         if (view == null) return 0;
         final ViewGroup.LayoutParams params = view.getLayoutParams();
@@ -136,7 +125,7 @@ public class ImageUtils {
      * @param view View
      * @return 期望宽度
      */
-    private int getExpectWidth(View view) {
+    private static int getExpectWidth(View view) {
         int width = 0;
         if (view == null) return 0;
         final ViewGroup.LayoutParams params = view.getLayoutParams();
@@ -165,7 +154,7 @@ public class ImageUtils {
      * @param fieldName 文件名称
      * @return 属性值
      */
-    private int getImageViewFieldValue(Object object, String fieldName) {
+    private static int getImageViewFieldValue(Object object, String fieldName) {
         int value = 0;
         try {
             Field field = ImageView.class.getDeclaredField(fieldName);

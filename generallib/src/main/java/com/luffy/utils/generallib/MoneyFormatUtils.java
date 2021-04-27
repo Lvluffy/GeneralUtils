@@ -10,24 +10,13 @@ import java.text.DecimalFormat;
  */
 public class MoneyFormatUtils {
 
-    private MoneyFormatUtils() {
-    }
-
-    public static MoneyFormatUtils getInstance() {
-        return MoneyFormatUtilsHolder.instance;
-    }
-
-    private static class MoneyFormatUtilsHolder {
-        private static final MoneyFormatUtils instance = new MoneyFormatUtils();
-    }
-
     /**
      * double转String,保留小数点后两位（四舍五入）
      *
      * @param money 金额
      * @return 处理后的金额
      */
-    public String doubleToString(double money) {
+    public static String doubleToString(double money) {
         DecimalFormat mDecimalFormat = new DecimalFormat("0.00");
         mDecimalFormat.setRoundingMode(RoundingMode.HALF_UP);
         return mDecimalFormat.format(money);
@@ -40,7 +29,7 @@ public class MoneyFormatUtils {
      * @param pattern 模式
      * @return 处理后的金额
      */
-    public String doubleToString(double money, String pattern) {
+    public static String doubleToString(double money, String pattern) {
         DecimalFormat mDecimalFormat = new DecimalFormat(pattern);
         mDecimalFormat.setRoundingMode(RoundingMode.HALF_UP);
         return mDecimalFormat.format(money);
@@ -52,7 +41,7 @@ public class MoneyFormatUtils {
      * @param money 金额
      * @return 处理后的金额
      */
-    public String doubleToStringRoundingNo(double money) {
+    public static String doubleToStringRoundingNo(double money) {
         DecimalFormat mDecimalFormat = new DecimalFormat("0.00");
         mDecimalFormat.setRoundingMode(RoundingMode.FLOOR);
         return mDecimalFormat.format(money);
@@ -65,7 +54,7 @@ public class MoneyFormatUtils {
      * @param pattern 模式
      * @return 处理后的金额
      */
-    public String doubleToStringRoundingNo(double money, String pattern) {
+    public static String doubleToStringRoundingNo(double money, String pattern) {
         DecimalFormat mDecimalFormat = new DecimalFormat(pattern);
         mDecimalFormat.setRoundingMode(RoundingMode.FLOOR);
         return mDecimalFormat.format(money);

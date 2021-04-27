@@ -14,21 +14,7 @@ import android.text.TextUtils;
  */
 public class IntentUtils {
 
-    private IntentUtils() {
-    }
-
-    public static IntentUtils getInstance() {
-        return IntentUtilsHolder.instance;
-    }
-
-    /**
-     * 静态内部类实现单例
-     */
-    private static class IntentUtilsHolder {
-        private static final IntentUtils instance = new IntentUtils();
-    }
-
-    public void startActivity(Context context, String action) {
+    public static void startActivity(Context context, String action) {
         startActivity(context, action, null);
     }
 
@@ -39,7 +25,7 @@ public class IntentUtils {
      * @param action      目标对象
      * @param intentExtra 自定义传参
      */
-    public void startActivity(Context context, String action, IntentExtra intentExtra) {
+    public static void startActivity(Context context, String action, IntentExtra intentExtra) {
         if (action == null) {
             throw new NullPointerException("Action cannot be empty");
         }
@@ -51,7 +37,7 @@ public class IntentUtils {
         }
     }
 
-    public void startActivity(Context context, Class<?> target) {
+    public static void startActivity(Context context, Class<?> target) {
         startActivity(context, target, null);
     }
 
@@ -62,7 +48,7 @@ public class IntentUtils {
      * @param target      目标对象
      * @param intentExtra 自定义传参
      */
-    public void startActivity(Context context, Class<?> target, IntentExtra intentExtra) {
+    public static void startActivity(Context context, Class<?> target, IntentExtra intentExtra) {
         if (target == null) {
             throw new NullPointerException("Target cannot be empty");
         }
@@ -77,7 +63,7 @@ public class IntentUtils {
         }
     }
 
-    public void startActivityForResult(Activity context, Class<?> target, int requestCode) {
+    public static void startActivityForResult(Activity context, Class<?> target, int requestCode) {
         startActivityForResult(context, target, requestCode, null);
     }
 
@@ -89,7 +75,7 @@ public class IntentUtils {
      * @param requestCode 请求码
      * @param intentExtra 自定义传参
      */
-    public void startActivityForResult(Activity context, Class<?> target, int requestCode, IntentExtra intentExtra) {
+    public static void startActivityForResult(Activity context, Class<?> target, int requestCode, IntentExtra intentExtra) {
         if (target == null) {
             throw new NullPointerException("Target cannot be empty");
         }
@@ -101,7 +87,7 @@ public class IntentUtils {
         }
     }
 
-    public void startActivityForResult(android.support.v4.app.Fragment context, Class<?> target, int requestCode) {
+    public static void startActivityForResult(android.support.v4.app.Fragment context, Class<?> target, int requestCode) {
         startActivityForResult(context, target, requestCode, null);
     }
 
@@ -113,7 +99,7 @@ public class IntentUtils {
      * @param requestCode 请求码
      * @param intentExtra 自定义传参
      */
-    public void startActivityForResult(android.support.v4.app.Fragment context, Class<?> target, int requestCode, IntentExtra intentExtra) {
+    public static void startActivityForResult(android.support.v4.app.Fragment context, Class<?> target, int requestCode, IntentExtra intentExtra) {
         if (target == null) {
             throw new NullPointerException("Target cannot be empty");
         }
@@ -125,7 +111,7 @@ public class IntentUtils {
         }
     }
 
-    public void startActivityForResult(android.app.Fragment context, Class<?> target, int requestCode) {
+    public static void startActivityForResult(android.app.Fragment context, Class<?> target, int requestCode) {
         startActivityForResult(context, target, requestCode, null);
     }
 
@@ -137,7 +123,7 @@ public class IntentUtils {
      * @param requestCode 请求码
      * @param intentExtra 自定义传参
      */
-    public void startActivityForResult(android.app.Fragment context, Class<?> target, int requestCode, IntentExtra intentExtra) {
+    public static void startActivityForResult(android.app.Fragment context, Class<?> target, int requestCode, IntentExtra intentExtra) {
         if (target == null) {
             throw new NullPointerException("Target cannot be empty");
         }
@@ -156,7 +142,7 @@ public class IntentUtils {
      * @param appPackageName    应用包名
      * @param marketPackageName 应用商店包名
      */
-    public void openAppDetail(Context context, String appPackageName, String marketPackageName) {
+    public static void openAppDetail(Context context, String appPackageName, String marketPackageName) {
         if (TextUtils.isEmpty(appPackageName) || TextUtils.isEmpty(marketPackageName)) {
             return;
         }

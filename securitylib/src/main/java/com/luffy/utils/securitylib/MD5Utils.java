@@ -16,21 +16,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5Utils {
 
-    private MD5Utils() {
-    }
-
-    public static MD5Utils getInstance() {
-        return MD5UtilsHolder.instance;
-    }
-
-    private static class MD5UtilsHolder {
-        private static final MD5Utils instance = new MD5Utils();
-    }
-
     private static final char hexDigits[] =
             {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    public String toHexString(byte[] bytes) {
+    public static String toHexString(byte[] bytes) {
         if (bytes == null) return "";
         StringBuilder hex = new StringBuilder(bytes.length * 2);
         for (byte b : bytes) {
@@ -40,7 +29,7 @@ public class MD5Utils {
         return hex.toString();
     }
 
-    public String md5(File file) throws IOException {
+    public static String md5(File file) throws IOException {
         MessageDigest messagedigest = null;
         FileInputStream in = null;
         FileChannel ch = null;
@@ -62,7 +51,7 @@ public class MD5Utils {
         return toHexString(encodeBytes);
     }
 
-    public String md5(String string) {
+    public static String md5(String string) {
         byte[] encodeBytes = null;
         try {
             encodeBytes = MessageDigest.getInstance("MD5").digest(string.getBytes("UTF-8"));

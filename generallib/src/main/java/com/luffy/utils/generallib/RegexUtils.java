@@ -9,16 +9,6 @@ import java.util.regex.Pattern;
  * @name 正则表达式-辅助工具
  */
 public class RegexUtils {
-    private RegexUtils() {
-    }
-
-    public static RegexUtils getInstance() {
-        return RegexUtilsHolder.instance;
-    }
-
-    private static class RegexUtilsHolder {
-        private static final RegexUtils instance = new RegexUtils();
-    }
 
     public static class Regex {
         /**
@@ -69,7 +59,7 @@ public class RegexUtils {
      * @param content 上下文
      * @return 是否匹配
      */
-    public boolean isMatcher(String content, String regex) {
+    public static boolean isMatcher(String content, String regex) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(content);
         return matcher.matches();
@@ -81,8 +71,8 @@ public class RegexUtils {
      * @param content 上下文
      * @return 是否为邮箱
      */
-    public boolean isEmail(String content) {
-        if (!ValidUtils.getInstance().isValid(content)) {
+    public static boolean isEmail(String content) {
+        if (!ValidUtils.isValid(content)) {
             return true;
         }
         Pattern pattern = Pattern.compile(Regex.EMAIL_REGEX);

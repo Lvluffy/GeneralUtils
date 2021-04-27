@@ -26,24 +26,13 @@ import java.net.URLConnection;
  */
 public class FileConversionUtils {
 
-    private FileConversionUtils() {
-    }
-
-    public static FileConversionUtils getInstance() {
-        return FileConversionUtilsHolder.instance;
-    }
-
-    private static class FileConversionUtilsHolder {
-        private static final FileConversionUtils instance = new FileConversionUtils();
-    }
-
     /**
      * URI转File
      *
      * @param uri URI
      * @return 文件
      */
-    public File uri2File(URI uri) {
+    public static File uri2File(URI uri) {
         File file = null;
         if (uri != null) {
             file = new File(uri);
@@ -57,7 +46,7 @@ public class FileConversionUtils {
      * @param file 文件
      * @return URI
      */
-    public URI file2URI(File file) {
+    public static URI file2URI(File file) {
         URI uri = null;
         if (file != null) {
             uri = file.toURI();
@@ -71,7 +60,7 @@ public class FileConversionUtils {
      * @param path 文件路径
      * @return 文件
      */
-    public File string2File(String path) {
+    public static File string2File(String path) {
         File file = null;
         if (path != null) {
             file = new File(path);
@@ -85,7 +74,7 @@ public class FileConversionUtils {
      * @param file 文件
      * @return 文件路径
      */
-    public String file2String(File file) {
+    public static String file2String(File file) {
         String path = null;
         if (file != null) {
             path = file.getPath();
@@ -99,7 +88,7 @@ public class FileConversionUtils {
      * @param filePath 文件路径
      * @return 字节数组
      */
-    public byte[] string2Byte(String filePath) {
+    public static byte[] string2Byte(String filePath) {
         byte[] buffer = null;
         if (filePath != null) {
             File file = new File(filePath);
@@ -114,7 +103,7 @@ public class FileConversionUtils {
      * @param file 文件
      * @return 字节数组
      */
-    public byte[] file2Byte(File file) {
+    public static byte[] file2Byte(File file) {
         byte[] bytes = null;
         if (file != null) {
             try {
@@ -145,7 +134,7 @@ public class FileConversionUtils {
      * @param fileName 文件名称
      * @return 文件
      */
-    public File byte2File(byte[] bytes, String filePath, String fileName) {
+    public static File byte2File(byte[] bytes, String filePath, String fileName) {
         BufferedOutputStream bos = null;
         FileOutputStream fos = null;
         File file = null;
@@ -185,7 +174,7 @@ public class FileConversionUtils {
      * @param bitmap Bitmao
      * @return 字节数组
      */
-    public byte[] bitmap2Byte(Bitmap bitmap) {
+    public static byte[] bitmap2Byte(Bitmap bitmap) {
         byte[] bytes = null;
         if (bitmap != null) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -201,7 +190,7 @@ public class FileConversionUtils {
      * @param bytes 字节数组
      * @return Bitmap
      */
-    public Bitmap byte2Bitmap(byte[] bytes) {
+    public static Bitmap byte2Bitmap(byte[] bytes) {
         Bitmap bitmap = null;
         if (bytes != null && bytes.length > 0) {
             bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -216,7 +205,7 @@ public class FileConversionUtils {
      * @param path 图片路径
      * @return Bitmap
      */
-    public Bitmap string2Bitmap(String path) {
+    public static Bitmap string2Bitmap(String path) {
         Bitmap bitmap = null;
         if (path != null) {
             try {
@@ -240,7 +229,7 @@ public class FileConversionUtils {
      * @param file 文件
      * @return Bitmap
      */
-    public Bitmap file2Bitmap(File file) throws IOException {
+    public static Bitmap file2Bitmap(File file) throws IOException {
         Bitmap bitmap = null;
         if (file != null) {
             int IMAGE_MAX_SIZE = 1000;
@@ -274,7 +263,7 @@ public class FileConversionUtils {
      * @param filePath 文件路径
      * @return Bitmap
      */
-    public Bitmap filePath2Bitmap(String filePath) throws IOException {
+    public static Bitmap filePath2Bitmap(String filePath) throws IOException {
         Bitmap bitmap = null;
         if (filePath != null) {
             File file = new File(filePath);
@@ -294,7 +283,7 @@ public class FileConversionUtils {
      * @param fileName 文件名称
      * @return 文件
      */
-    public File bitmap2File(Bitmap bitmap, String filePath, String fileName) {
+    public static File bitmap2File(Bitmap bitmap, String filePath, String fileName) {
         File file = null;
         if (bitmap != null && filePath != null && fileName != null) {
             File dir = new File(filePath);
@@ -331,7 +320,7 @@ public class FileConversionUtils {
      * @param fileName 文件名称
      * @return 字符串
      */
-    public String assetsFile2String(Context context, String fileName) {
+    public static String assetsFile2String(Context context, String fileName) {
         //将json数据变成字符串
         StringBuilder stringBuilder = new StringBuilder();
         InputStreamReader mInputStreamReader = null;

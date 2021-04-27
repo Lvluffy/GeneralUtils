@@ -17,17 +17,6 @@ public class BlurBitmapUtils {
     //图片缩放比例
     private static final float BITMAP_SCALE = 0.4f;
 
-    private BlurBitmapUtils() {
-    }
-
-    public static BlurBitmapUtils getInstance() {
-        return BlurBitmapUtilsHolder.instance;
-    }
-
-    private static class BlurBitmapUtilsHolder {
-        private static final BlurBitmapUtils instance = new BlurBitmapUtils();
-    }
-
     /**
      * @param context    上下文
      * @param image      Bitmap
@@ -35,7 +24,7 @@ public class BlurBitmapUtils {
      * @return Bitmap
      */
     @SuppressLint("NewApi")
-    public Bitmap blurBitmap(Context context, Bitmap image, float blurRadius) {
+    public static Bitmap blurBitmap(Context context, Bitmap image, float blurRadius) {
         // 计算图片缩小后的长宽
         int width = Math.round(image.getWidth() * BITMAP_SCALE);
         int height = Math.round(image.getHeight() * BITMAP_SCALE);

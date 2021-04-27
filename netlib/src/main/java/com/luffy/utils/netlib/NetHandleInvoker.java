@@ -14,11 +14,11 @@ public class NetHandleInvoker {
 
     public static void gotoHint(Context context, INetHandle iNetHandle) {
         if (iNetHandle != null) {
-            if (NetUtils.getInstance().isConnected(context)) {
+            if (NetUtils.isConnected(context)) {
                 iNetHandle.hasNetwork();
-                if (NetUtils.getInstance().isWifi(context)) {
+                if (NetUtils.isWifi(context)) {
                     iNetHandle.wifiNetwork();
-                } else if (NetUtils.getInstance().isMobile(context)) {
+                } else if (NetUtils.isMobile(context)) {
                     iNetHandle.mobileNetwork();
                 }
             } else {

@@ -16,6 +16,6 @@ public class AppActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FragmentUtils.getInstance().replaceFragment(this, new AppFragment());
+        FragmentUtils.replaceFragment(this, new AppFragment());
     }
 }

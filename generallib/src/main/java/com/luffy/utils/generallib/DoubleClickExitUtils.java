@@ -6,8 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
-import java.lang.ref.WeakReference;
-
 
 /**
  * Created by lvlufei on 2018/1/1
@@ -22,17 +20,6 @@ public class DoubleClickExitUtils {
     /*定义一个变量，来标识是否退出*/
     private static boolean isExit = false;
 
-    private DoubleClickExitUtils() {
-    }
-
-    public static DoubleClickExitUtils getInstance() {
-        return DoubleClickExitUtilsHolder.instance;
-    }
-
-    private static class DoubleClickExitUtilsHolder {
-        private static final DoubleClickExitUtils instance = new DoubleClickExitUtils();
-    }
-
     /**
      * 双击退出
      *
@@ -40,7 +27,7 @@ public class DoubleClickExitUtils {
      * @param iDoubleClickExitCallBack 回调
      * @return 是否双击退出ø
      */
-    public boolean exit(Activity activity, IDoubleClickExitCallBack iDoubleClickExitCallBack) {
+    public static boolean exit(Activity activity, IDoubleClickExitCallBack iDoubleClickExitCallBack) {
         return exit(activity, END_FINISH, iDoubleClickExitCallBack);
     }
 
@@ -52,7 +39,7 @@ public class DoubleClickExitUtils {
      * @param iDoubleClickExitCallBack 回调
      * @return 是否双击退出
      */
-    public boolean exit(Activity activity, int type, IDoubleClickExitCallBack iDoubleClickExitCallBack) {
+    public static boolean exit(Activity activity, int type, IDoubleClickExitCallBack iDoubleClickExitCallBack) {
         if (isExit) {
             if (type == END_FINISH) {
                 // 退出
@@ -67,33 +54,25 @@ public class DoubleClickExitUtils {
         } else {
             isExit = true;
             if (iDoubleClickExitCallBack != null) {
-                iDoubleClickExitCallBack.hanlderToastShow();
+                iDoubleClickExitCallBack.handlerToastShow();
             } else {
-                Toast.makeText(activity, String.format(activity.getString(R.string.utils_double_click_exit_hint), AppUtils.getInstance().getAppName(activity)), Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, String.format(activity.getString(R.string.utils_double_click_exit_hint), AppUtils.getAppName(activity)), Toast.LENGTH_SHORT).show();
             }
-            new MyHanlder(DoubleClickExitUtils.this).sendEmptyMessageDelayed(0, 2000);
+            new MyHandler().sendEmptyMessageDelayed(0, 2000);
         }
         return true;
     }
 
     public interface IDoubleClickExitCallBack {
-        void hanlderToastShow();
+        void handlerToastShow();
     }
 
-    private static class MyHanlder extends Handler {
-
-        private WeakReference<DoubleClickExitUtils> weakReference;
-
-        public MyHanlder(DoubleClickExitUtils doubleClickExitUtils) {
-            weakReference = new WeakReference<>(doubleClickExitUtils);
-        }
+    private static class MyHandler extends Handler {
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            DoubleClickExitUtils doubleClickExitUtils = weakReference.get();
-            if (doubleClickExitUtils != null)
-                doubleClickExitUtils.isExit = false;
+            isExit = false;
         }
     }
 }
