@@ -1,5 +1,6 @@
 package com.luffy.utils.generallib;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -8,105 +9,55 @@ import android.util.Log;
  * @name 日志-辅助工具
  */
 public class LogUtils {
-    public static final String LOG_TAG = "LogUtils";
-    private static boolean DEBUG;
+    private static final String TAG = "com.luffy.generalutils";
 
-    public static void init(boolean isDebug) {
-        DEBUG = isDebug;
+    public static void v(String msg) {
+        println(Log.VERBOSE, "", msg);
     }
 
-    /**
-     * @param log 日志
-     */
-    public static void logVerbose(String log) {
-        if (DEBUG) {
-            Log.v(LOG_TAG, log);
-        }
+    public static void v(String tag, String msg) {
+        println(Log.VERBOSE, tag, msg);
     }
 
-    /**
-     * @param tag 标签
-     * @param log 日志
-     */
-    public static void logVerbose(String tag, String log) {
-        if (DEBUG) {
-            Log.v(tag, log);
-        }
+    public static void d(String msg) {
+        println(Log.DEBUG, "", msg);
     }
 
-    /**
-     * @param log 日志
-     */
-    public static void logDebug(String log) {
-        if (DEBUG) {
-            Log.d(LOG_TAG, log);
-        }
+    public static void d(String tag, String msg) {
+        println(Log.DEBUG, tag, msg);
     }
 
-    /**
-     * @param tag 标签
-     * @param log 日志
-     */
-    public static void logDebug(String tag, String log) {
-        if (DEBUG) {
-            Log.d(tag, log);
-        }
+    public static void i(String msg) {
+        println(Log.INFO, "", msg);
     }
 
-    /**
-     * @param log 日志
-     */
-    public static void logError(String log) {
-        if (DEBUG) {
-            Log.e(LOG_TAG, log);
-        }
+    public static void i(String tag, String msg) {
+        println(Log.INFO, tag, msg);
     }
 
-    /**
-     * @param tag 标签
-     * @param log 日志
-     */
-    public static void logError(String tag, String log) {
-        if (DEBUG) {
-            Log.e(tag, log);
-        }
+    public static void w(String msg) {
+        println(Log.WARN, "", msg);
     }
 
-    /**
-     * @param log 日志
-     */
-    public static void logInfo(String log) {
-        if (DEBUG) {
-            Log.i(LOG_TAG, log);
-        }
+    public static void w(String tag, String msg) {
+        println(Log.WARN, tag, msg);
     }
 
-    /**
-     * @param tag 标签
-     * @param log 日志
-     */
-    public static void logInfo(String tag, String log) {
-        if (DEBUG) {
-            Log.i(tag, log);
-        }
+    public static void e(String msg) {
+        println(Log.ERROR, "", msg);
     }
 
-    /**
-     * @param log 日志
-     */
-    public static void logWarn(String log) {
-        if (DEBUG) {
-            Log.v(LOG_TAG, log);
-        }
+    public static void e(String tag, String msg) {
+        println(Log.ERROR, tag, msg);
     }
 
-    /**
-     * @param tag 标签
-     * @param log 日志
-     */
-    public static void logWarn(String tag, String log) {
-        if (DEBUG) {
-            Log.w(tag, log);
+    private static void println(int priority, String tag, String msg) {
+        if (priority >= Log.DEBUG) {
+            if (TextUtils.isEmpty(tag)) {
+                Log.println(priority, TAG, msg);
+            } else {
+                Log.println(priority, TAG, "[" + tag + "] " + msg);
+            }
         }
     }
 }

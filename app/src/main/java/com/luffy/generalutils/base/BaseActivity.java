@@ -20,49 +20,49 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogUtils.logDebug(TAG, "onCreate");
+        LogUtils.d(TAG, "onCreate");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        LogUtils.logDebug(TAG, "onStart");
+        LogUtils.d(TAG, "onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtils.logDebug(TAG, "onResume");
+        LogUtils.d(TAG, "onResume");
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        LogUtils.logDebug(TAG, "onBackPressed");
+        LogUtils.d(TAG, "onBackPressed");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LogUtils.logDebug(TAG, "onPause");
+        LogUtils.d(TAG, "onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        LogUtils.logDebug(TAG, "onStop");
+        LogUtils.d(TAG, "onStop");
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
-        LogUtils.logDebug(TAG, "onSaveInstanceState");
+        LogUtils.d(TAG, "onSaveInstanceState");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtils.logDebug(TAG, "onDestroy");
+        LogUtils.d(TAG, "onDestroy");
     }
 
 }
