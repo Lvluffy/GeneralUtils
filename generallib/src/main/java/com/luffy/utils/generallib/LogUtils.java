@@ -51,6 +51,10 @@ public class LogUtils {
         println(Log.ERROR, tag, msg);
     }
 
+    public static void e(String tag, String msg, Throwable e) {
+        println(Log.ERROR, tag, msg + "\n" + Log.getStackTraceString(e));
+    }
+
     private static void println(int priority, String tag, String msg) {
         if (priority >= Log.DEBUG) {
             if (TextUtils.isEmpty(tag)) {
